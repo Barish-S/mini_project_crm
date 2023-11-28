@@ -1,13 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import Submit from './login';
-import Homepage from './Homepage/homepage';
 import Divert from './Homepage/homepage';
-import {BrowserRouter as Router} from 'react-router-dom';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -27,14 +26,9 @@ function App() {
   return ( 
     <div className="App">
       <header className="App-header">
-      {/* <Homepage/> */}
-      {/* <Submit/>   */}
-     
-      <RouterProvider router={router}/>
-     
-        {/* <Divert/>
-      */}
-      </header> 
+      <RouterProvider router={router} />
+
+      </header>
     </div>
   );
   }
