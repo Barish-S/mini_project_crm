@@ -1,25 +1,42 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Submit from './login';
+import Homepage from './Homepage/homepage';
+import Divert from './Homepage/homepage';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 function App() {
-  return (
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element:<Submit/>,
+    },
+    
+    {
+      path: "/divert",
+      element:<Divert/>,
+    },
+  ]);
+ 
+     
+
+  
+  return ( 
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <Homepage/> */}
+      {/* <Submit/>   */}
+     
+      <RouterProvider router={router}/>
+     
+        {/* <Divert/>
+      */}
+      </header> 
     </div>
   );
-}
+  }
 
 export default App;
