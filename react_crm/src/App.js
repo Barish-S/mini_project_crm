@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Submit from './login';
-import Divert from './Homepage/homepage';
+import { ClientRegister } from './ClientRegister/ClientRegister';
 import {
   createBrowserRouter,
   RouterProvider,
