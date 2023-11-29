@@ -1,21 +1,21 @@
 import './home.css';
 
-function homeAdmin() {
+function HomeAdmin() {
     return (
-        <div class="header">
+        <div className="header">
             <ul id="nav">
                 <li>Home</li>
                 <li>About</li>
                 <li>Contact</li>
             </ul>
-            <div class="side-nav">
-                <div class="user">
-                    <img src="images/user.png" class="user-img" />
+            <div className="side-nav">
+                <div className="user">
+                    <img src="images/user.png" className="user-img" />
                     <div>
                         <h2>Barish</h2>
                         <p>barishs28@gmail.com</p>
                     </div>
-                    <img src="images/star.png" class="star-img" />
+                    <img src="images/star.png" className="star-img" />
                 </div>
                 <ul>
                     <li><img src="images/dashboard.png" /><p>Dashboard</p></li>
@@ -34,4 +34,4 @@ function homeAdmin() {
     )
 }
 
-export default homeAdmin
+export default HomeAdmin

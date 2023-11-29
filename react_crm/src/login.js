@@ -9,6 +9,10 @@ function Submit(){
      
     navigate('/divert')
   };
+  let homeadmin =()=> {
+     
+    navigate('/homeclient')
+  };
 
 
 let logincheck=()=>{ 
@@ -39,7 +43,7 @@ return(
             <a href="#">SignIn ▾</a>
             <ul class="dropdown">
                 <li><a onClick={()=>handleClick()}>Client</a></li>
-                <li><a href="#">user</a></li>
+                <li><a onClick={homeadmin}>user</a></li>
                 
             </ul>
         </li>

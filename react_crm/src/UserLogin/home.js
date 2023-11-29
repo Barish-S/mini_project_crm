@@ -1,6 +1,6 @@
 import './home.css';
 
-function homeUser() {
+function HomeUser() {
     return (
     <div class="header">
         <ul id="nav">
@@ -30,4 +30,4 @@ function homeUser() {
     </div>
     )
 }
-export default homeUser
+export default HomeUser;

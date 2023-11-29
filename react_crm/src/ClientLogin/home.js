@@ -1,6 +1,6 @@
 import './home.css';
 
-function homeClient(){
+function HomeClient(){
     return(
         <>
         <div class="header">
@@ -33,5 +33,5 @@ function homeClient(){
     )
 }
 
-export default homeClient
+export default HomeClient
 
