@@ -2,7 +2,7 @@ import axios from 'axios';
 import "./Homepage/home.css"
 import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
-function Submit(){
+function Sub(){
   
   let navigate = useNavigate();
   let handleClick =()=> {
@@ -65,4 +65,4 @@ return(
 )
 }
 
-export default Submit;
+export default Sub;
