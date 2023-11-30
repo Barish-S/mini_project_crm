@@ -41,8 +41,15 @@ function App() {
   
   return ( 
     <div className="App">
-     
-      <RouterProvider router={router}/>
+      <header className="App-header">
+      <RouterProvider router={router} />
+       
+
+       
+
+
+      </header>
+    
     </div>
   );
   }
