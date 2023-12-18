@@ -42,6 +42,7 @@ export function ClientRegister() {
           }).then(function(response){
             console.log(response)
             dispatch(RegisterClient(response))
+            alert("Registerd succefully")
           })
 } 
 
