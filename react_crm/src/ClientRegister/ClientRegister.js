@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Button,Form,Row,Col } from 'react-bootstrap';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch } from 'react-redux'
+import { RegisterClient } from '../reducer/userSlice';
 
 
 
@@ -18,6 +20,8 @@ export function ClientRegister() {
        area:"",
        pin:"",
     })
+
+    let dispatch=useDispatch();
 
     const RegData=()=>{
         axios({
@@ -37,6 +41,7 @@ export function ClientRegister() {
             
           }).then(function(response){
             console.log(response)
+            dispatch(RegisterClient(response))
           })
 } 
 
