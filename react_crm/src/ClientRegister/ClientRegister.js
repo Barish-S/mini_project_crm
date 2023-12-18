@@ -43,7 +43,7 @@ export function ClientRegister() {
     return (
         <>
         <Form>
-                          <h1>Neee Register pannudaa !</h1>
+                          <h1>Register here !</h1>
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Name :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your name" onKeyUp={(e) => IsClientRegister({ ...ClientResgister, name: e.target.value })}/></Col></Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Email :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your email" onKeyUp={(e) => IsClientRegister({ ...ClientResgister, email: e.target.value })}/></Col></Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Password :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your password" onKeyUp={(e) => IsClientRegister({ ...ClientResgister, password: e.target.value })}/></Col></Form.Group>
