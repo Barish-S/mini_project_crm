@@ -9,7 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom"; 
 import Submit from './login';
-import Divert from './Homepage/homepage';
+import Divert from './Homepage/homepage'; 
 function App() {
   const router = createBrowserRouter([
     {
