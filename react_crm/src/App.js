@@ -17,8 +17,6 @@ function App() {
       path: "/",
       element:<Submit/>,
     },
-    
-    
     {
       path: "/divert",
       element:<Divert/>,
