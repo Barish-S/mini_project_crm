@@ -24,7 +24,7 @@ function UserReg(){
 
             <h2>Register here!</h2>
 
-            <b> {JSON.stringify(EmpRegDet)} </b>
+            {/* <b> {JSON.stringify(EmpRegDet)} </b> */}
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Name :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your name" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,name:e.target.value}))}/></Col></Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Email :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your email" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,email:e.target.value}))}/></Col></Form.Group>

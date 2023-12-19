@@ -3,15 +3,19 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
+    
     superAdminLogin:{
       email:"",
       password:""
     },
+
     clientLogin:{
       email:"",
       password:""
     },
+
     EmpRegDet:{},
+
     userloginsuccess:{},
     
     ClientDetails: {},
@@ -19,7 +23,6 @@ export const userSlice = createSlice({
     loggedStatus:{
         user:""
     }
-
   },
 
 
@@ -41,9 +44,7 @@ export const userSlice = createSlice({
     },
     setClientLogin : (state,action) => {
       state.clientLogin = action.payload
-    }
-
-   
+    }   
   },
 })
 
