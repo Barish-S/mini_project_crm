@@ -13,13 +13,9 @@ import {
 } from "react-router-dom"; 
 
 import Submit from './login';
-<<<<<<< HEAD
-import Divert from './Homepage/homepage';
 
-=======
 import Divert from './Homepage/homepage'; 
 import UserReg from './UserRegister';
->>>>>>> 757d768edfc310b4b27ba24f0d1a53a87a0c8646
 
 function App() {
   const router = createBrowserRouter([

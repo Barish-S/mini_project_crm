@@ -7,7 +7,6 @@ export const userSlice = createSlice({
     EmpRegDet:{},
     userloginsuccess:{}
     // value: 0,
-    userloginsuccess : {},
   },
  
  
