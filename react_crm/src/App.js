@@ -4,14 +4,22 @@ import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
 
 import './App.css';
+
 import { ClientRegister } from './ClientRegister/ClientRegister';
+
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom"; 
+
 import Submit from './login';
+<<<<<<< HEAD
 import Divert from './Homepage/homepage';
 
+=======
+import Divert from './Homepage/homepage'; 
+import UserReg from './UserRegister';
+>>>>>>> 757d768edfc310b4b27ba24f0d1a53a87a0c8646
 
 function App() {
   const router = createBrowserRouter([
@@ -19,8 +27,6 @@ function App() {
       path: "/",
       element:<Submit/>,
     },
-    
-    
     {
       path: "/divert",
       element:<Divert/>,
@@ -44,17 +50,23 @@ function App() {
 
   
   return ( 
+    
+
     <div className="App">
+
       <header className="App-header">
+
+
       <RouterProvider router={router} />
        
-
-       
-
+     
+     
 
       </header>
     
     </div>
+
+    
   );
   }
 
