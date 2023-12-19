@@ -1,17 +1,32 @@
 import axios from 'axios';
 import "./Homepage/home.css"
-import { useNavigate } from 'react-router-dom';
+import {Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
-function Submit(){
+
+function Sub(){
   
   let navigate = useNavigate();
-  let handleClick =()=> {
+  let Clientlog =()=> {
      
-    navigate('/divert')
+    navigate('/ClientLogin')
+    
   };
-  let homeadmin =()=> {
+  let Employeelog =()=> {
      
-    navigate('/homeclient')
+    navigate('/Userlogin')
+  };
+  let Adminlog =()=> {
+     
+    navigate('/')
+  };
+  let Clientreg =()=> {
+     
+    navigate('/clientRegister')
+  };
+  let Userreg =()=> {
+     
+    navigate('/userregister')
   };
 
 
@@ -67,4 +82,4 @@ return(
 )
 }
 
-export default Submit;
+export default Sub;

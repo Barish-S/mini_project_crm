@@ -11,6 +11,9 @@ import {
 } from "react-router-dom"; 
 
 import Submit from './login';
+import Userlogin from './UserLogin/Userlogin';
+import Divert from './Homepage/homepage';
+
 
 import Divert from './Homepage/homepage'; 
 import UserReg from './UserRegister';
@@ -23,7 +26,7 @@ function App() {
     },
     {
       path: "/divert",
-      element:<Divert/>,
+      element:<Userlogin/>,
     },
     {
       path: "/superadminlogin",
@@ -39,21 +42,16 @@ function App() {
     },
   ]);
  
-     
 
   
   return ( 
-    
-
     <div className="App">
-
       <header className="App-header">
-
-
       <RouterProvider router={router} />
        
-     
-     
+
+       
+
 
       </header>
     
