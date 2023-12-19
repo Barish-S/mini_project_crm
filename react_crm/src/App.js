@@ -4,9 +4,7 @@ import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
 
 import './App.css';
-
 import { ClientRegister } from './ClientRegister/ClientRegister';
-
 import {
   createBrowserRouter,
   RouterProvider,
@@ -39,7 +37,6 @@ function App() {
       path: "/homeemployee",
       element:<HomeUser/>,
     },
-    
   ]);
  
      
