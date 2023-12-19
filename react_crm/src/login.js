@@ -67,9 +67,9 @@ return(
         <li>
             <a href="#">SignUp ▾</a>
             <ul class="dropdown">
-               
-                 <li><a onClick={Clientreg}>client</a></li>
-                <li><a onClick={Userreg}>Employees</a></li>
+                <li><a href="#">Admin</a></li>
+                <li><a href="#">client</a></li>
+                <li><a href="#">Employees</a></li>
                
             </ul>
             
