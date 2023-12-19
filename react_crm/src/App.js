@@ -12,10 +12,10 @@ import {
 
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
-
+import ClientLogin from './ClientLogin/ClientLogin';
 import Divert from './Homepage/homepage'; 
 import UserReg from './UserRegister';
-
+import SuperAdminLog from './SuperAdmin/Submit';
 function App() {
   const router = createBrowserRouter([
     {
@@ -23,20 +23,24 @@ function App() {
       element:<Submit/>,
     },
     {
-      path: "/divert",
+      path: "/UserReg",
+      element:<UserReg/>,
+    },
+    {
+      path: "/ClientRegister",
+      element:<ClientRegister/>,
+    },
+    {
+      path: "/Userlogin",
       element:<Userlogin/>,
     },
     {
-      path: "/superadminlogin",
-      element:<HomeAdmin/>,
+      path: "/ClientLogin",
+      element:<ClientLogin/>,
     },
     {
-      path: "/homeclient",
-      element:<HomeClient/>,
-    },
-    {
-      path: "/homeemployee",
-      element:<HomeUser/>,
+      path: "/SuperAdminLog",
+      element:<SuperAdminLog/>,
     },
   ]);
  
