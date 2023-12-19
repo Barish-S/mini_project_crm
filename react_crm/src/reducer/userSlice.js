@@ -4,16 +4,19 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     value: 0,
+    EmpRegDet : {}
   },
  
  
   reducers: {
-    
+    EmployeeRegisterDetails : (state,action) => {
+      state.EmpRegDet = action.payload
+    }
    
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { } = userSlice.actions
+export const { EmployeeRegisterDetails } = userSlice.actions
 
-export default userSlice.reducer
+export default userSlice.reducer 
