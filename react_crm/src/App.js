@@ -16,7 +16,7 @@ import Divert from './Homepage/homepage';
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/superadmin",
+      path: "/",
       element:<Submit/>,
     },
     

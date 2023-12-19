@@ -56,7 +56,7 @@ return(
         
         <li>
             <a href="#">SignIn ▾</a>
-            <ul class="Dropdown">
+            <ul class="dropdown">
                 <li>
                 <Link to={"/ClientLogin"}>clientlogin</Link></li>
                 <li><a onClick={Employeelog}>Employees</a></li>
@@ -66,7 +66,7 @@ return(
         </li>
         <li>
             <a href="#">SignUp ▾</a>
-            <ul class="Dropdown">
+            <ul class="dropdown">
                
                  <li><a onClick={Clientreg}>client</a></li>
                 <li><a onClick={Userreg}>Employees</a></li>
