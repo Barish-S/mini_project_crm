@@ -3,7 +3,16 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    value: 0,
+    superAdminLogin:{
+      email:"",
+      password:""
+    },
+    clientLogin:{
+      email:"",
+      password:""
+    },
+    EmpRegDet:{},
+    userloginsuccess:{},
     
     ClientDetails: {},
 
@@ -11,14 +20,14 @@ export const userSlice = createSlice({
 
 
   reducers: {
-    
-    RegisterClient: (state, action) => {
-      state.ClientDetails = action.payload
-    },
+    EmployeeRegisterDetails : (state,action) => {
+      state.EmpRegDet = action.payload
+    }
+   
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { RegisterClient } = userSlice.actions
+export const { EmployeeRegisterDetails } = userSlice.actions
 
-export default userSlice.reducer
+export default userSlice.reducer 

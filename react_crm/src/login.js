@@ -42,10 +42,8 @@ return(
         <li>
             <a href="#">SignIn ▾</a>
             <ul class="dropdown">
-                
-                <li><a href="#">Admin</a></li>
-                <li><a href="#">client</a></li>
-                <li><a href="#">Employees</a></li>
+                <li><a onClick={()=>handleClick()}>Client</a></li>
+                <li><a onClick={homeadmin}>user</a></li>
                 
             </ul>
             
@@ -53,9 +51,9 @@ return(
         <li>
             <a href="#">SignUp ▾</a>
             <ul class="dropdown">
-                
-                <li><a onClick={()=>handleClick()}>Client</a></li>
-                <li><a onClick={homeadmin}>user</a></li>
+                <li><a href="#">Admin</a></li>
+                <li><a href="#">client</a></li>
+                <li><a href="#">Employees</a></li>
                
             </ul>
             
