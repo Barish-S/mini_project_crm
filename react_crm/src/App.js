@@ -4,15 +4,14 @@ import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
 
 import './App.css';
-
 import { ClientRegister } from './ClientRegister/ClientRegister';
-
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom"; 
 
 import Submit from './login';
+
 import Divert from './Homepage/homepage'; 
 
 

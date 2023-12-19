@@ -5,8 +5,8 @@ export const userSlice = createSlice({
   initialState: {
     EmpRegDet : {}
   },
- 
- 
+
+
   reducers: {
     EmployeeRegisterDetails : (state,action) => {
       state.EmpRegDet = action.payload
