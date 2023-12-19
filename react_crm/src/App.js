@@ -13,13 +13,10 @@ import {
 } from "react-router-dom"; 
 
 import Submit from './login';
-<<<<<<< HEAD
+import Userlogin from './UserLogin/Userlogin';
 import Divert from './Homepage/homepage';
 
-=======
-import Divert from './Homepage/homepage'; 
 import UserReg from './UserRegister';
->>>>>>> 757d768edfc310b4b27ba24f0d1a53a87a0c8646
 
 function App() {
   const router = createBrowserRouter([
@@ -29,7 +26,7 @@ function App() {
     },
     {
       path: "/divert",
-      element:<Divert/>,
+      element:<Userlogin/>,
     },
     {
       path: "/superadminlogin",
@@ -46,21 +43,16 @@ function App() {
     
   ]);
  
-     
 
   
   return ( 
-    
-
     <div className="App">
-
       <header className="App-header">
-
-
       <RouterProvider router={router} />
        
-     
-     
+
+       
+
 
       </header>
     
