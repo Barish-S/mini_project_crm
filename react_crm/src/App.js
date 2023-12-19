@@ -11,6 +11,7 @@ import {
 } from "react-router-dom"; 
 
 import Submit from './login';
+
 import Divert from './Homepage/homepage'; 
 import UserReg from './UserRegister';
 
@@ -36,10 +37,6 @@ function App() {
       path: "/homeemployee",
       element:<HomeUser/>,
     },
-    {
-      path:"/clientregister",
-      element:<ClientRegister />
-    }
   ]);
  
      

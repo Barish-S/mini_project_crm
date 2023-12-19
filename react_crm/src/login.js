@@ -36,9 +36,9 @@ return(
     <h1>welcome</h1>
   
 
-<nav>
+  <nav>
         <ul>
-        
+
         <li>
             <a href="#">SignIn ▾</a>
             <ul class="dropdown">
@@ -46,6 +46,7 @@ return(
                 <li><a onClick={homeadmin}>user</a></li>
                 
             </ul>
+            
         </li>
         <li>
             <a href="#">SignUp ▾</a>
