@@ -1,12 +1,11 @@
 import axios from 'axios';
-import {useState} from 'react';
+import { useDispatch,useSelector } from 'react-redux'
+import { updateUserLoginSuccess } from '../reducer/userSlice';
 
 function Userlogin(){
 
-    let [loginData,setLoginData] = useState({
-        email:"",
-        password:""
-    })
+    const userLoginData = useSelector((state)=>state.user.userloginsuccess)
+    const dispatch = useDispatch()
 
     const checkuserlogin = () =>{
         axios({
@@ -20,7 +19,7 @@ function Userlogin(){
             let userdata = response.data
             console.log(userdata)
 
-            let filterValue = userdata.filter((u)=>u.email==loginData.email && u.password==loginData.password)
+            let filterValue = userdata.filter((u)=>u.email==userLoginData.email && u.password==userLoginData.password)
             alert("login success")
             console.log(filterValue)
 
@@ -31,10 +30,10 @@ function Userlogin(){
         <>
         <h2>Login</h2>
         <label>Email</label>
-        <input type="email" onKeyUp={(e)=>setLoginData({...loginData,email:e.target.value})}></input>
+        <input type="email" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,email:e.target.value}))}></input>
 
         <label>Password</label>
-        <input type="password" onKeyUp={(e)=>setLoginData({...loginData,password:e.target.value})}></input>
+        <input type="password" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,password:e.target.value}))}></input>
 
         <button type="button" onClick={()=>checkuserlogin()}>Submit</button>
         </>
