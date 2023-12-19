@@ -1,8 +1,9 @@
 import axios from 'axios';
 import "./Homepage/home.css"
 import {Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useNavigate } from 'react-router-dom';
+
 function Sub(){
   
   let navigate = useNavigate();
@@ -55,7 +56,7 @@ return(
         
         <li>
             <a href="#">SignIn ▾</a>
-            <ul class="dropdown">
+            <ul class="Dropdown">
                 <li>
                 <Link to={"/ClientLogin"}>clientlogin</Link></li>
                 <li><a onClick={Employeelog}>Employees</a></li>
@@ -65,7 +66,7 @@ return(
         </li>
         <li>
             <a href="#">SignUp ▾</a>
-            <ul class="dropdown">
+            <ul class="Dropdown">
                
                  <li><a onClick={Clientreg}>client</a></li>
                 <li><a onClick={Userreg}>Employees</a></li>
