@@ -4,18 +4,21 @@ import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
 
 import './App.css';
-
 import { ClientRegister } from './ClientRegister/ClientRegister';
-
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom"; 
 
 import Submit from './login';
+<<<<<<< HEAD
 import Userlogin from './UserLogin/Userlogin';
 import Divert from './Homepage/homepage';
 
+=======
+
+import Divert from './Homepage/homepage'; 
+>>>>>>> 6b5086affe499761114c224eb929f729e16936d3
 import UserReg from './UserRegister';
 
 function App() {
@@ -40,7 +43,6 @@ function App() {
       path: "/homeemployee",
       element:<HomeUser/>,
     },
-    
   ]);
  
 
