@@ -4,11 +4,12 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     value: 0,
-  },
-  ClientDetails: {},
+    
+    ClientDetails: {},
 
- 
- 
+  },
+
+
   reducers: {
     
     RegisterClient: (state, action) => {
@@ -18,6 +19,6 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { RegisterClient} = userSlice.actions
+export const { RegisterClient } = userSlice.actions
 
 export default userSlice.reducer

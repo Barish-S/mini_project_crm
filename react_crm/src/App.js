@@ -2,9 +2,8 @@ import logo from './logo.svg';
 import HomeUser from './UserLogin/home';
 import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
-
-import './App.css';
 import { ClientRegister } from './ClientRegister/ClientRegister';
+import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -14,7 +13,7 @@ import Divert from './Homepage/homepage';
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/superadmin",
+      path: "",
       element:<Submit/>,
     },
     {
@@ -33,6 +32,10 @@ function App() {
       path: "/homeemployee",
       element:<HomeUser/>,
     },
+    {
+      path:"/clientregister",
+      element:<ClientRegister />
+    }
   ]);
  
      
