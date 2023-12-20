@@ -18,15 +18,15 @@ function Sub(){
   };
   let Adminlog =()=> {
      
-    navigate('/')
+    navigate('/SuperAdminLog')
   };
   let Clientreg =()=> {
      
-    navigate('/clientRegister')
+    navigate('/ClientRegister')
   };
   let Userreg =()=> {
      
-    navigate('/userregister')
+    navigate('/UserReg')
   };
 
 
@@ -57,8 +57,9 @@ return(
         <li>
             <a href="#">SignIn ▾</a>
             <ul class="dropdown">
-                <li><a onClick={()=>handleClick()}>Client</a></li>
-                <li><a onClick={homeadmin}>user</a></li>
+                <li><a onClick={Clientlog}>clientlogin</a></li>
+                <li><a onClick={Employeelog}>Employees</a></li>
+                <li><a onClick={Adminlog}>Admin</a></li>
                 
             </ul>
             
