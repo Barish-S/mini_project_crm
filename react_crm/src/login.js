@@ -1,17 +1,32 @@
 import axios from 'axios';
 import "./Homepage/home.css"
-import { useNavigate } from 'react-router-dom';
+import {Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
-function Submit(){
+
+function Sub(){
   
   let navigate = useNavigate();
-  let handleClick =()=> {
+  let Clientlog =()=> {
      
-    navigate('/divert')
+    navigate('/ClientLogin')
+    
   };
-  let homeadmin =()=> {
+  let Employeelog =()=> {
      
-    navigate('/homeclient')
+    navigate('/Userlogin')
+  };
+  let Adminlog =()=> {
+     
+    navigate('/')
+  };
+  let Clientreg =()=> {
+     
+    navigate('/clientRegister')
+  };
+  let Userreg =()=> {
+     
+    navigate('/userregister')
   };
 
 
@@ -42,8 +57,10 @@ return(
         <li>
             <a href="#">SignIn ▾</a>
             <ul class="dropdown">
-                <li><a onClick={()=>handleClick()}>Client</a></li>
-                <li><a onClick={homeadmin}>user</a></li>
+                <li>
+                <Link to={"/ClientLogin"}>clientlogin</Link></li>
+                <li><a onClick={Employeelog}>Employees</a></li>
+                <li><a onClick={Adminlog}>Admin</a></li>
                 
             </ul>
             
@@ -51,9 +68,9 @@ return(
         <li>
             <a href="#">SignUp ▾</a>
             <ul class="dropdown">
-                <li><a href="#">Admin</a></li>
-                <li><a href="#">client</a></li>
-                <li><a href="#">Employees</a></li>
+               
+                 <li><a onClick={Clientreg}>client</a></li>
+                <li><a onClick={Userreg}>Employees</a></li>
                
             </ul>
             
@@ -67,4 +84,4 @@ return(
 )
 }
 
-export default Submit;
+export default Sub;
