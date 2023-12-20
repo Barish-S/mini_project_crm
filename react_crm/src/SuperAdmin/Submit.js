@@ -2,7 +2,7 @@ import { useState } from "react";
 import { setSuperAdminLogin } from "../reducer/userSlice";
 import {useSelector,useDispatch} from "react-redux";
 
-function Submit(){
+function SuperAdminLog(){
     // let[loginData,setLogin]=useState({
     //     email:"",
     //     password:""
@@ -44,4 +44,4 @@ function Submit(){
             
             </>
 )}
-export default Submit;    
+export default SuperAdminLog;    
