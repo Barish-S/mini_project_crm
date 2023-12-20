@@ -25,14 +25,16 @@ function ClientLogin(){
             
             console.log(response.data)
             let datas= response.data;
-            console.log(datas)
-            let loopdata = datas.map((s)=>{
+            console.log(JSON.stringify(datas))
+            console.log(typeof(datas))
+      let loopdata= datas.map((s)=>{
                 
-                if(s.email===loginData.password && s.name==loginData.email){
+                if(s.email==loginData.password && s.name==loginData.email){
                     alert("success");
                 }   
           
             })
+            console.log(loopdata)
         })}
             
 
@@ -49,4 +51,4 @@ function ClientLogin(){
         </>
     )
 }
-export default ClientLogin;
+export default ClientLogin; 

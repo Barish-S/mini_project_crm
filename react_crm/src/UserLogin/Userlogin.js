@@ -17,7 +17,7 @@ function Userlogin(){
         }).then(function(response){
             
             let userdata = response.data
-            console.log(userdata)
+            console.log(typeof(userdata))
 
             let filterValue = userdata.filter((u)=>u.email==userLoginData.email && u.password==userLoginData.password)
             alert("login success")
@@ -28,6 +28,7 @@ function Userlogin(){
 
     return(
         <>
+        {JSON.stringify(userLoginData)}
         <h2>Login</h2>
         <label>Email</label>
         <input type="email" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,email:e.target.value}))}></input>

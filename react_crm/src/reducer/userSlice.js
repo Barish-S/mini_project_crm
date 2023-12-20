@@ -40,7 +40,7 @@ export const userSlice = createSlice({
       state.superAdminLogin = action.payload
     },
     updateUserLoginSuccess: (state,action) => {
-      state.superAdminLogin = action.payload
+      state.userloginsuccess = action.payload
     },
    
   },
