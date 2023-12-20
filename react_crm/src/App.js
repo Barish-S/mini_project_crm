@@ -2,30 +2,30 @@ import logo from './logo.svg';
 import HomeUser from './UserLogin/home';
 import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
-
-import './App.css';
+import Home from './Home_Page/home';
+// import './App.css';
 import { ClientRegister } from './ClientRegister/ClientRegister';
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom"; 
+} from "react-router-dom";
 
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
 
-import ClientLogin from './ClientLogin/ClientLogin';
-import Divert from './Homepage/homepage'; 
+
+import Divert from './Homepage/homepage';
 import UserReg from './UserRegister';
 import SuperAdminLog from './SuperAdmin/Submit';
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element:<Submit/>,
+      element: <Submit />,
     },
     {
       path: "/UserReg",
-      element:<UserReg/>,
+      element: <UserReg />,
     },
     {
       path: "/ClientRegister",
@@ -36,32 +36,36 @@ function App() {
       element:<Userlogin/>,
     },
     {
-      path: "/ClientLogin",
-      element:<ClientLogin/>,
+      path: "/homeclient",
+      element:<HomeClient/>,
     },
     {
-      path: "/SuperAdminLog",
-      element:<SuperAdminLog/>,
+      path: "/homeemployee",
+      element:<HomeUser/>,
     },
+    {
+      path: "/adminhome",
+      element: <Home />,
+    }
   ]);
- 
+
 
   
   return ( 
     <div className="App">
-      {/* <header className="App-header"> */}
+      <header className="App-header">
       <RouterProvider router={router} />
        
 
        
 
 
-      {/* </header> */}
+      </header>
     
     </div>
 
-    
+
   );
-  }
+}
 
 export default App;

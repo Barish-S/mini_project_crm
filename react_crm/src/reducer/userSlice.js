@@ -17,7 +17,7 @@ export const userSlice = createSlice({
     ClientDetails: {},
 
     loggedStatus:{
-        user:""
+        user:"Admin"
     }
 
   },
