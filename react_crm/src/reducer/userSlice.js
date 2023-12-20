@@ -46,6 +46,6 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { EmployeeRegisterDetails,setLoggedStatus } = userSlice.actions
+export const { EmployeeRegisterDetails,setLoggedStatus,RegisterClient,UpdateUserLoginSuccess,setClientLogin,superAdminLogin } = userSlice.actions
 
 export default userSlice.reducer 
