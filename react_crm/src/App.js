@@ -12,7 +12,6 @@ import {
 
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
-import Divert from './Homepage/homepage';
 
 
 import Divert from './Homepage/homepage';

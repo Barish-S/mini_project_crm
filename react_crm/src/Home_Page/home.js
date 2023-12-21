@@ -4,14 +4,30 @@ import './CSS/home.css'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import axios from "axios";
+import { setLoggedStatus } from "../reducer/userSlice";
+
 
 function Home() {
     let userStatus = useSelector((state) => state.user.loggedStatus.user)
     console.log(userStatus)
     let navigate = useNavigate();
+    let dispatch=useDispatch();
+    let globeData=useSelector((state)=>state.user.loggedStatus.data)
+
+    function ApiReturn() {
+        axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then(function (response) {
+            let data=response.data.data
+            console.log(data)
+            dispatch(setLoggedStatus(data))
+           
+        })
+        
+    }
+
     function navMainHome() {
         navigate('/')
     }
@@ -27,12 +43,12 @@ function Home() {
             <div class="header">
                 <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary" style={{height:"60px"}}>
                     <Container>
-                        <Navbar.Brand><h2 style={{fontSize:"12pt",marginTop:"10px"}}><img style={{width:"40px",cursor:"pointer"}} src={require("./images/user.png")} class="user-img" />Hii!! Barish</h2></Navbar.Brand>
+                        <Navbar.Brand><h2 style={{fontSize:"12pt",marginTop:"10px"}}><img style={{width:"40px",cursor:"pointer",marginRight:"10px"}} src={require("./images/user.png")} class="user-img" />Hi ! Barish</h2></Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                            <NavDropdown title="Feauters" id="basic-nav-dropdown">
-                                    {userStatus == "Admin" ? <NavDropdown.Item><p>Dashboard</p></NavDropdown.Item> : null}
+                            <NavDropdown title="Features" id="basic-nav-dropdown">
+                                    {userStatus == "Admin" ? <NavDropdown.Item ><p onClick={()=>ApiReturn()}>Dashboard</p></NavDropdown.Item> : null}
                                     <NavDropdown.Item >
                                     <p>Reports</p>
                                     </NavDropdown.Item>
@@ -43,7 +59,7 @@ function Home() {
                                     {userStatus == "Admin" ?<NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> : null}
                                     {userStatus == "Employee" || userStatus == "Client" ? <NavDropdown.Item><p>Notifications</p> </NavDropdown.Item>: null}
                                     {userStatus == "Employee" || userStatus == "Client" ? <NavDropdown.Item><p>Contact With Admin</p></NavDropdown.Item> : null}
-                                    <NavDropdown.Divider />
+                                    {userStatus == "Guest"?<NavDropdown.Divider />:null}
                                     {userStatus == "Guest"?<NavDropdown.Item >Please Register</NavDropdown.Item>:null}
                                 </NavDropdown>
                                 <Nav.Link onClick={()=>navMainHome()} style={{marginLeft:"430%"}}>Home</Nav.Link>
@@ -54,7 +70,28 @@ function Home() {
                     </Container>
                 </Navbar>
                 <div id="data">
-                    
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {/* {JSON.stringify(globeData)} */}
+                            {globeData.map((detail)=>{
+                                return(
+                                <tr>
+                                    <td>{detail.name}</td>
+                                    <td>{detail.email}</td>
+                                    <td>{detail.phone}</td>
+                                    <td>{detail.address}</td>
+                                </tr>)
+                            })}
+                        </tbody>
+                    </table>
                 </div>
                 {/* <div class="side-nav">
                     <div class="user">

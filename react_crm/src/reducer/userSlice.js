@@ -17,7 +17,8 @@ export const userSlice = createSlice({
     ClientDetails: {},
 
     loggedStatus:{
-        user:"Admin"
+        user:"Admin",
+        data:[]
     }
 
   },
@@ -28,7 +29,7 @@ export const userSlice = createSlice({
       state.EmpRegDet = action.payload
     },
     setLoggedStatus:(state,action)=>{
-        state.loggedStatus.user=action.payload
+        state.loggedStatus.data=action.payload
     },
     RegisterClient: (state,action) => {
       state.ClientDetails = action.payload
