@@ -32,6 +32,7 @@ function Sub(){
      
     navigate('/UserReg')
   };
+ 
 
 
 let logincheck=()=>{ 
@@ -58,7 +59,7 @@ return(
           <Nav.Link href="/home">GuestUser</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link href="/home">About</Nav.Link>
+          <Nav.Link href="#about">About</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="link-1">contact Us</Nav.Link>
@@ -119,14 +120,18 @@ return(
       
 </div>
 </div>
-   
-<div  class="seconddiv" style={{border:"0px solid black",height:"630.5px",width:"100%"}}>
-  <img src={require('../src/crmfeature.jpg')}/>
-  <div class="img" style={{}}>
-   
-  
-  </div>
 
+   
+<div id="about"  class="seconddiv" style={{border:"0px solid black",height:"1000.5px"}}>
+ 
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ <h1 style={{color:"black"}}></h1>
+  </div>
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ 
+  </div>
+  {/* <img src={require('../src/crmfeature.jpg')}/> */}
+   
 </div>
     </>
 )

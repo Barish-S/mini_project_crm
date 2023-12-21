@@ -2,18 +2,16 @@ import logo from './logo.svg';
 import HomeUser from './UserLogin/home';
 import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
-import Home from './Home_Page/home';
 // import './App.css';
 import { ClientRegister } from './ClientRegister/ClientRegister';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
+import Home from './Home_Page/home';
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
-
-
+import ClientLogin from './ClientLogin/ClientLogin';
 import Divert from './Homepage/homepage';
 import UserReg from './UserRegister';
 import SuperAdminLog from './SuperAdmin/Submit';
@@ -36,17 +34,19 @@ function App() {
       element:<Userlogin/>,
     },
     {
-      path: "/homeclient",
-      element:<HomeClient/>,
+      path: "/ClientLogin",
+      element:<ClientLogin/>,
     },
     {
-      path: "/homeemployee",
-      element:<HomeUser/>,
+      path: "/SuperAdminLog",
+      element:<SuperAdminLog/>,
     },
     {
-      path: "/adminhome",
-      element: <Home />,
-    }
+      path: "/home",
+      element:<Home/>,
+    },
+    
+    
   ]);
 
 

@@ -8,6 +8,7 @@
     align-items: center;
     /* opacity:0.6; */
    text-align: right;
+   /* background:rgba(114, 103, 103, 0.979); */
 }
 
 .firstOfLeftDiv{
@@ -153,12 +154,20 @@ padding:20% 20% 20 20%;
 /* ............................second div................... */
 
 
-
-img{
-    /* background-image: url(../src/crmfeature.jpg); */
+.seconddiv{
+    background-image:url(../src/crmfeature.jpg);
+    /* background:#f7f3f3; */
     background-position:center;
-    background-attachment: fixed;
+    /* background:rgb(0, 0,0,0.5); */
     background-size: cover;
-    opacity: 0.3;
-    width: 100%;
+    /* opacity: 0.3; */
+    /* width: 100%; */
+  display: flex;
+  flex-direction: row;
 }   
+
+/* .seconddiv{
+  background: rgba(247, 244, 244, 0.979);
+  height:100%;
+} */
+
