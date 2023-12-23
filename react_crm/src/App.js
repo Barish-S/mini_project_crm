@@ -2,31 +2,32 @@ import logo from './logo.svg';
 import HomeUser from './UserLogin/home';
 import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
-
-import './App.css';
+// import './App.css';
 import { ClientRegister } from './ClientRegister/ClientRegister';
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom"; 
-
+} from "react-router-dom";
+import Home from './Home_Page/home';
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
 // import Divert from './Homepage/homepage';
 import ClientLogin from './ClientLogin/ClientLogin';
 
 import Divert from './Homepage/homepage'; 
+import ClientLogin from './ClientLogin/ClientLogin';
+import Divert from './Homepage/homepage';
 import UserReg from './UserRegister';
 import SuperAdminLog from './SuperAdmin/Submit';
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element:<Submit/>,
+      element: <Submit />,
     },
     {
       path: "/UserReg",
-      element:<UserReg/>,
+      element: <UserReg />,
     },
     {
       path: "/clientRegister",
@@ -44,8 +45,14 @@ function App() {
       path: "/SuperAdminLog",
       element:<SuperAdminLog/>,
     },
+    {
+      path: "/adminhome",
+      element:<Home/>,
+    },
+    
+    
   ]);
- 
+
 
   
   return ( 
@@ -61,8 +68,8 @@ function App() {
     
     </div>
 
-    
+
   );
-  }
+}
 
 export default App;

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
 import updateUserLoginSuccess from '../reducer/userSlice';
+import { updateUserLoginSuccess } from '../reducer/userSlice';
+// import "../UserLogin/Userlogin.css"
 
 function Userlogin(){
 
@@ -8,6 +10,7 @@ function Userlogin(){
     const dispatch = useDispatch()
 
     const checkuserlogin = () =>{
+
         axios({
             method : 'get',
             url : 'https://346ecf18-5094-4743-aa32-8c7c55e73246.mock.pstmn.io/GetEmployees',
@@ -18,24 +21,46 @@ function Userlogin(){
             
             let userdata = response.data
             console.log(userdata)
+            // for(let i=0;i<userdata.length;i++){
+            //     if(userdata[i].email==userLoginData.email && userdata[i].password==userLoginData.password){
+            //         alert("login success")
+            //         {break;}
+            //     }
+            //     else{
+            //         alert("invalid")
+            //     }
+            // }
 
             let filterValue = userdata.filter((u)=>u.email==userLoginData.email && u.password==userLoginData.password)
-            alert("login success")
-            console.log(filterValue)
+            // alert("login success")
+            
+            console.log(filterValue)  
 
+            
     });
-    }
+        }
 
     return(
         <>
-        <h2>Login</h2>
-        <label>Email</label>
-        <input type="email" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,email:e.target.value}))}></input>
-
-        <label>Password</label>
-        <input type="password" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,password:e.target.value}))}></input>
-
-        <button type="button" onClick={()=>checkuserlogin()}>Submit</button>
+        {JSON.stringify(userLoginData)}
+        
+        <form class="form">
+            <p class="title">Login </p>
+            <p class="message">Signin now and get full access to our app. </p>
+        
+            <label>
+                <input class="input" type="email" placeholder="" required="" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,email:e.target.value}))}></input>
+                <span>Email</span>
+            </label> 
+        
+            <label>
+                <input class="input" type="password" placeholder="" required="" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,password:e.target.value}))}></input>
+                <span>Password</span>
+            </label>
+    
+            <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
+            <p class="signin">Don't have an acount ? <a href="#">Signup</a> </p>
+        </form>
         </>
     )
 }
