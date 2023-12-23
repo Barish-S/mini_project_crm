@@ -44,14 +44,15 @@ function ClientLogin(){
             // let datas= response.data;
             // console.log(JSON.stringify(datas))
             // console.log(typeof(datas))
-      let loopdata= datas.map((s)=>{
+    //   let loopdata= datas.map((s)=>{
                 
-                if(s.email===loginData.password && s.name==loginData.email){
-                    alert("success");
-                }   
+    //             if(s.email===loginData.password && s.name==loginData.email){
+    //                 alert("success");
+    //             }   
           
-            })
-        })}
+    //         }
+    })}
+        
             
 
     return(
