@@ -45,6 +45,13 @@ function Home() {
         </tbody>
     </Table>
 
+    function getAllEmployees(){
+        axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then(function (response) {
+            let datas = response.data.data
+            console.log(datas)
+
+        })
+    }
 
     function ApiReturn() {
         axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then(function (response) {
@@ -82,7 +89,7 @@ function Home() {
                                         <p>Reports</p>
                                     </NavDropdown.Item>
                                     {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item> <p>Clients</p></NavDropdown.Item> : null}
-                                    {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item> <p>Employees</p> </NavDropdown.Item> : null}
+                                    {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item onClick={()=>getAllEmployees()}> <p>Employees</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item><p>Works</p></NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item><p>Messages</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> : null}
