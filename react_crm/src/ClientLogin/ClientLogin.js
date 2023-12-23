@@ -42,27 +42,16 @@ function ClientLogin(){
             
             // console.log(response.data)
             // let datas= response.data;
-            // console.log(datas)
-            // let loopdata = datas.map((s)=>{
+            // console.log(JSON.stringify(datas))
+            // console.log(typeof(datas))
+      let loopdata= datas.map((s)=>{
                 
-            //     if(s.email===loginData.password && s.name==loginData.email){
-            //         return s;
-            //         alert("success");
-                    
-            //     }   
-            //     console.log(loopdata)
-
-            // let userdata = response.data
-            // console.log(userdata)
-
-            // let filterValue = userdata.filter((u)=>u.email==loginData.email && u.password==loginData.password)
-            // alert("login success")
-            
-            // console.log(filterValue)
-            
-
+                if(s.email===loginData.password && s.name==loginData.email){
+                    alert("success");
+                }   
+          
             })
-        }
+        })}
             
 
     return(
@@ -97,4 +86,4 @@ function ClientLogin(){
         </>
     )
 }
-export default ClientLogin;
+export default ClientLogin; 

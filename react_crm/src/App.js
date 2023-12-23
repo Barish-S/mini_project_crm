@@ -2,72 +2,70 @@ import logo from './logo.svg';
 import HomeUser from './UserLogin/home';
 import HomeClient from './ClientLogin/home';
 import HomeAdmin from './SuperAdmin/home';
-
-import './App.css';
+// import './App.css';
 import { ClientRegister } from './ClientRegister/ClientRegister';
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router-dom"; 
-
+} from "react-router-dom";
+import Home from './Home_Page/home';
 import Submit from './login';
-import SuperLogin from './SuperAdmin/Submit';
-import Divert from './Homepage/homepage'; 
-import UserReg from './UserRegister';
+import Userlogin from './UserLogin/Userlogin';
 import ClientLogin from './ClientLogin/ClientLogin';
-import Userlogin from './UserLogin/Userlogin'
-
+import Divert from './Homepage/homepage';
+import UserReg from './UserRegister';
+import SuperAdminLog from './SuperAdmin/Submit';
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element:<Submit/>,
+      element: <Submit />,
     },
     {
-      path: "/divert",
-      element:<Divert/>,
+      path: "/UserReg",
+      element: <UserReg />,
     },
     {
-      path: "/superadminlogin",
-      element:<HomeAdmin/>,
+      path: "/ClientRegister",
+      element:<ClientRegister/>,
     },
     {
-      path: "/homeclient",
-      element:<HomeClient/>,
+      path: "/Userlogin",
+      element:<Userlogin/>,
     },
     {
-      path: "/homeemployee",
-      element:<HomeUser/>,
-    },
-    {
-      path: "/superlogin",
-      element:<SuperLogin/>,
-    },
-    {
-      path: "/clientlogin",
+      path: "/ClientLogin",
       element:<ClientLogin/>,
-    }
-  ]);
- 
-  return ( 
+    },
+    {
+      path: "/SuperAdminLog",
+      element:<SuperAdminLog/>,
+    },
+    {
+      path: "/home",
+      element:<Home/>,
+    },
     
+    
+  ]);
 
+
+  
+  return ( 
     <div className="App">
-
       <header className="App-header">
-
-
       <RouterProvider router={router} />
        
-     
-     
+
+       
+
 
       </header>
     
     </div>
 
-    
+
   );
-  }
+}
 
 export default App;
