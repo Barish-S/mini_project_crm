@@ -11,9 +11,12 @@ export const userSlice = createSlice({
       email: "",
       password: ""
     },
-    EmpRegDet: {},
-    userloginsuccess: {},
-
+    EmpRegDet:{},
+    userloginsuccess:{
+      email:"",
+      password:""
+    },
+    
     ClientDetails: {},
 
     loggedStatus: {
