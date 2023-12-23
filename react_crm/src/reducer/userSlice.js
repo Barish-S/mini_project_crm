@@ -26,7 +26,6 @@ export const userSlice = createSlice({
       clientData: [],
       status: ""
     }
-
   },
 
 
