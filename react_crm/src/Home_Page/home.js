@@ -9,61 +9,34 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
 import axios from "axios";
-import { setLoggedStatus, setLoggedData } from "../reducer/userSlice";
-import Table from 'react-bootstrap/Table';
+import { setLoggedStatus, setLoggedData, setEmpData, setClientData } from "../reducer/userSlice";
 import Example from "./pieChart";
-import { useEffect } from "react";
+import {EmpTable,ClientTable} from "./empTable";
 
 function Home() {
-    let userStatus = useSelector((state) => state.user.loggedStatus.user)
-    console.log(userStatus)
     let navigate = useNavigate();
     let dispatch = useDispatch();
-    let globeData = useSelector((state) => state.user.loggedStatus.data)
     let globeStatus = useSelector((state) => state.user.loggedStatus.status)
+    let userStatus = useSelector((state) => state.user.loggedStatus.user)
 
-    let time=moment().diff('2000-10-28', 'seconds')
-    
-    useEffect(()=>{
+    let time = moment().diff('2000-10-28', 'years')
 
-    })
 
-    let table = <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            {/* {JSON.stringify(globeData)} */}
-            {globeData.map((detail) => {
-                return (
-                    <tr>
-                        <td>{detail.name}</td>
-                        <td>{detail.email}</td>
-                        <td>{detail.phone}</td>
-                        <td>{detail.address}</td>
-                    </tr>)
-            })}
-        </tbody>
-    </Table>
 
-    function getAllEmployees(){
+
+    function getAllEmployees() {
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
             let datas = response.data.data
-            console.log(datas)
+            dispatch(setLoggedStatus("Employees"))
+            dispatch(setEmpData(datas))
 
         })
     }
-
-    function getAllClients(){
+    function getAllClients() {
         axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
             let datas = response.data.data
-            console.log(datas)
-
+            dispatch(setLoggedStatus("Client"))
+            dispatch(setClientData(datas))
         })
     }
 
@@ -73,14 +46,14 @@ function Home() {
             console.log(datas)
             dispatch(setLoggedStatus("Dashboard"))
             dispatch(setLoggedData(datas))
-
         })
-
     }
+
 
     function navMainHome() {
         navigate('/')
     }
+
     return (
         <>
             <Helmet>
@@ -102,8 +75,8 @@ function Home() {
                                     <NavDropdown.Item >
                                         <p>Reports</p>
                                     </NavDropdown.Item>
-                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item onClick={()=>getAllClients()}> <p>Clients</p></NavDropdown.Item> : null}
-                                    {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item onClick={()=>getAllEmployees()}> <p>Employees</p> </NavDropdown.Item> : null}
+                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item onClick={() => getAllClients()}> <p>Clients</p></NavDropdown.Item> : null}
+                                    {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item onClick={() => getAllEmployees()}> <p>Employees</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item><p>Works</p></NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item><p>Messages</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> : null}
@@ -120,33 +93,14 @@ function Home() {
                     </Container>
                 </Navbar>
                 <div id="data">
-                    {globeStatus == "Dashboard" ? <Example/> : null}
-                    {time}
+                    {globeStatus == "Dashboard" ? <Example /> : null}
+                    {globeStatus == "Employees" ? <EmpTable /> : null}
+                    {globeStatus == "Client" ? <ClientTable /> : null}
+
+                    
+
                 </div>
-                {/* <div class="side-nav">
-                    <div class="user">
-                        <img src={require("./images/user.png")} class="user-img" />
-                        <div>
-                            <h2>Barish</h2>
-                            <p>barishs28@gmail.com</p>
-                        </div>
-                        <img src={require("./images/star.png")} class="star-img" />
-                    </div>
-                    <ul>
-                        {userStatus == "Admin" ? <li><img src={require("./images/dashboard.png")} /><p>Dashboard</p></li> : null}
-                        <li><img src={require("./images/reports.png")} /><p>Reports</p></li>
-                        {userStatus == "Admin" || userStatus == "Employee" ? <li><img src={require("./images/projects.png")} /><p>Clients</p></li> : null}
-                        {userStatus == "Admin" || userStatus == "Client" ? <li><img src={require("./images/members.png")} /><p>Employees</p></li> : null}
-                        {userStatus == "Admin" || userStatus == "Employee" ? <li><img src={require("./images/rewards.png")} /><p>Works</p></li> : null}
-                        {userStatus == "Admin" ? <li><img src={require("./images/messages.png")} /><p>Messages</p></li> : null}
-                        {userStatus == "Admin" ? <li><img src={require("./images/setting.png")} /><p>Assign Users</p></li> : null}
-                        {userStatus == "Employee" || userStatus == "Client" ? <li><img src={require("./images/messages.png")} /><p>Notifications</p></li> : null}
-                        {userStatus == "Employee" || userStatus == "Client" ? <li><img src={require("./images/setting.png")} /><p>Contact With Admin</p></li> : null}
-                    </ul>
-                    <ul>
-                        <li><img src={require("./images/logout.png")} /><p>Logout</p></li>
-                    </ul>
-                </div> */}
+
             </div>
         </>
     );
