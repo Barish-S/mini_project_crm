@@ -53,22 +53,9 @@ export const userSlice = createSlice({
     RegisterClient: (state, action) => {
       state.ClientDetails = action.payload
     },
-    setClientLogin: (state, action) => {
-      state.clientLogin = action.payload
-    },
-    setSuperAdminLogin: (state, action) => {
-      state.superAdminLogin = action.payload
-    },
     updateUserLoginSuccess: (state, action) => {
       state.userloginsuccess = action.payload
     },
-    updateUserLoginSuccess: (state, action) => {
-      state.userloginsuccess = action.payload
-    },
-    RegisterClient: (state, action) => {
-      state.ClientDetails = action.payload
-    },
-
   },
 })
 
