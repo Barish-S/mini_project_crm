@@ -24,8 +24,7 @@
   margin-top: 1%;
   border-radius: 10px;
   height: 90%;
-  overflow-x: wrap;
   overflow-y: scroll; */
-  /* width: 100%; */
+  overflow-wrap: break-word;  /* width: 70%; */
   background-color: white;
 }

@@ -9,92 +9,34 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
 import axios from "axios";
-import { setLoggedStatus, setLoggedData } from "../reducer/userSlice";
-import Table from 'react-bootstrap/Table';
+import { setLoggedStatus, setLoggedData, setEmpData, setClientData } from "../reducer/userSlice";
 import Example from "./pieChart";
-import { setEmpData } from "../reducer/userSlice";
+import {EmpTable,ClientTable} from "./empTable";
 
 function Home() {
-    let userStatus = useSelector((state) => state.user.loggedStatus.user)
-    console.log(userStatus)
     let navigate = useNavigate();
     let dispatch = useDispatch();
-    let globeEmp = useSelector((state) => state.user.loggedStatus.empData)
     let globeStatus = useSelector((state) => state.user.loggedStatus.status)
+    let userStatus = useSelector((state) => state.user.loggedStatus.user)
 
     let time = moment().diff('2000-10-28', 'years')
 
-    
 
-    let table = <Table striped bordered hover>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>Address</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            {/* {JSON.stringify(globeData)} */}
-            {globeEmp.map((detail) => {
-                return (
-                    <tr>
-                        <td>{detail.name}</td>
-                        <td>{detail.email}</td>
-                        <td>{detail.phone}</td>
-                        <td>{detail.address}</td>
-                    </tr>)
-            })}
-        </tbody>
-    </Table>
 
     function getAllEmployees() {
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
-            let datas=response.data.data
+            let datas = response.data.data
             dispatch(setLoggedStatus("Employees"))
             dispatch(setEmpData(datas))
-            console.log(globeStatus)
-            console.log(globeEmp)
 
         })
     }
-
-    let empTable=<Table striped bordered hover>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>Education</th>
-            <th>Work Base</th>
-            <th>Gender</th>
-        </tr>
-    </thead>
-    <tbody>
-        {/* {JSON.stringify(globeData)} */}
-        {globeEmp.map((detail) => {
-            return (
-                <tr>
-                    <td>{detail.name}</td>
-                    <td>{detail.email}</td>
-                    <td>{detail.phone}</td>
-                    <td>{detail.address}</td>
-                    <td>{detail.education}</td>
-                    <td>{detail.workbase}</td>
-                    <td>{detail.gender}</td>
-                </tr>)
-        })}
-    </tbody>
-</Table>
-
     function getAllClients() {
         axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
             let datas = response.data.data
-            console.log(datas)
-
+            dispatch(setLoggedStatus("Client"))
+            dispatch(setClientData(datas))
         })
     }
 
@@ -104,14 +46,14 @@ function Home() {
             console.log(datas)
             dispatch(setLoggedStatus("Dashboard"))
             dispatch(setLoggedData(datas))
-
         })
-
     }
+
 
     function navMainHome() {
         navigate('/')
     }
+
     return (
         <>
             <Helmet>
@@ -152,8 +94,11 @@ function Home() {
                 </Navbar>
                 <div id="data">
                     {globeStatus == "Dashboard" ? <Example /> : null}
-                    {globeStatus == "Employees" ? (JSON.stringify(globeEmp)):null}
+                    {globeStatus == "Employees" ? <EmpTable /> : null}
+                    {globeStatus == "Client" ? <ClientTable /> : null}
+
                     
+
                 </div>
 
             </div>
