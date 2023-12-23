@@ -7,10 +7,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import moment from 'moment'
 import axios from "axios";
 import { setLoggedStatus, setLoggedData } from "../reducer/userSlice";
 import Table from 'react-bootstrap/Table';
 import Example from "./pieChart";
+import { useEffect } from "react";
 
 function Home() {
     let userStatus = useSelector((state) => state.user.loggedStatus.user)
@@ -20,7 +22,11 @@ function Home() {
     let globeData = useSelector((state) => state.user.loggedStatus.data)
     let globeStatus = useSelector((state) => state.user.loggedStatus.status)
 
+    let time=moment().diff('2000-10-28', 'seconds')
+    
+    useEffect(()=>{
 
+    })
 
     let table = <Table striped bordered hover>
         <thead>
@@ -46,7 +52,15 @@ function Home() {
     </Table>
 
     function getAllEmployees(){
-        axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then(function (response) {
+        axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
+            let datas = response.data.data
+            console.log(datas)
+
+        })
+    }
+
+    function getAllClients(){
+        axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
             let datas = response.data.data
             console.log(datas)
 
@@ -88,7 +102,7 @@ function Home() {
                                     <NavDropdown.Item >
                                         <p>Reports</p>
                                     </NavDropdown.Item>
-                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item> <p>Clients</p></NavDropdown.Item> : null}
+                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item onClick={()=>getAllClients()}> <p>Clients</p></NavDropdown.Item> : null}
                                     {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item onClick={()=>getAllEmployees()}> <p>Employees</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item><p>Works</p></NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item><p>Messages</p> </NavDropdown.Item> : null}
@@ -107,6 +121,7 @@ function Home() {
                 </Navbar>
                 <div id="data">
                     {globeStatus == "Dashboard" ? <Example/> : null}
+                    {time}
                 </div>
                 {/* <div class="side-nav">
                     <div class="user">
