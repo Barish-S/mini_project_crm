@@ -17,15 +17,15 @@
 }
 
 #data{
-  margin-left: 10%;
+  /* margin-left: 10%;
   display: flex;
   color: black;
   justify-content: center;
   margin-top: 1%;
   border-radius: 10px;
-  width: 80%;
   height: 90%;
   overflow-x: wrap;
-  overflow-y: scroll;
+  overflow-y: scroll; */
+  /* width: 100%; */
   background-color: white;
 }

@@ -12,21 +12,19 @@ import axios from "axios";
 import { setLoggedStatus, setLoggedData } from "../reducer/userSlice";
 import Table from 'react-bootstrap/Table';
 import Example from "./pieChart";
-import { useEffect } from "react";
+import { setEmpData } from "../reducer/userSlice";
 
 function Home() {
     let userStatus = useSelector((state) => state.user.loggedStatus.user)
     console.log(userStatus)
     let navigate = useNavigate();
     let dispatch = useDispatch();
-    let globeData = useSelector((state) => state.user.loggedStatus.data)
+    let globeEmp = useSelector((state) => state.user.loggedStatus.empData)
     let globeStatus = useSelector((state) => state.user.loggedStatus.status)
 
-    let time = moment().diff('2000-10-28', 'seconds')
+    let time = moment().diff('2000-10-28', 'years')
 
-    useEffect(() => {
-
-    })
+    
 
     let table = <Table striped bordered hover>
         <thead>
@@ -35,11 +33,12 @@ function Home() {
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Address</th>
+
             </tr>
         </thead>
         <tbody>
             {/* {JSON.stringify(globeData)} */}
-            {globeData.map((detail) => {
+            {globeEmp.map((detail) => {
                 return (
                     <tr>
                         <td>{detail.name}</td>
@@ -53,11 +52,43 @@ function Home() {
 
     function getAllEmployees() {
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
-            let datas = response.data.data
-            console.log(datas)
+            let datas=response.data.data
+            dispatch(setLoggedStatus("Employees"))
+            dispatch(setEmpData(datas))
+            console.log(globeStatus)
+            console.log(globeEmp)
 
         })
     }
+
+    let empTable=<Table striped bordered hover>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Education</th>
+            <th>Work Base</th>
+            <th>Gender</th>
+        </tr>
+    </thead>
+    <tbody>
+        {/* {JSON.stringify(globeData)} */}
+        {globeEmp.map((detail) => {
+            return (
+                <tr>
+                    <td>{detail.name}</td>
+                    <td>{detail.email}</td>
+                    <td>{detail.phone}</td>
+                    <td>{detail.address}</td>
+                    <td>{detail.education}</td>
+                    <td>{detail.workbase}</td>
+                    <td>{detail.gender}</td>
+                </tr>)
+        })}
+    </tbody>
+</Table>
 
     function getAllClients() {
         axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
@@ -121,7 +152,8 @@ function Home() {
                 </Navbar>
                 <div id="data">
                     {globeStatus == "Dashboard" ? <Example /> : null}
-                    {time}
+                    {globeStatus == "Employees" ? (JSON.stringify(globeEmp)):null}
+                    
                 </div>
 
             </div>
