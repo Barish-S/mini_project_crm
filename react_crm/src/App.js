@@ -11,9 +11,11 @@ import {
 } from "react-router-dom"; 
 
 import Submit from './login';
-
+import SuperLogin from './SuperAdmin/Submit';
 import Divert from './Homepage/homepage'; 
 import UserReg from './UserRegister';
+import ClientLogin from './ClientLogin/ClientLogin';
+import Userlogin from './UserLogin/Userlogin'
 
 function App() {
   const router = createBrowserRouter([
@@ -37,11 +39,16 @@ function App() {
       path: "/homeemployee",
       element:<HomeUser/>,
     },
+    {
+      path: "/superlogin",
+      element:<SuperLogin/>,
+    },
+    {
+      path: "/clientlogin",
+      element:<ClientLogin/>,
+    }
   ]);
  
-     
-
-  
   return ( 
     
 

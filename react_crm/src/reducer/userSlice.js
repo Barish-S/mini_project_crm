@@ -19,7 +19,6 @@ export const userSlice = createSlice({
     loggedStatus:{
         user:""
     }
-
   },
 
 
