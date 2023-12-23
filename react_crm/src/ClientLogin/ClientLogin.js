@@ -37,7 +37,6 @@ function ClientLogin(){
             console.log(loopdata)
         })}
             
-
     return(
         <>
         <h2>Login</h2>
