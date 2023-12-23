@@ -3,6 +3,7 @@ import {useState} from 'react';
 import { setClientLogin } from '../reducer/userSlice';
 import {useSelector,useDispatch} from "react-redux"
 import "../ClientLogin/clientLogin.css"
+import { Navigate, useNavigate } from 'react-router';
 
 function ClientLogin(){
 
@@ -10,7 +11,7 @@ function ClientLogin(){
     //     email:"",
     //     password:""
     // })
-
+    const Navigate=useNavigate()
     const loginData=useSelector((state)=>state.user.clientLogin)
     const dispatch=useDispatch()
 
@@ -25,7 +26,7 @@ function ClientLogin(){
         console.log(response)
       let status=response.data.status
       if(status=="success"){
-        alert("success")
+      Navigate("/adminhome")
       }
       else{
         alert("failed")

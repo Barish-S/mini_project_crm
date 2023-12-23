@@ -42,7 +42,7 @@ function App() {
       element:<SuperAdminLog/>,
     },
     {
-      path: "/home",
+      path: "/adminhome",
       element:<Home/>,
     },
     
