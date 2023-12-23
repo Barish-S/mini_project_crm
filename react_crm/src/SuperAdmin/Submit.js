@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { setSuperAdminLogin } from "../reducer/userSlice";
+import  setSuperAdminLogin from "../reducer/userSlice";
 import {useSelector,useDispatch} from "react-redux";
 
 function SuperAdminLog(){

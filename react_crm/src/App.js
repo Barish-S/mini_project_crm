@@ -12,8 +12,8 @@ import {
 
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
-import Divert from './Homepage/homepage';
-
+// import Divert from './Homepage/homepage';
+import ClientLogin from './ClientLogin/ClientLogin';
 
 import Divert from './Homepage/homepage'; 
 import UserReg from './UserRegister';
@@ -29,7 +29,7 @@ function App() {
       element:<UserReg/>,
     },
     {
-      path: "/ClientRegister",
+      path: "/clientRegister",
       element:<ClientRegister/>,
     },
     {
