@@ -22,9 +22,9 @@ function Home() {
     let globeData = useSelector((state) => state.user.loggedStatus.data)
     let globeStatus = useSelector((state) => state.user.loggedStatus.status)
 
-    let time=moment().diff('2000-10-28', 'seconds')
-    
-    useEffect(()=>{
+    let time = moment().diff('2000-10-28', 'seconds')
+
+    useEffect(() => {
 
     })
 
@@ -51,7 +51,7 @@ function Home() {
         </tbody>
     </Table>
 
-    function getAllEmployees(){
+    function getAllEmployees() {
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
             let datas = response.data.data
             console.log(datas)
@@ -59,7 +59,7 @@ function Home() {
         })
     }
 
-    function getAllClients(){
+    function getAllClients() {
         axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
             let datas = response.data.data
             console.log(datas)
@@ -102,8 +102,8 @@ function Home() {
                                     <NavDropdown.Item >
                                         <p>Reports</p>
                                     </NavDropdown.Item>
-                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item onClick={()=>getAllClients()}> <p>Clients</p></NavDropdown.Item> : null}
-                                    {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item onClick={()=>getAllEmployees()}> <p>Employees</p> </NavDropdown.Item> : null}
+                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item onClick={() => getAllClients()}> <p>Clients</p></NavDropdown.Item> : null}
+                                    {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item onClick={() => getAllEmployees()}> <p>Employees</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item><p>Works</p></NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item><p>Messages</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> : null}
@@ -120,33 +120,10 @@ function Home() {
                     </Container>
                 </Navbar>
                 <div id="data">
-                    {globeStatus == "Dashboard" ? <Example/> : null}
+                    {globeStatus == "Dashboard" ? <Example /> : null}
                     {time}
                 </div>
-                {/* <div class="side-nav">
-                    <div class="user">
-                        <img src={require("./images/user.png")} class="user-img" />
-                        <div>
-                            <h2>Barish</h2>
-                            <p>barishs28@gmail.com</p>
-                        </div>
-                        <img src={require("./images/star.png")} class="star-img" />
-                    </div>
-                    <ul>
-                        {userStatus == "Admin" ? <li><img src={require("./images/dashboard.png")} /><p>Dashboard</p></li> : null}
-                        <li><img src={require("./images/reports.png")} /><p>Reports</p></li>
-                        {userStatus == "Admin" || userStatus == "Employee" ? <li><img src={require("./images/projects.png")} /><p>Clients</p></li> : null}
-                        {userStatus == "Admin" || userStatus == "Client" ? <li><img src={require("./images/members.png")} /><p>Employees</p></li> : null}
-                        {userStatus == "Admin" || userStatus == "Employee" ? <li><img src={require("./images/rewards.png")} /><p>Works</p></li> : null}
-                        {userStatus == "Admin" ? <li><img src={require("./images/messages.png")} /><p>Messages</p></li> : null}
-                        {userStatus == "Admin" ? <li><img src={require("./images/setting.png")} /><p>Assign Users</p></li> : null}
-                        {userStatus == "Employee" || userStatus == "Client" ? <li><img src={require("./images/messages.png")} /><p>Notifications</p></li> : null}
-                        {userStatus == "Employee" || userStatus == "Client" ? <li><img src={require("./images/setting.png")} /><p>Contact With Admin</p></li> : null}
-                    </ul>
-                    <ul>
-                        <li><img src={require("./images/logout.png")} /><p>Logout</p></li>
-                    </ul>
-                </div> */}
+
             </div>
         </>
     );
