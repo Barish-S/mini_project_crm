@@ -15,6 +15,7 @@ import ClientLogin from './ClientLogin/ClientLogin';
 import Divert from './Homepage/homepage';
 import UserReg from './UserRegister';
 import SuperAdminLog from './SuperAdmin/Submit';
+import Workdetails from './Home_Page/workdetails';
 function App() {
   const router = createBrowserRouter([
     {
@@ -45,7 +46,10 @@ function App() {
       path: "/adminhome",
       element:<Home/>,
     },
-    
+    {
+      path:"/Workdetails",
+      element:<Workdetails/>
+    }
     
   ]);
 
