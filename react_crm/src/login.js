@@ -33,8 +33,7 @@ function Sub(){
     navigate('/UserReg')
   };
  
-
-
+  
 let logincheck=()=>{ 
    
     axios({
@@ -133,6 +132,10 @@ return(
   {/* <img src={require('../src/crmfeature.jpg')}/> */}
    
 </div>
+
+
+  
+
     </>
 )
 }
