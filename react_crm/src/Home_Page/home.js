@@ -12,6 +12,7 @@ import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData } from "../reducer/userSlice";
 import Example from "./pieChart";
 import {EmpTable,ClientTable} from "./empTable";
+import Workdetails from "./workdetails";
 
 function Home() {
     let navigate = useNavigate();
@@ -37,6 +38,7 @@ function Home() {
             let datas = response.data.data
             dispatch(setLoggedStatus("Client"))
             dispatch(setClientData(datas))
+            
         })
     }
 
@@ -52,6 +54,10 @@ function Home() {
 
     function navMainHome() {
         navigate('/')
+    }
+
+    function addWorkDetail(){
+        navigate("/Workdetails")
     }
 
     return (
@@ -100,8 +106,9 @@ function Home() {
                     
 
                 </div>
-
+                <button type="button" onClick={()=>addWorkDetail()}>Request Work</button>
             </div>
+           
         </>
     );
 }
