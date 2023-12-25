@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
-import { updateUserLoginSuccess } from '../reducer/userSlice';
+import { updateUserLoginSuccess,setLoggedUser } from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
 
 function Userlogin(){
@@ -18,6 +18,7 @@ function Userlogin(){
             let employeeData = response.data
             console.log(employeeData)
             if(employeeData.status=="success"){
+                dispatch(setLoggedUser("Employee"))
                 alert("success")
             }else{
                 alert("failed")

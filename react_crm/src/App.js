@@ -1,8 +1,4 @@
-import logo from './logo.svg';
-import HomeUser from './UserLogin/home';
-import HomeClient from './ClientLogin/home';
-import HomeAdmin from './SuperAdmin/home';
-// import './App.css';
+
 import { ClientRegister } from './ClientRegister/ClientRegister';
 import {
   createBrowserRouter,
@@ -12,7 +8,6 @@ import Home from './Home_Page/home';
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
 import ClientLogin from './ClientLogin/ClientLogin';
-import Divert from './Homepage/homepage';
 import UserReg from './UserRegister';
 import SuperAdminLog from './SuperAdmin/Submit';
 function App() {
