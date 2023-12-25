@@ -3,6 +3,7 @@ import { setSuperAdminLogin,setLoggedUser } from "../reducer/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import '../SuperAdmin/superLogin.css'
 import { useNavigate } from 'react-router';
+import NavBar from '../nav';
 
 function SuperLogin() {
 
@@ -32,6 +33,7 @@ function SuperLogin() {
 
   return (
     <>
+    <NavBar/>
       <div id='body'>
 
         <form class="form">

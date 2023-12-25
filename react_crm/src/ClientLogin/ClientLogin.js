@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { setClientLogin,setLoggedUser } from '../reducer/userSlice';
+import { setClientLogin, setLoggedUser } from '../reducer/userSlice';
 import { useSelector, useDispatch } from "react-redux"
 import "../ClientLogin/clientLogin.css"
 import { useNavigate } from 'react-router';
+import NavBar from '../nav';
 
 function ClientLogin() {
 
@@ -33,6 +34,7 @@ function ClientLogin() {
 
     return (
         <>
+            <NavBar/>
             {/* {JSON.stringify(loginData)} */}
             <div id='body'>
 
@@ -51,7 +53,7 @@ function ClientLogin() {
                     </label>
 
                     <button class="submit" type='button' onClick={() => checkclientlogin()}>Submit</button>
-                    <p class="signin">Don't have an acount ? <a href="ClientRegister">Signup</a> </p>
+                    <p class="signin">Don't have an acount ? <a href="/ClientRegister">Signup</a> </p>
                 </form>
             </div>
         </>

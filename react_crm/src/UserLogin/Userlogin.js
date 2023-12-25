@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
 import { updateUserLoginSuccess,setLoggedUser } from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
+import NavBar from '../nav';
 
 function Userlogin(){
 
@@ -28,6 +29,7 @@ function Userlogin(){
         }
     return(
         <>
+        <NavBar/>
         {JSON.stringify(userLoginData)}
         
         <form class="form">
@@ -45,26 +47,9 @@ function Userlogin(){
             </label>
     
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
-            <p class="signin">Don't have an acount ? <a href="#">Signup</a> </p>
+            <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
         
-        <form class="form">
-            <p class="title">Login </p>
-            <p class="message">Signin now and get full access to our app. </p>
-        
-            <label>
-                <input class="input" type="email" placeholder="" required="" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,email:e.target.value}))}></input>
-                <span>Email</span>
-            </label> 
-        
-            <label>
-                <input class="input" type="password" placeholder="" required="" onKeyUp={(e)=>dispatch(updateUserLoginSuccess({...userLoginData,password:e.target.value}))}></input>
-                <span>Password</span>
-            </label>
-    
-            <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
-            <p class="signin">Don't have an acount ? <a href="#">Signup</a> </p>
-        </form>
         </>
     )
 }
