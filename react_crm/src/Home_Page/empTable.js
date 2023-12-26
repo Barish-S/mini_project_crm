@@ -2,12 +2,17 @@ import Container from 'react-bootstrap/Container';
 import { useSelector } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 import InputGroup from 'react-bootstrap/InputGroup';
+import axios from "axios";
+import { useEffect } from 'react';
+import {  setEmpData} from "../reducer/userSlice";
+
 
 function EmpTable() {
    
    
-    let empData = useSelector((state) => state.user.loggedStatus.empData)
+    let empsData = useSelector((state) => state.user.loggedStatus.empData)
    
     return(
         <Container>
@@ -25,7 +30,7 @@ function EmpTable() {
     </thead>
     <tbody>
         {/* {JSON.stringify(empData)} */}
-        {empData.map((detail) => {
+        {empsData.map((detail) => {
             return (
                 <tr>
                     <td>{detail.name}</td>
@@ -88,10 +93,15 @@ function ClientTable(){
 
 function WorkDetailsTable() {
     let navigate=useNavigate();
+    let dispatch = useDispatch();
 
    
     let workDetailsData = useSelector((state) => state.user.WorkDetails)
     let AddEmployessToClient=()=>{
+        axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
+            let datas = response.data.data
+        console.log(datas)
+        dispatch(setEmpData(datas))})
         navigate("/AssignEmployees")
     }
     return(
@@ -127,7 +137,14 @@ function WorkDetailsTable() {
 }
 
 function ToAssignEmployees(){
-    let empsData = useSelector((state) => state.user.loggedStatus.empData)
+    // let empData = useSelector((state) => state.user.loggedStatus.empData)
+
+    let empssData = useSelector((state) => state.user.loggedStatus.empData)
+    // useEffect(()=>{
+        
+
+    // },[])})
+    
 
     return(
         <>
@@ -146,8 +163,9 @@ function ToAssignEmployees(){
         </tr>
     </thead>
     <tbody>
-        {/* {JSON.stringify(empsData)} */}
-        {empsData.map((detail) => {
+        {/* {JSON.stringify(empssData)} */}
+       
+         {empssData.map((detail) => {
             return (
                 <tr>
                     <td><InputGroup.Checkbox aria-label="Checkbox for following text input"/></td>
@@ -159,7 +177,7 @@ function ToAssignEmployees(){
                     <td>{detail.workbase}</td>
                     <td>{detail.gender}</td>
                 </tr>)
-        })}
+        })} 
     </tbody>
 </Table>
 </Container>
