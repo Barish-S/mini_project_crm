@@ -35,16 +35,34 @@ function Workdetails(){
     <label>
         <input class="input" defaultValue={clientloginid} onChange={(e)=>dispatch(setWorkDetails({...workdetailsData,clientid:e.target.value}))} type="text" placeholder="" required=""/>
         <span>clientId</span>
-    </label> 
+    </label>
     <label>
-        <input class="input" onKeyUp={(e)=>dispatch(setWorkDetails({...workdetailsData,work:e.target.value}))} type="text" placeholder="" required=""/>
-        <span>work</span>
-    </label> 
-        
+
+    <span>work :</span>   
+    <select value={workdetailsData.work} onChange={(e) => dispatch(setWorkDetails({...workdetailsData,work:e.target.value}))}>
+   
+            <option value="" selected disabled hidden>select work</option>
+            <option value="Webdevelopment ">Webdevelopment</option>
+
+            <option value="Driver">Driver</option>
+
+            <option value="Plumber">Plumber</option>
+
+            <option value="Electrical work">Electrical work</option>
+
+            <option value="Interiordesign">Interiordesign</option>
+
+            </select>
+           
+            </label>
    
     <label>
         <input class="input" onKeyUp={(e)=>dispatch(setWorkDetails({...workdetailsData,workplace:e.target.value}))} type="text" placeholder="" required=""/>
         <span>workplace</span>
+    </label>
+    <label>
+        <input class="input" onKeyUp={(e)=>dispatch(setWorkDetails({...workdetailsData,workdays:e.target.value}))} type="number" placeholder="" required=""/>
+        <span>workdays</span>
     </label>
   
     <button class="submit" type='button' onClick={()=>workdetailsget()}>Submit</button>

@@ -7,7 +7,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import axios from "axios";
 import { useEffect } from 'react';
 import {  setEmpData} from "../reducer/userSlice";
-
+import { useState } from 'react';
 
 function EmpTable() {
    
@@ -137,14 +137,17 @@ function WorkDetailsTable() {
 }
 
 function ToAssignEmployees(){
-    // let empData = useSelector((state) => state.user.loggedStatus.empData)
 
     let empssData = useSelector((state) => state.user.loggedStatus.empData)
-    // useEffect(()=>{
-        
-
-    // },[])})
     
+    let [assignedEmployees,setAssignedEmployees]=useState([])
+    let assignemployees=(id)=>{
+      
+        setAssignedEmployees([...assignedEmployees,id])
+      
+    }
+
+    console.log(assignedEmployees)
 
     return(
         <>
@@ -153,6 +156,7 @@ function ToAssignEmployees(){
     <thead>
         <tr>
             <th>select</th>
+            <th>id</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone Number</th>
@@ -168,7 +172,8 @@ function ToAssignEmployees(){
          {empssData.map((detail) => {
             return (
                 <tr>
-                    <td><InputGroup.Checkbox aria-label="Checkbox for following text input"/></td>
+                    <td><InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={()=>assignemployees(detail.id)}/></td>
+                    <td>{detail.id}</td>
                     <td>{detail.name}</td>
                     <td>{detail.email}</td>
                     <td>{detail.phone}</td>

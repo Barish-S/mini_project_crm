@@ -80,7 +80,9 @@ export const userSlice = createSlice({
     updateUserLoginSuccess: (state,action) => {
       state.userloginsuccess = action.payload
     },
-   
+    setWorkDetails:(state,action) => {
+      state.WorkDetails = action.payload
+    },
   },
 })
 
