@@ -8,6 +8,10 @@ import {
 import Home from './Home_Page/home';
 import Submit from './login';
 import Userlogin from './UserLogin/Userlogin';
+// import Divert from './Homepage/homepage';
+// import ClientLogin from './ClientLogin/ClientLogin';
+
+// import Divert from './Homepage/homepage'; 
 import ClientLogin from './ClientLogin/ClientLogin';
 import UserReg from './UserRegister';
 import SuperAdminLog from './SuperAdmin/Submit';
@@ -26,7 +30,7 @@ function App() {
       element: <UserReg />,
     },
     {
-      path: "/ClientRegister",
+      path: "/clientRegister",
       element:<ClientRegister/>,
     },
     {

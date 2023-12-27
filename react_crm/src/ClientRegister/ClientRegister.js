@@ -1,73 +1,112 @@
 import { useState } from 'react'
-import { Button,Form,Row,Col } from 'react-bootstrap';
 import axios from 'axios'
+import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RegisterClient } from '../reducer/userSlice';
+import '../ClientRegister/ClientRegister.css'
 
 
 
 
 export function ClientRegister() {
 
-    // const [ClientResgister, IsClientRegister] = useState({
-    //    name:"",
-    //    email:"",
-    //    password:"",
-    //    address:"",
-    //    phone:"",
-    //    city:"",
-    //    area:"",
-    //    pin:"",
-    // })
+    let dispatch = useDispatch();
 
-    let dispatch=useDispatch();
+    let ClientDetail = useSelector((state) => state.user.ClientDetails)
+    console.log(ClientDetail
+        )
+       
+        // let age=date-ClientDetail.dob
 
-    let ClientDetail=useSelector((state)=>state.user.RegisterClient)
-    console.log(ClientDetail)
+    const RegData = () => {
+        let formData = new FormData()
+        formData.append("name",ClientDetail.name)
+        formData.append("email",ClientDetail.email)
+        formData.append("password",ClientDetail.password)
+        formData.append("phone",ClientDetail.phone)
+        formData.append("gender",ClientDetail.gender)
+        formData.append("dob",ClientDetail.dob)
+        formData.append("address",ClientDetail.address)
+        formData.append("district",ClientDetail.district)
+        formData.append("state",ClientDetail.state)
+        formData.append("pincode",ClientDetail.pincode)
+        axios.post("https://agaram.academy/api/crm/index.php?request=client_register",formData).then(function(success){
+            console.log(success)
 
-    const RegData=()=>{
-        axios({
-            method: 'post',
-            url: 'https://346ecf18-5094-4743-aa32-8c7c55e73246.mock.pstmn.io/newUsers',
-           data: {
-                request : "Add New Users",
-                name : ClientDetail.name,
-                email : ClientDetail.email,
-                password : ClientDetail.password,
-                address : ClientDetail.address,
-                phone : ClientDetail.phone,
-                city : ClientDetail.city,
-                area : ClientDetail.area,
-                pin : ClientDetail.pin,
-            },
+            // let age=moment().diff(ClientDetail.dob,"years");
+            // if(age>18 && age<50)
+            // {
+            //     alert("eligible")
+            // }
+            //        else{
+            //         alert("not eligible")
+            //        } 
             
-          }).then(function(response){
-            console.log(response)
-            dispatch(RegisterClient(response))
-            alert("Registerd succefully")
-          })
-} 
+        })
+
+       
+    }
+    
 
     return (
         <>
-        <Form>
-                          <h1>Register here !</h1>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Name :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your name" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, name: e.target.value }))}/></Col></Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Email :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your email" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, email: e.target.value }))}/></Col></Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Password :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your password" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, password: e.target.value }))}/></Col></Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Mobile no :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your phone" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, phone: e.target.value }))}/></Col></Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Address :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your address" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, address: e.target.value }))}/></Col></Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">City :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your city" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, city: e.target.value }))}/></Col></Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Area :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your area" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, area: e.target.value }))}/></Col></Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Pincode :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your pincode" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, pin: e.target.value }))}/></Col></Form.Group>
-            <Link>if You Already Register</Link>
-            <Col xs="auto"><Form.Check type="checkbox" id="autoSizingCheck" column="sm" className="mb-2" label="Remember me"/></Col>
-            <div className="d-grid gap-1">
-            <Button variant="primary" size="sm" class="button" onClick={()=>RegData()}>Register</Button></div>
-            </Form>
-            
+                 
+            <form class="form">
+                <p class="title" >Register here!</p>
+                <p class="message">Signup now and get full access to our app. </p>
+               
+                    <label>
+                        <input class="input" type="text" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, name:e.target.value }))}/>
+                        <span>Name</span>
+                    </label>
+                    <div class="flex">
+                    <label>
+                        <input class="input" type="email" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, email:e.target.value }))}/>
+                        <span>Email</span>
+                    </label>
+                <label>
+                    <input class="input" type="password" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, password:e.target.value }))}/>
+                    <span>Password</span>
+                </label>
+                </div>
+                <label>
+                    <input class="input" type="text" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, phone:e.target.value }))}/>
+                    <span>Mobile no</span>
+                </label>
+                <div class="flex">
+                <label>
+                    <input class="input" type="date" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, dob:e.target.value }))}/>
+                    <span>Date of Birth</span>
+                </label>
+                <label>
+                    <input class="input" type="text" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, gender:e.target.value }))}/>
+                    <span>Gender</span>
+                </label>
+                </div>
+                <label>
+                    <input class="input" type="text" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, address:e.target.value }))}/>
+                    <span>Address</span>
+                </label>
+                <label>
+                    <input class="input" type="text" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, pincode:e.target.value }))}/>
+                    <span>Pincode</span>
+                </label>
+                <div class="flex">
+                <label>
+                    <input class="input" type="text" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, district:e.target.value }))}/>
+                    <span>District</span>
+                </label>
+                <label>
+                    <input class="input" type="text" placeholder="" required="" onKeyUp={(e) => dispatch(RegisterClient({ ...ClientDetail, state:e.target.value }))}/>
+                    <span>State</span>
+                </label>
+                </div>
+                <button class="submit" type='button' onClick={() => RegData()}>Submit</button>
+                <p class="signin">Already have an acount ? <a href="ClientLogin">Signin</a> </p>
+            </form>
+
         </>
 
     )

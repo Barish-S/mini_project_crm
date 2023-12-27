@@ -48,23 +48,23 @@ export const userSlice = createSlice({
     setClientData: (state, action) => {
       state.loggedStatus.clientData = action.payload
     },
-    setLoggedStatus: (state, action) => {
-      state.loggedStatus.status = action.payload
-    },
-
-    RegisterClient: (state, action) => {
+    setLoggedStatus:(state,action)=>{
+      state.loggedStatus.status=action.payload
+  },
+    
+    RegisterClient: (state,action) => {
       state.ClientDetails = action.payload
     },
-   updateUserLoginSuccess:(state, action) => {
-    state.userloginsuccess = action.payload
-  },
-  superAdminLogin:(state, action) => {
-    state.superAdminLogin = action.payload
-  },
-  setWorkDetails:(state, action) => {
-    state.WorkDetails = action.payload
-  },
-
+    setClientLogin: (state,action) => {
+      state.clientLogin = action.payload
+    },
+    setSuperAdminLogin: (state,action) => {
+      state.superAdminLogin = action.payload
+    },
+    updateUserLoginSuccess: (state,action) => {
+      state.userloginsuccess = action.payload
+    },
+   
   },
 })
 
