@@ -33,8 +33,7 @@ function Sub(){
     navigate('/UserReg')
   };
  
-
-
+  
 let logincheck=()=>{ 
    
     axios({
@@ -56,7 +55,7 @@ return(
 
 <Nav className="justify-content-end" activeKey="/home" style={{border:"0px solid black",backgroundColor:"rgba(4, 193, 250, 0.732)"}}>
         <Nav.Item>
-          <Nav.Link href="/home">GuestUser</Nav.Link>
+          <Nav.Link href="/adminhome">GuestUser</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link href="#about">About</Nav.Link>
@@ -90,30 +89,30 @@ return(
   <div class="parent">
   <div class="card">
       <div class="content-box">
-          <span class="card-title">3D Card</span>
+          <span class="card-title">MISSION</span>
           <p class="card-content">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+          To utilize our people and innovative technology to provide our clients with field marketing services to drive sales and profits.
           </p>
           <span class="see-more">See More</span>
       </div>
       <div class="date-box">
-          <span class="month">DEC</span>
-          <span class="date">20</span>
+          <span class="month">SINCE</span>
+          <span class="date">1991</span>
       </div>
   </div>
 </div>
 <div class="parent">
   <div class="card">
       <div class="content-box">
-          <span class="card-title">3D Card</span>
+          <span class="card-title">VISION</span>
           <p class="card-content">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+          Increasing customer satisfaction, higher productivity and efficiency,and decreasing customer churn rates
           </p>
           <span class="see-more">See More</span>
       </div>
       <div class="date-box">
-          <span class="month">DEC</span>
-          <span class="date">20</span>
+          <span class="month">SINCE</span>
+          <span class="date">1991</span>
       </div>
   </div>
 </div>
@@ -133,6 +132,10 @@ return(
   {/* <img src={require('../src/crmfeature.jpg')}/> */}
    
 </div>
+
+
+  
+
     </>
 )
 }

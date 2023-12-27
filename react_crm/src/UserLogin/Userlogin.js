@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
-import updateUserLoginSuccess from '../reducer/userSlice';
-// import { updateUserLoginSuccess } from '../reducer/userSlice';
-// import "../UserLogin/Userlogin.css"
+import { updateUserLoginSuccess } from '../reducer/userSlice';
+import "../UserLogin/Userlogin.css"
 
 function Userlogin(){
 
@@ -10,33 +9,20 @@ function Userlogin(){
     const dispatch = useDispatch()
 
     const checkuserlogin = () =>{
+        let formData = new FormData()
+        formData.append("email",userLoginData.email)
+        formData.append("password",userLoginData.password)
 
-        axios({
-            method : 'get',
-            url : 'https://346ecf18-5094-4743-aa32-8c7c55e73246.mock.pstmn.io/GetEmployees',
-            Data : {
-                request : "Get_All_Employee"
+        axios.post("https://agaram.academy/api/crm/?request=employee_login",formData)
+        .then(response=>{
+            let employeeData = response.data
+            console.log(employeeData)
+            if(employeeData.status=="success"){
+                alert("success")
+            }else{
+                alert("failed")
             }
-        }).then(function(response){
-            
-            let userdata = response.data
-            console.log(userdata)
-            // for(let i=0;i<userdata.length;i++){
-            //     if(userdata[i].email==userLoginData.email && userdata[i].password==userLoginData.password){
-            //         alert("login success")
-            //         {break;}
-            //     }
-            //     else{
-            //         alert("invalid")
-            //     }
-            // }
-
-            let filterValue = userdata.filter((u)=>u.email==userLoginData.email && u.password==userLoginData.password)
-            // alert("login success")
-            
-            console.log(filterValue)  
-
-            
+        
     });
         }
 

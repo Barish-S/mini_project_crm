@@ -23,10 +23,11 @@ function ClientLogin(){
 
         axios.post('https://agaram.academy/api/crm/?request=client_login',formData)
      .then(response=>{
-        console.log(response)
+        console.log(response.data.data.id)
       let status=response.data.status
       if(status=="success"){
-      Navigate("/adminhome")
+       localStorage.setItem("clientid",response.data.data.id)
+        Navigate("/adminhome")
       }
       else{
         alert("failed")
@@ -55,7 +56,6 @@ function ClientLogin(){
     })}
         
             
-
     return(
         <>
         {JSON.stringify(loginData)}
