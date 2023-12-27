@@ -13,7 +13,7 @@ import {
 import Submit from './login';
 
 import Divert from './Homepage/homepage'; 
-import UserReg from './UserRegister';
+
 
 
 function App() {
