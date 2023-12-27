@@ -55,19 +55,10 @@ export const userSlice = createSlice({
     RegisterClient: (state,action) => {
         state.loggedStatus.user=action.payload
     },
-    RegisterClient : (state,action) => {
-      state.ClientDetails = action.payload
-    },
     UpdateUserLoginSuccess : (state,action) => {
       state.userloginsuccess = action.payload
     },
-   setClientLogin : (state,action) => {
-      state.clientLogin = action.payload
-    },
     superAdminLogin : (state,action) => {
-      state.superAdminLogin = action.payload
-    },
-    updateUserLoginSuccess: (state,action) => {
       state.superAdminLogin = action.payload
     },
    
@@ -75,6 +66,6 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { EmployeeRegisterDetails,setLoggedStatus ,RegisterClient,setClientLogin,setSuperAdminLogin,updateUserLoginSuccess} = userSlice.actions
+export const { EmployeeRegisterDetails,setLoggedStatus ,RegisterClient,setClientLogin,setSuperAdminLogin,updateUserLoginSuccess,setLoggedData} = userSlice.actions
 
 export default userSlice.reducer 

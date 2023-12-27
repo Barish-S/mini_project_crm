@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
 import updateUserLoginSuccess from '../reducer/userSlice';
-import { updateUserLoginSuccess } from '../reducer/userSlice';
+// import { updateUserLoginSuccess } from '../reducer/userSlice';
 // import "../UserLogin/Userlogin.css"
 
 function Userlogin(){
