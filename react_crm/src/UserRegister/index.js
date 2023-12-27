@@ -129,11 +129,15 @@ function UserReg(){
             
             <option disabled={true} value ="" hidden> Workbase </option>
 
-            <option value="fruit">Fruit</option>
+            <option value="Webdevelopment ">Webdevelopment</option>
 
-            <option value="vegetable">Vegetable</option>
+            <option value="Driver">Driver</option>
 
-            <option value="meat">Meat</option>
+            <option value="Plumber">Plumber</option>
+
+            <option value="Electrical work">Electrical work</option>
+
+            <option value="Interiordesign">Interiordesign</option>
 
             </select>
 
