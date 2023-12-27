@@ -24,54 +24,77 @@ function Sub() {
       }
     }).then(function (response) {
       console.log(response);
-    })
-  };
+      })};
 
-  return (
+return(
     <>
-      <NavBar/>
-      <div class="firstdiv" style={{ border: "0px solid black", height: "590px", backgroundImage: "../src/divback.jpg", }}>
-        <div class="firstdivHalf" style={{ border: "0px 0px 0px 0px solid black", width: "40%" }}>
-          <h1 class="text" style={{ marginRight: "10%", marginTop: "5%", padding: "10%", color: "black" }}>GROW YOUR<br></br>
 
-            BRAND WITH<br></br>
-            OUR FEATURES</h1>
-        </div>
-        <div class="firstdivsecondHalf" style={{ border: "0px solid black", width: "40%" }}>
-
-          <div class="parent">
-            <div class="card">
-              <div class="content-box">
-                <span class="card-title">3D Card</span>
-                <p class="card-content">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <span class="see-more">See More</span>
-              </div>
-              <div class="date-box">
-                <span class="month">DEC</span>
-                <span class="date">20</span>
-              </div>
-            </div>
-          </div>
-          <div class="parent">
-            <div class="card">
-              <div class="content-box">
-                <span class="card-title">3D Card</span>
-                <p class="card-content">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <span class="see-more">See More</span>
-              </div>
-              <div class="date-box">
-                <span class="month">DEC</span>
-                <span class="date">20</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
+<Nav className="justify-content-end" activeKey="/home" style={{border:"0px solid black",backgroundColor:"rgba(4, 193, 250, 0.732)"}}>
+        <Nav.Item>
+          <Nav.Link href="/adminhome">GuestUser</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="#about">About</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1">contact Us</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          {/* <Nav.Link eventKey="link-2">Enquery</Nav.Link> */}
+        </Nav.Item>
+        <NavDropdown title="SignIn" id="nav-dropdown">
+        <NavDropdown.Item onClick={Adminlog}>Admin</NavDropdown.Item>
+        <NavDropdown.Item onClick={Clientlog}>clientlogin</NavDropdown.Item>
+        <NavDropdown.Item onClick={Employeelog}>Employees</NavDropdown.Item>
+        </NavDropdown>
+        <NavDropdown title="SignUp" id="nav-dropdown">
+        <NavDropdown.Item onClick={Clientreg}>client Register</NavDropdown.Item>
+        <NavDropdown.Item onClick={Userreg}>Employees Register</NavDropdown.Item>
+        </NavDropdown>
+</Nav>
+<div class="firstdiv" style={{border:"0px solid black",height:"590px",backgroundImage:"../src/divback.jpg",}}>
+    <div class="firstdivHalf" style={{border:"0px 0px 0px 0px solid black",width:"40%"}}>
+        <h1 class="text" style={{marginRight:"10%",marginTop:"5%",padding:"10%",color:"black"}}>GROW YOUR<br></br>
+        
+        BRAND WITH<br></br>
+        OUR FEATURES</h1>
+    </div>
+    <div class="firstdivsecondHalf" style={{border:"0px solid black" ,width:"40%"}}>
+      {/* <div class="firstOfLeftDiv" style={{border:"1px solid black"}}> */}
+     
+  <div class="parent">
+  <div class="card">
+      <div class="content-box">
+          <span class="card-title">MISSION</span>
+          <p class="card-content">
+          To utilize our people and innovative technology to provide our clients with field marketing services to drive sales and profits.
+          </p>
+          <span class="see-more">See More</span>
       </div>
+      <div class="date-box">
+          <span class="month">SINCE</span>
+          <span class="date">1991</span>
+      </div>
+  </div>
+</div>
+<div class="parent">
+  <div class="card">
+      <div class="content-box">
+          <span class="card-title">VISION</span>
+          <p class="card-content">
+          Increasing customer satisfaction, higher productivity and efficiency,and decreasing customer churn rates
+          </p>
+          <span class="see-more">See More</span>
+      </div>
+      <div class="date-box">
+          <span class="month">SINCE</span>
+          <span class="date">1991</span>
+      </div>
+  </div>
+</div>
+      
+</div>
+</div>
 
 
       <div id="about" class="seconddiv" style={{ border: "0px solid black", height: "1000.5px" }}>

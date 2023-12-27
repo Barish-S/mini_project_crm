@@ -11,11 +11,24 @@ export const userSlice = createSlice({
       email: "",
       password: ""
     },
-    EmpRegDet:{},
-    userloginsuccess:{
-      email:"",
-      password:""
+
+    EmpRegDet:{
+      name : "divya",
+      email : "div@gmail.com",
+      password : "2345",
+      gender : "female",
+      dob : "",
+      aadhar : "23604116",
+      phone : "7993337687",
+      address : "kottar",
+      pincode : "629002",
+      district : "kanyakumari",
+      state : "tamil nadu",
+      education : "BA.english",
+      workbase : ""
     },
+
+    userloginsuccess:{},
     
     ClientDetails: {},
 
@@ -25,8 +38,11 @@ export const userSlice = createSlice({
       empData: [],
       clientData: [],
       status: ""
-    }
+    },
+
+    WorkDetails:[],
   },
+
 
 
   reducers: {
@@ -51,20 +67,29 @@ export const userSlice = createSlice({
     setClientData: (state, action) => {
       state.loggedStatus.clientData = action.payload
     },
-    setLoggedStatus: (state, action) => {
-      state.loggedStatus.status = action.payload
-    },
-
-    RegisterClient: (state, action) => {
+    setLoggedStatus:(state,action)=>{
+      state.loggedStatus.status=action.payload
+  },
+    
+    RegisterClient: (state,action) => {
       state.ClientDetails = action.payload
     },
-    updateUserLoginSuccess: (state, action) => {
+    setClientLogin: (state,action) => {
+      state.clientLogin = action.payload
+    },
+    setSuperAdminLogin: (state,action) => {
+      state.superAdminLogin = action.payload
+    },
+    updateUserLoginSuccess: (state,action) => {
       state.userloginsuccess = action.payload
+    },
+    setWorkDetails:(state,action) => {
+      state.WorkDetails = action.payload
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setSuperAdminLogin,setClientData,setLoggedUser, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData } = userSlice.actions
+export const { setSuperAdminLogin,setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData,setWorkDetails } = userSlice.actions
 
-export default userSlice.reducer 
+export default userSlice.reducer ;
