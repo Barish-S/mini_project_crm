@@ -9,31 +9,30 @@ function Userlogin(){
     const dispatch = useDispatch()
 
     const checkuserlogin = () =>{
-
+        let formData= new FormData()
+        formData.append("email",userLoginData.email)
+        formData.append("password",userLoginData.password)
         axios({
-            method : 'get',
-            url : 'https://346ecf18-5094-4743-aa32-8c7c55e73246.mock.pstmn.io/GetEmployees',
-            Data : {
-                request : "Get_All_Employee"
-            }
+            method : 'post',
+            url : 'https://agaram.academy/api/crm/?request=employee_login',formData,
+           
         }).then(function(response){
             
-            let userdata = response.data
+            let userdata = response
             console.log(userdata)
             // for(let i=0;i<userdata.length;i++){
             //     if(userdata[i].email==userLoginData.email && userdata[i].password==userLoginData.password){
             //         alert("login success")
-            //         {break;}
+            //         {break;}\
             //     }
             //     else{
             //         alert("invalid")
             //     }
             // }
 
-            let filterValue = userdata.filter((u)=>u.email==userLoginData.email && u.password==userLoginData.password)
-            // alert("login success")
-            
-            console.log(filterValue)  
+            // let filterValue = userdata.filter((u)=>u.email==userLoginData.email && u.password==userLoginData.password)
+        
+            // console.log(filterValue)  
 
             
     });

@@ -13,22 +13,24 @@ function UserReg(){
    
     const {EmpRegDet} = useSelector((state) => state.user)
 
-    const Regdata = () => {
-       axios.post("https://346ecf18-5094-4743-aa32-8c7c55e73246.mock.pstmn.io/NewEmployee",EmpRegDet).then(function(success){
-        console.log(success)
-       })   
-    }
+   
     let RegisterEmployees=()=>{
         let formData= new FormData()
-        formData.append("clientid",EmpRegDet.name)
-        formData.append("work",EmpRegDet.email)
-        formData.append("workplace",EmpRegDet.password)
-        formData.append("workplace",EmpRegDet.address)
-        formData.append("workplace",EmpRegDet.phone)
-        formData.append("workplace",EmpRegDet.education)
+        formData.append("name",EmpRegDet.name)
+        formData.append("email",EmpRegDet.email)
+        formData.append("password",EmpRegDet.password)
+        formData.append("address",EmpRegDet.address)
+        formData.append("phone",EmpRegDet.phone)
+        formData.append("education",EmpRegDet.education)
+        formData.append("dob",EmpRegDet.dob)
 
-        formData.append("workplace",EmpRegDet.workbase)
-        formData.append("workplace",EmpRegDet.gender)
+        formData.append("workbase",EmpRegDet.workbase)
+        formData.append("gender",EmpRegDet.gender)
+        formData.append("state",EmpRegDet.state)
+        formData.append("pincode",EmpRegDet.pincode)
+        formData.append("district",EmpRegDet.district)
+        formData.append("aadhar",EmpRegDet.aadhar)
+
 
         axios.post("https://agaram.academy/api/crm/?request=employee_register",formData)
         .then(response=>{
@@ -49,6 +51,11 @@ function UserReg(){
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Address :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your address" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,address:e.target.value}))}/></Col></Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Phone :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your phone" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,phone:e.target.value}))}/></Col></Form.Group>
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">Education :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your education" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,education:e.target.value}))}/></Col></Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">aadhar :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your education" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,aadhar:e.target.value}))}/></Col></Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">dob :</Form.Label><Col sm="8"><Form.Control type="date" placeholder="enter your education" onChange={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,dob:e.target.value}))}/></Col></Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">district :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your education" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,district:e.target.value}))}/></Col></Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">state :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your education" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,state:e.target.value}))}/></Col></Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword"><Form.Label column sm="4">pincode :</Form.Label><Col sm="8"><Form.Control type="text" placeholder="enter your education" onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,pincode:e.target.value}))}/></Col></Form.Group>
 
             <Form.Select aria-label="Default select example" onChange={(e) =>dispatch(EmployeeRegisterDetails({...EmpRegDet,workbase:e.target.value}))}>
             <option>select work base</option>
