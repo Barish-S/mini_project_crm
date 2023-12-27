@@ -1,20 +1,39 @@
 import axios from 'axios';
 import "./Homepage/home.css"
-import { useNavigate } from 'react-router-dom';
+import "../src/login.css"
+import {Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import Dropdown from 'react-bootstrap/Dropdown';
-function Submit(){
-  
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+function Sub(){
+  let divBackgroundImage=require("../src/divback.jpg")
   let navigate = useNavigate();
-  let handleClick =()=> {
+  let Clientlog =()=> {
      
-    navigate('/divert')
+    navigate('/ClientLogin')
+    
   };
-  let homeadmin =()=> {
+  let Employeelog =()=> {
      
-    navigate('/homeclient')
+    navigate('/Userlogin')
   };
-
-
+  let Adminlog =()=> {
+     
+    navigate('/SuperAdminLog')
+  };
+  let Clientreg =()=> {
+     
+    navigate('/ClientRegister')
+  };
+  let Userreg =()=> {
+     
+    navigate('/UserReg')
+  };
+ 
+  
 let logincheck=()=>{ 
    
     axios({
@@ -33,38 +52,92 @@ let logincheck=()=>{
 
 return(
     <>
-    <h1>welcome</h1>
-  
 
-  <nav>
-        <ul>
-
-        <li>
-            <a href="#">SignIn ▾</a>
-            <ul class="dropdown">
-                <li><a href="#" class="dropdown-item">Admin</a></li>
-                <li><a href="#" class="dropdown-item">client</a></li>
-                <li><a href="#" class="dropdown-item">Employees</a></li>
-               
-            </ul>
-            
-        </li>
-        <li>
-            <a href="#">SignUp ▾</a>
-            
-            <ul class="dropdown">
-                <li><a class="dropdown-item" onClick={()=>handleClick()}>Client</a></li>
-                <li><a class="dropdown-item" onClick={homeadmin}>user</a></li>
-                
-            </ul>
-        </li>
+<Nav className="justify-content-end" activeKey="/home" style={{border:"0px solid black",backgroundColor:"rgba(4, 193, 250, 0.732)"}}>
+        <Nav.Item>
+          <Nav.Link href="/adminhome">GuestUser</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="#about">About</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1">contact Us</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          {/* <Nav.Link eventKey="link-2">Enquery</Nav.Link> */}
+        </Nav.Item>
+        <NavDropdown title="SignIn" id="nav-dropdown">
+        <NavDropdown.Item onClick={Adminlog}>Admin</NavDropdown.Item>
+        <NavDropdown.Item onClick={Clientlog}>clientlogin</NavDropdown.Item>
+        <NavDropdown.Item onClick={Employeelog}>Employees</NavDropdown.Item>
+        </NavDropdown>
+        <NavDropdown title="SignUp" id="nav-dropdown">
+        <NavDropdown.Item onClick={Clientreg}>client Register</NavDropdown.Item>
+        <NavDropdown.Item onClick={Userreg}>Employees Register</NavDropdown.Item>
+        </NavDropdown>
+</Nav>
+<div class="firstdiv" style={{border:"0px solid black",height:"590px",backgroundImage:"../src/divback.jpg",}}>
+    <div class="firstdivHalf" style={{border:"0px 0px 0px 0px solid black",width:"40%"}}>
+        <h1 class="text" style={{marginRight:"10%",marginTop:"5%",padding:"10%",color:"black"}}>GROW YOUR<br></br>
         
-        </ul>
-    </nav>
+        BRAND WITH<br></br>
+        OUR FEATURES</h1>
+    </div>
+    <div class="firstdivsecondHalf" style={{border:"0px solid black" ,width:"40%"}}>
+      {/* <div class="firstOfLeftDiv" style={{border:"1px solid black"}}> */}
+     
+  <div class="parent">
+  <div class="card">
+      <div class="content-box">
+          <span class="card-title">MISSION</span>
+          <p class="card-content">
+          To utilize our people and innovative technology to provide our clients with field marketing services to drive sales and profits.
+          </p>
+          <span class="see-more">See More</span>
+      </div>
+      <div class="date-box">
+          <span class="month">SINCE</span>
+          <span class="date">1991</span>
+      </div>
+  </div>
+</div>
+<div class="parent">
+  <div class="card">
+      <div class="content-box">
+          <span class="card-title">VISION</span>
+          <p class="card-content">
+          Increasing customer satisfaction, higher productivity and efficiency,and decreasing customer churn rates
+          </p>
+          <span class="see-more">See More</span>
+      </div>
+      <div class="date-box">
+          <span class="month">SINCE</span>
+          <span class="date">1991</span>
+      </div>
+  </div>
+</div>
+      
+</div>
+</div>
+
    
+<div id="about"  class="seconddiv" style={{border:"0px solid black",height:"1000.5px"}}>
+ 
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ <h1 style={{color:"black"}}></h1>
+  </div>
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ 
+  </div>
+  {/* <img src={require('../src/crmfeature.jpg')}/> */}
+   
+</div>
+
+
   
+
     </>
 )
 }
 
-export default Submit;
+export default Sub;
