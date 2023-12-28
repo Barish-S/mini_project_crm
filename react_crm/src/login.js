@@ -3,15 +3,36 @@ import "../src/login.css"
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import NavBar from './nav';
-
+import { Nav } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 function Sub() {
   let divBackgroundImage = require("../src/divback.jpg")
-
- 
+let navigate=useNavigate()
+  let Clientlog =()=> {
+     
+    navigate('/ClientLogin')
+    
+  };
+  let Employeelog =()=> {
+     
+    navigate('/Userlogin')
+  };
+  let Adminlog =()=> {
+     
+    navigate('/SuperAdminLog')
+  };
+  let Clientreg =()=> {
+     
+    navigate('/ClientRegister')
+  };
+  let Userreg =()=> {
+     
+    navigate('/UserReg')
+  };
 
 
   let logincheck = () => {
-
+   
     axios({
       method: 'post',
       url: 'https://346ecf18-5094-4743-aa32-8c7c55e73246.mock.pstmn.io/newUsers',
