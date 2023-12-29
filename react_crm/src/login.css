@@ -176,7 +176,7 @@ padding:20% 20% 20 20%;
     background-image:url(../src/crmfeature.jpg);
     height:100vh; 
     background-position:center;
-   background-repeat:no-repeat;
+    background-repeat:no-repeat;
     background-size:cover;
   }
 
@@ -185,3 +185,83 @@ padding:20% 20% 20 20%;
     width:100%;
     background-color:rgba(0, 0, 0, 0.5);
   }
+
+  /* {thirddiv} */
+  .thirddiv{
+    /* background-image:url(../src/crmfeature.jpg); */
+    /* background:#f7f3f3; */
+    background-position:center;
+    background-color:rgba(107, 165, 147, 0.5);
+    background-size: cover;
+    position: relative;
+    /* opacity: 0.3; */
+    /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+}   
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.cards .red {
+  background-color: #f43f5e;
+  margin-top: 100px;
+}
+
+.cards .blue {
+  background-color: #739ee4;
+  margin-top: 50px;
+}
+
+.cards .green {
+  background-color: #22c55e;
+  margin-top: 50px;
+}
+
+.cards .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 200px;
+  width: 600px;
+  border-radius: 10px;
+  color: rgb(228, 71, 71);
+  cursor: pointer;
+  transition: 400ms;
+  margin-left: 700px;
+  
+}
+
+.cards .card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.cards .card p.second-text {
+  font-size: .7em;
+}
+
+.cards .card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(10px);
+  transform: scale(0.9, 0.9);
+}
+.fourthdiv{
+  position:absolute;
+  top: 270%;
+  left: 100px;
+  /* border: 1px solid black; */
+  width: 500px;
+  font-size: 20px;
+  font-weight: 900;
+  color: rgb(19, 18, 18);
+}
+
+
