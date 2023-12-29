@@ -3,39 +3,64 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    superAdminLogin:{
-      email:"",
-      password:""
+    superAdminLogin: {
+      email: "",
+      password: ""
     },
-    clientLogin:{
-      email:"",
-      password:""
+    clientLogin: {
+      email: "",
+      password: ""
     },
-    EmpRegDet:{},
+
+    EmpRegDet:{
+      name : "divya",
+      email : "div@gmail.com",
+      password : "2345",
+      gender : "female",
+      dob : "",
+      aadhar : "23604116",
+      phone : "7993337687",
+      address : "kottar",
+      pincode : "629002",
+      district : "kanyakumari",
+      state : "tamil nadu",
+      education : "BA.english",
+      workbase : ""
+    },
+
     userloginsuccess:{},
     
     ClientDetails: {},
 
-    loggedStatus:{
-        user:"Admin",
-        data:[],
-        status:""
-    }
+    loggedStatus: {
+      user: "Admin",
+      data: [],
+      empData: [],
+      clientData: [],
+      status: ""
+    },
+
+    WorkDetails:[],
   },
-
-
+  
   reducers: {
-    setSuperAdminLogin : (state,action) => {
+    setSuperAdminLogin: (state, action) => {
       state.superAdminLogin = action.payload
     },
-    setClientLogin : (state,action) => {
+    setClientLogin: (state, action) => {
       state.clientLogin = action.payload
     },
-    EmployeeRegisterDetails : (state,action) => {
+    EmployeeRegisterDetails: (state, action) => {
       state.EmpRegDet = action.payload
     },
-    setLoggedData:(state,action)=>{
-        state.loggedStatus.data=action.payload
+    setLoggedData: (state, action) => {
+      state.loggedStatus.data = action.payload
+    },
+    setEmpData: (state, action) => {
+      state.loggedStatus.empData = action.payload
+    },
+    setClientData: (state, action) => {
+      state.loggedStatus.clientData = action.payload
     },
     setLoggedStatus:(state,action)=>{
       state.loggedStatus.status=action.payload
@@ -52,12 +77,13 @@ export const userSlice = createSlice({
     updateUserLoginSuccess: (state,action) => {
       state.userloginsuccess = action.payload
     },
-   
+    setWorkDetails:(state,action) => {
+      state.WorkDetails = action.payload
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
+export const { setSuperAdminLogin,setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData,setWorkDetails } = userSlice.actions
 
-export const { EmployeeRegisterDetails,setLoggedStatus ,RegisterClient,setClientLogin,setSuperAdminLogin,updateUserLoginSuccess,setLoggedData } = userSlice.actions
-
-export default userSlice.reducer 
+export default userSlice.reducer ;

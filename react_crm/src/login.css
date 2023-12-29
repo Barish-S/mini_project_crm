@@ -158,7 +158,7 @@ padding:20% 20% 20 20%;
     background-image:url(../src/crmfeature.jpg);
     /* background:#f7f3f3; */
     background-position:center;
-    /* background:rgb(0, 0,0,0.5); */
+    background-color:rgba(199, 189, 189, 0.5);
     background-size: cover;
     /* opacity: 0.3; */
     /* width: 100%; */
@@ -166,8 +166,22 @@ padding:20% 20% 20 20%;
   flex-direction: row;
 }   
 
-/* .seconddiv{
-  background: rgba(247, 244, 244, 0.979);
+.seconddiv{
+  background-color: rgba(247, 244, 244, 0.979);
   height:100%;
-} */
+}
 
+
+.headers{
+    background-image:url(../src/crmfeature.jpg);
+    height:100vh; 
+    background-position:center;
+   background-repeat:no-repeat;
+    background-size:cover;
+  }
+
+.contents{
+    height: 100%;
+    width:100%;
+    background-color:rgba(0, 0, 0, 0.5);
+  }
