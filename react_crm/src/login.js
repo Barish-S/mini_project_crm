@@ -121,7 +121,7 @@ return(
 </div>
 
    
-<div id="about"  class="seconddiv" style={{border:"0px solid black",height:"1000.5px"}}>
+{/* <div id="about"  class="seconddiv" style={{border:"0px solid black",height:"1000.5px"}}>
  
   <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
  <h1 style={{color:"black"}}></h1>
@@ -131,10 +131,14 @@ return(
   </div>
   {/* <img src={require('../src/crmfeature.jpg')}/> */}
    
+{/* </div>  */}
+
+<div>
+
+    
+
 </div>
-
-
-  
+ 
 
     </>
 )
