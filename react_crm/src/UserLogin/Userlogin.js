@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
-import { updateUserLoginSuccess } from '../reducer/userSlice';
+import { updateUserLoginSuccess,setLoggedUser } from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
+import NavBar from '../nav';
 
 function Userlogin(){
 
@@ -18,6 +19,7 @@ function Userlogin(){
             let employeeData = response.data
             console.log(employeeData)
             if(employeeData.status=="success"){
+                dispatch(setLoggedUser("Employee"))
                 alert("success")
             }else{
                 alert("failed")
@@ -25,9 +27,9 @@ function Userlogin(){
         
     });
         }
-
     return(
         <>
+        <NavBar/>
         {JSON.stringify(userLoginData)}
         
         <form class="form">
@@ -45,8 +47,9 @@ function Userlogin(){
             </label>
     
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
-            <p class="signin">Don't have an acount ? <a href="#">Signup</a> </p>
+            <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
+        
         </>
     )
 }

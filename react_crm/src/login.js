@@ -1,16 +1,13 @@
 import axios from 'axios';
-import "./Homepage/home.css"
 import "../src/login.css"
-import {Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
-import Dropdown from 'react-bootstrap/Dropdown';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-function Sub(){
-  let divBackgroundImage=require("../src/divback.jpg")
-  let navigate = useNavigate();
+import { useDispatch } from 'react-redux';
+import NavBar from './nav';
+import { Nav } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
+function Sub() {
+  let divBackgroundImage = require("../src/divback.jpg")
+let navigate=useNavigate()
   let Clientlog =()=> {
      
     navigate('/ClientLogin')
@@ -32,21 +29,21 @@ function Sub(){
      
     navigate('/UserReg')
   };
- 
-  
-let logincheck=()=>{ 
+
+
+  let logincheck = () => {
    
     axios({
       method: 'post',
       url: 'https://346ecf18-5094-4743-aa32-8c7c55e73246.mock.pstmn.io/newUsers',
-      Data :{
+      Data: {
 
-        request:"Add New Users",
-        name:"beni",
-        email:"beni@gmail.com"
+        request: "Add New Users",
+        name: "beni",
+        email: "beni@gmail.com"
 
-      
-    }}).then(function(response){
+      }
+    }).then(function (response) {
       console.log(response);
       })};
 
@@ -120,24 +117,24 @@ return(
 </div>
 </div>
 
-   
-<div id="about"  class="seconddiv" style={{border:"0px solid black",height:"1000.5px"}}>
- 
-  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
- <h1 style={{color:"black"}}></h1>
-  </div>
-  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
- 
-  </div>
-  {/* <img src={require('../src/crmfeature.jpg')}/> */}
-   
-</div>
+
+      <div id="about" class="seconddiv" style={{ border: "0px solid black", height: "1000.5px" }}>
+
+        <div class="imgs" style={{ border: "0px solid black", height: "50%", width: "50%" }}>
+          <h1 style={{ color: "black" }}></h1>
+        </div>
+        <div class="imgs" style={{ border: "0px solid black", height: "50%", width: "50%" }}>
+
+        </div>
+        {/* <img src={require('../src/crmfeature.jpg')}/> */}
+
+      </div>
 
 
-  
+
 
     </>
-)
+  )
 }
 
 export default Sub;
