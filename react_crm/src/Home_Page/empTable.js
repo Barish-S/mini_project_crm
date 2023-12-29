@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import {  setEmpData} from "../reducer/userSlice";
 import { useState } from 'react';
 
+
 function removeClient(id) {
     axios.post(`https://agaram.academy/api/crm/?request=remove_client&&${id}`).then(function (response) {
 
@@ -112,16 +113,17 @@ function WorkDetailsTable() {
 
    
     let workDetailsData = useSelector((state) => state.user.WorkDetails)
-    let AddEmployessToClient=()=>{
+    let AddEmployessToClient=(id)=>{
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
             let datas = response.data.data
         console.log(datas)
         dispatch(setEmpData(datas))})
-        navigate("/AssignEmployees")
+        navigate(`/${id}/AssignEmployees`)
     }
 
     let TestAssign=(id)=>{
-        axios.get(`https://agaram.academy/api/crm/?request=get_work_assigndetails&clientid=${id}`).then(function (response) {
+        
+        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${id}`).then(function (response) {
             let datas = response
         console.log(datas)
       })
@@ -149,7 +151,7 @@ function WorkDetailsTable() {
                     <td>{workdetail.clientid}</td>
                     <td>{workdetail.work}</td>
                     <td>{workdetail.workplace}</td>
-                    <td><button type='button' onClick={()=>AddEmployessToClient()}>Assign</button></td>
+                    <td><button type='button' onClick={()=>AddEmployessToClient(workdetail.id)}>Assign</button></td>
                     <td><button type='button' onClick={()=>TestAssign(workdetail.clientid)}>Assign</button></td>
                 </tr>)
         })}
@@ -160,7 +162,7 @@ function WorkDetailsTable() {
     )
 }
 
-function ToAssignEmployees(){
+function ToAssignEmployees(props){
 
     let empssData = useSelector((state) => state.user.loggedStatus.empData)
     
@@ -180,7 +182,10 @@ function ToAssignEmployees(){
     }
 
 let assignemps=()=>{
-    axios.get("https://agaram.academy/api/crm/?request=assign_employees",assignedEmployees).then(function (response) {
+    let formData = new FormData()
+        formData.append("ids",assignedEmployees)
+        formData.append("workid",props.workids)
+    axios.post(`https://agaram.academy/api/crm/?request=assign_employees`,formData).then(function (response) {
         let datas = response
         console.log(datas)
     })}
@@ -191,7 +196,9 @@ console.log(assignedEmployees)
 
     return(
         <>
+          
         <Container>
+     
             <Table striped bordered hover>
     <thead>
         <tr>
@@ -208,7 +215,7 @@ console.log(assignedEmployees)
     </thead>
     <tbody>
         {/* {JSON.stringify(empssData)} */}
-       
+     
          {empssData.map((detail) => {
             return (
                 <tr>

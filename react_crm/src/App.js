@@ -57,7 +57,7 @@ function App() {
       element:<ClientWorkDetails/>
     },
     {
-      path:"/AssignEmployees",
+      path:"/:workid/AssignEmployees",
       element:<Assign/>
     }
     
