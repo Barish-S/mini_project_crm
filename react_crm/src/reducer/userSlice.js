@@ -13,18 +13,18 @@ export const userSlice = createSlice({
     },
 
     EmpRegDet:{
-      name : "divya",
-      email : "div@gmail.com",
-      password : "2345",
-      gender : "female",
+      name : "",
+      email : "",
+      password : "",
+      gender : "",
       dob : "",
-      aadhar : "23604116",
-      phone : "7993337687",
-      address : "kottar",
-      pincode : "629002",
-      district : "kanyakumari",
-      state : "tamil nadu",
-      education : "BA.english",
+      aadhar : "",
+      phone : "",
+      address : "",
+      pincode : "",
+      district : "",
+      state : "",
+      education : "",
       workbase : ""
     },
 
@@ -39,6 +39,10 @@ export const userSlice = createSlice({
       clientData: [],
       status: ""
     },
+
+    Assignedperson : [
+      
+    ],
 
     WorkDetails:[],
   },
@@ -86,10 +90,13 @@ export const userSlice = createSlice({
     setWorkDetails:(state,action) => {
       state.WorkDetails = action.payload
     },
+    setAssignedperson : (state,action) => {
+      state.Assignedperson = action.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setSuperAdminLogin,setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData,setWorkDetails,setLoggedUser } = userSlice.actions
+export const { setSuperAdminLogin,setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData,setWorkDetails,setLoggedUser,setAssignedperson } = userSlice.actions
 
 export default userSlice.reducer ;

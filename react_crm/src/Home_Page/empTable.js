@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from "axios";
 import { useEffect } from 'react';
-import {  setEmpData} from "../reducer/userSlice";
+import {  setEmpData,setAssignedperson } from "../reducer/userSlice";
 import { useState } from 'react';
 
 
@@ -125,7 +125,10 @@ function WorkDetailsTable() {
         
         axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${id}`).then(function (response) {
             let datas = response
-        console.log(datas)
+        console.log(datas.data.data)
+        dispatch(setAssignedperson(datas.data.data))
+        navigate(`/clientWorkdetails/${id}/assignedPersons`)
+
       })
 // alert(id)
     }
@@ -139,7 +142,7 @@ function WorkDetailsTable() {
             <th>work</th>
             <th>workplace</th>
             <th>AssignEmployees</th>
-            <th>test</th>
+            <th>Assigned persons</th>
         </tr>
     </thead>
     <tbody>
@@ -152,7 +155,7 @@ function WorkDetailsTable() {
                     <td>{workdetail.work}</td>
                     <td>{workdetail.workplace}</td>
                     <td><button type='button' onClick={()=>AddEmployessToClient(workdetail.id)}>Assign</button></td>
-                    <td><button type='button' onClick={()=>TestAssign(workdetail.clientid)}>Assign</button></td>
+                    <td><button type='button' onClick={()=>TestAssign(workdetail.clientid)}>Assigned persons</button></td>
                 </tr>)
         })}
     </tbody>
@@ -238,7 +241,45 @@ console.log(assignedEmployees)
     )
 }
 
-export {EmpTable,ClientTable,WorkDetailsTable,ToAssignEmployees}
+function Assignedperdet(){
+
+    let {Assignedperson} = useSelector((state) => state.user)
+
+    
+
+    return(
+        <>
+           <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>UserID</th>
+                        <th>Assigned Users</th>
+                        <th>Work assigned for</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {Assignedperson.map((u) => {
+                        return(
+                            <tr>
+                                <td>{u.id}</td>
+                                <td>{u.name}</td>
+                                <td>
+                                    {u.work_list.map((w) => {
+                                        return(
+                                            w.work
+                                        )
+                                    })}
+                                </td>
+                            </tr>
+                    )
+                        })}
+                </tbody>
+           </Table> 
+        </>
+    )
+}
+
+export {EmpTable,ClientTable,WorkDetailsTable,ToAssignEmployees,Assignedperdet}
 
 
 
