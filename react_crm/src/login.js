@@ -1,7 +1,8 @@
 import axios from 'axios';
 import "../src/login.css"
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
+import { setLoggedUser } from './reducer/userSlice';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
@@ -9,7 +10,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 function Sub() {
   let divBackgroundImage = require("../src/divback.jpg")
   let navigate=useNavigate()
-
+  let dispatch=useDispatch()
+   
+  function GuestUser(){
+    dispatch(setLoggedUser("Guest"))
+    navigate("/GuestHome")
+  }
   let Clientlog =()=> {
      
     navigate('/ClientLogin')
@@ -55,7 +61,7 @@ function Sub() {
 
       <Nav className="justify-content-end" activeKey="/home" style={{ border: "0px solid black", backgroundColor: "rgba(4, 193, 250, 0.732)" }}>
         <Nav.Item>
-          <Nav.Link href="/adminhome">GuestUser</Nav.Link>
+          <Nav.Link onClick={()=>GuestUser()}>GuestUser</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link href="#about">About</Nav.Link>
