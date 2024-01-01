@@ -284,6 +284,8 @@ function Assignedperdet(){
     )
 }
 
+
+
 export {EmpTable,ClientTable,WorkDetailsTable,ToAssignEmployees,Assignedperdet}
 
 
