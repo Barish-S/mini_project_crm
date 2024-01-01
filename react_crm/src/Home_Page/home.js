@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
 import axios from "axios";
-import { setLoggedStatus, setLoggedData, setEmpData, setClientData } from "../reducer/userSlice";
+import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 import Example from "./pieChart";
 import {EmpTable,ClientTable} from "./empTable";
 import Workdetails from "./workdetails";
@@ -59,6 +59,10 @@ function Home() {
     function addWorkDetail(){
         navigate("/Workdetails")
     }
+    function Logout(){
+        dispatch(setLoggedUser(""))
+        navigate("/")
+    }
 
     return (
         <>
@@ -66,6 +70,8 @@ function Home() {
                 {userStatus == "Admin" ? <title>Admin | Home</title> : null}
                 {userStatus == "Employee" ? <title>Employee | Home</title> : null}
                 {userStatus == "Client" ? <title>Client | Home</title> : null}
+                {userStatus == "Guest" ? <title>Guest | Home</title> : null}
+
 
                 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
             </Helmet>
@@ -93,6 +99,8 @@ function Home() {
                                 </NavDropdown>
                                 <Nav.Link onClick={() => navMainHome()} id="nav">Home</Nav.Link>
                                 <Nav.Link id="nav" href="mailto:barish28@gmail.com">Contact.Us</Nav.Link>
+                                <Nav.Link onClick={() => Logout()} id="nav">SignOut</Nav.Link>
+
 
                             </Nav>
                         </Navbar.Collapse>
@@ -103,7 +111,7 @@ function Home() {
                     {globeStatus == "Employees" ? <EmpTable /> : null}
                     {globeStatus == "Client" ? <ClientTable /> : null}
 
-                    
+
 
                 </div>
                 <button type="button" onClick={()=>addWorkDetail()}>Request Work</button>

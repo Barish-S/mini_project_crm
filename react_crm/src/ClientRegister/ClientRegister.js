@@ -22,16 +22,21 @@ export function ClientRegister() {
 
     const RegData = () => {
         let formData = new FormData()
-        formData.append("name",ClientDetail.name)
-        formData.append("email",ClientDetail.email)
+        formData.append("name",ClientDetail.name)   
+        formData.append("email",ClientDetail.email)      
         formData.append("password",ClientDetail.password)
-        formData.append("phone",ClientDetail.phone)
+        formData.append("phone",ClientDetail.phone)   
         formData.append("gender",ClientDetail.gender)
-        formData.append("dob",ClientDetail.dob)
-        formData.append("address",ClientDetail.address)
-        formData.append("district",ClientDetail.district)
-        formData.append("state",ClientDetail.state)
+        formData.append("dob",ClientDetail.dob)        
+        formData.append("address",ClientDetail.address)  
+        formData.append("district",ClientDetail.district) 
+        formData.append("state",ClientDetail.state)    
         formData.append("pincode",ClientDetail.pincode)
+
+
+
+
+        
         axios.post("https://agaram.academy/api/crm/index.php?request=client_register",formData).then(function(success){
             console.log(success)
 
