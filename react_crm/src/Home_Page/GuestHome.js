@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import './CSS/home.css'
 import Container from 'react-bootstrap/Container';
+import { Table } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setLoggedStatus, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
+
 function GuestHome() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -20,6 +22,7 @@ function GuestHome() {
         navigate('/')
     }
 
+    let empsData = useSelector((state) => state.user.loggedStatus.empData)
 
     return (
         <>
@@ -41,12 +44,13 @@ function GuestHome() {
                                 <Nav.Link onClick={() => Logout()} id="nav">Home</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
+                        
                     </Container>
                 </Navbar>
                 <div id="data">
-
                 </div>
             </div>
+            
 
         </>
     );

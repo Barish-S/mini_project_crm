@@ -74,7 +74,7 @@ function Home() {
     
     function addWorkDetail(){
         navigate("/Workdetails")
->>>>>>> 7993b3109346e0e14c0f1775824240eb5f8cab9c
+// >>>>>>> 7993b3109346e0e14c0f1775824240eb5f8cab9c
     }
 
     return (
