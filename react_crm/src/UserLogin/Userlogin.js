@@ -3,6 +3,7 @@ import { useDispatch,useSelector, } from 'react-redux'
 import { updateUserLoginSuccess,setLoggedUser, setEmpData, setLoggedStatus } from '../reducer/userSlice';
 import {useNavigate} from 'react-router'
 import "../UserLogin/Userlogin.css"
+import { useNavigate } from 'react-router';
 import NavBar from '../nav';
 
 function Userlogin(){
@@ -24,7 +25,7 @@ function Userlogin(){
                 dispatch(setLoggedUser("Employee"))
                 dispatch(setEmpData(employeeData.data))
                 alert("success")
-                navigate("/adminhome")
+                navigate('/EmployeeHome')
             }else{
                 alert("failed")
             }
