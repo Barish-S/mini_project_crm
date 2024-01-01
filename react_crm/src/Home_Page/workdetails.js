@@ -60,11 +60,7 @@ function Workdetails(){
         <input class="input" onKeyUp={(e)=>dispatch(setWorkDetails({...workdetailsData,workplace:e.target.value}))} type="text" placeholder="" required=""/>
         <span>workplace</span>
     </label>
-    <label>
-        <input class="input" onKeyUp={(e)=>dispatch(setWorkDetails({...workdetailsData,workdays:e.target.value}))} type="number" placeholder="" required=""/>
-        <span>workdays</span>
-    </label>
-  
+    
     <button class="submit" type='button' onClick={()=>workdetailsget()}>Submit</button>
     <p class="signin">Don't have an acount ? <a href="#">Signup</a> </p>
 </form>

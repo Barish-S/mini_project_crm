@@ -1,4 +1,4 @@
-import React from "react";
+import React, { UseEffect } from "react";
 import { Helmet } from "react-helmet";
 import './CSS/home.css'
 import Container from 'react-bootstrap/Container';
@@ -37,12 +37,13 @@ function Home() {
         axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
             let datas = response.data.data
             dispatch(setLoggedStatus("Client"))
-            dispatch(setClientData(datas))
+            dispatch(setClientData(datas))})
+        
             
-        })
+    
     }
 
-    function ApiReturn() {
+    function ApiReturn(){
         axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then(function (response) {
             let datas = response.data.data
             console.log(datas)
@@ -61,6 +62,7 @@ function Home() {
     }
     function Logout(){
         dispatch(setLoggedUser(""))
+        localStorage.removeItem("clientid")
         navigate("/")
     }
 

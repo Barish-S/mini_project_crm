@@ -3,12 +3,13 @@ import { useDispatch,useSelector } from 'react-redux'
 import { updateUserLoginSuccess,setLoggedUser } from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
 import NavBar from '../nav';
+import { Navigate, useNavigate } from 'react-router';
 
 function Userlogin(){
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
-
+    const navigate=useNavigate()
     const checkuserlogin = () =>{
         let formData = new FormData()
         formData.append("email",userLoginData.email)
@@ -20,7 +21,8 @@ function Userlogin(){
             console.log(employeeData)
             if(employeeData.status=="success"){
                 dispatch(setLoggedUser("Employee"))
-                alert("success")
+                // alert("success")
+                navigate("/adminhome")
             }else{
                 alert("failed")
             }
