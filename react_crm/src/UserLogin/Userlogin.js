@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
+import { useNavigate } from 'react-router';
 import { updateUserLoginSuccess,setLoggedUser } from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
 import NavBar from '../nav';
@@ -8,6 +9,7 @@ function Userlogin(){
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const checkuserlogin = () =>{
         let formData = new FormData()
@@ -19,8 +21,9 @@ function Userlogin(){
             let employeeData = response.data
             console.log(employeeData)
             if(employeeData.status=="success"){
+                // alert("success")
                 dispatch(setLoggedUser("Employee"))
-                alert("success")
+                navigate("/adminhome")
             }else{
                 alert("failed")
             }

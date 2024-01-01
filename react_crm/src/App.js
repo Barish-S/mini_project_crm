@@ -17,6 +17,7 @@ import SuperAdminLog from './SuperAdmin/Submit';
 import Workdetails from './Home_Page/workdetails';
 import ClientWorkDetails from './Home_Page/clientworkdetails';
 import Assign from './Home_Page/assignUsers';
+import Displayassignedper from './Home_Page/Disasgd';
 
 function App() {
   const router = createBrowserRouter([
@@ -59,6 +60,10 @@ function App() {
     {
       path:"/:workid/AssignEmployees",
       element:<Assign/>
+    },
+    {
+      path:"/clientWorkdetails/:clientid/assignedPersons",
+      element:<Displayassignedper/>
     }
     
   ]);
