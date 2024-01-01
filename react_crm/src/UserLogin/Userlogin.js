@@ -1,12 +1,15 @@
 import axios from 'axios';
-import { useDispatch,useSelector } from 'react-redux'
-import { updateUserLoginSuccess } from '../reducer/userSlice';
+import { useDispatch,useSelector, } from 'react-redux'
+import { updateUserLoginSuccess,setLoggedUser, setEmpData, setLoggedStatus } from '../reducer/userSlice';
+import {useNavigate} from 'react-router'
 import "../UserLogin/Userlogin.css"
+import NavBar from '../nav';
 
 function Userlogin(){
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const checkuserlogin = () =>{
         let formData = new FormData()
@@ -18,16 +21,19 @@ function Userlogin(){
             let employeeData = response.data
             console.log(employeeData)
             if(employeeData.status=="success"){
+                dispatch(setLoggedUser("Employee"))
+                dispatch(setEmpData(employeeData.data))
                 alert("success")
+                navigate("/adminhome")
             }else{
                 alert("failed")
             }
         
     });
         }
-
     return(
         <>
+        <NavBar/>
         {JSON.stringify(userLoginData)}
         
         <form class="form">
@@ -45,8 +51,9 @@ function Userlogin(){
             </label>
     
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
-            <p class="signin">Don't have an acount ? <a href="#">Signup</a> </p>
+            <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
+        
         </>
     )
 }

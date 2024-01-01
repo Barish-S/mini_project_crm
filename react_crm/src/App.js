@@ -1,5 +1,4 @@
 
-// import './App.css';
 import { ClientRegister } from './ClientRegister/ClientRegister';
 import {
   createBrowserRouter,
@@ -58,7 +57,7 @@ function App() {
       element:<ClientWorkDetails/>
     },
     {
-      path:"/AssignEmployees",
+      path:"/:workid/AssignEmployees",
       element:<Assign/>
     }
     

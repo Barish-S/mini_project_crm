@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
 import axios from "axios";
-import { setLoggedStatus, setLoggedData, setEmpData, setClientData } from "../reducer/userSlice";
+import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 import Example from "./pieChart";
 import {EmpTable,ClientTable} from "./empTable";
 import Workdetails from "./workdetails";
@@ -42,6 +42,17 @@ function Home() {
         })
     }
 
+
+    function fetchEmployees() {
+        axios.post("https://agaram.academy/api/crm/?request=fetch_employee_work").then(function (response) {
+            let datas = response.data.data
+            console.log(datas)
+            // dispatch(setLoggedStatus("Employees"))
+            // dispatch(setEmpData(datas))
+
+        })
+    }
+
     function ApiReturn() {
         axios.get("http://agaram.academy/api/action.php?request=getAllMembers").then(function (response) {
             let datas = response.data.data
@@ -59,6 +70,10 @@ function Home() {
     function addWorkDetail(){
         navigate("/Workdetails")
     }
+    function Logout(){
+        dispatch(setLoggedUser(""))
+        navigate("/")
+    }
 
     return (
         <>
@@ -66,6 +81,8 @@ function Home() {
                 {userStatus == "Admin" ? <title>Admin | Home</title> : null}
                 {userStatus == "Employee" ? <title>Employee | Home</title> : null}
                 {userStatus == "Client" ? <title>Client | Home</title> : null}
+                {userStatus == "Guest" ? <title>Guest | Home</title> : null}
+
 
                 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
             </Helmet>
@@ -83,7 +100,7 @@ function Home() {
                                     </NavDropdown.Item>
                                     {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item onClick={() => getAllClients()}> <p>Clients</p></NavDropdown.Item> : null}
                                     {userStatus == "Admin" || userStatus == "Client" ? <NavDropdown.Item onClick={() => getAllEmployees()}> <p>Employees</p> </NavDropdown.Item> : null}
-                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item><p>Works</p></NavDropdown.Item> : null}
+                                    {userStatus == "Admin" || userStatus == "Employee" ? <NavDropdown.Item onClick={() => fetchEmployees()} ><p>Works</p></NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item><p>Messages</p> </NavDropdown.Item> : null}
                                     {userStatus == "Admin" ? <NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> : null}
                                     {userStatus == "Employee" || userStatus == "Client" ? <NavDropdown.Item><p>Notifications</p> </NavDropdown.Item> : null}
@@ -93,6 +110,8 @@ function Home() {
                                 </NavDropdown>
                                 <Nav.Link onClick={() => navMainHome()} id="nav">Home</Nav.Link>
                                 <Nav.Link id="nav" href="mailto:barish28@gmail.com">Contact.Us</Nav.Link>
+                                <Nav.Link onClick={() => Logout()} id="nav">SignOut</Nav.Link>
+
 
                             </Nav>
                         </Navbar.Collapse>
@@ -103,9 +122,10 @@ function Home() {
                     {globeStatus == "Employees" ? <EmpTable /> : null}
                     {globeStatus == "Client" ? <ClientTable /> : null}
 
-                    
+
 
                 </div>
+                
                 <button type="button" onClick={()=>addWorkDetail()}>Request Work</button>
             </div>
            
