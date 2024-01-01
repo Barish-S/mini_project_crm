@@ -11,7 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.2",
     "dropdownlist": "^0.1.1",
-    "moment": "^2.29.4",
+    "moment": "^2.30.0",
     "react": "^18.2.0",
     "react-axios": "^2.0.6",
     "react-bootstrap": "^2.9.1",

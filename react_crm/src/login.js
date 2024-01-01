@@ -1,11 +1,7 @@
 import axios from 'axios';
 import "../src/login.css"
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import NavBar from './nav';
-import { Nav } from 'react-bootstrap';
-import { NavDropdown } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { setLoggedUser } from './reducer/userSlice';
 
 // import NavDropdown from 'react-bootstrap/NavDropdown';

@@ -12,6 +12,7 @@ import moment from "moment"
 import { Navigate, useNavigate } from "react-router";
 
 
+
 function UserReg(){
    
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ function UserReg(){
 
         
             if (age>18 && age<50){
-                // alert("Eligible")
+                alert("Eligible")
                 axios.post("https://agaram.academy/api/crm/?request=employee_register",formData).then(function(success){
                 console.log(success)
                 console.log(formData)

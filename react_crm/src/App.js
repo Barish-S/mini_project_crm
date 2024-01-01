@@ -17,7 +17,10 @@ import SuperAdminLog from './SuperAdmin/Submit';
 import Workdetails from './Home_Page/workdetails';
 import ClientWorkDetails from './Home_Page/clientworkdetails';
 import Assign from './Home_Page/assignUsers';
-import { Displayassignedper } from './Home_Page/Disasgd'
+import GuestHome from './Home_Page/GuestHome';
+import EmployeeHome from './Home_Page/employeeHome';
+import ClientHome from './Home_Page/clientHome';
+import Displayassignedper from './Home_Page/Disasgd';
 
 function App() {
   const router = createBrowserRouter([
@@ -62,8 +65,22 @@ function App() {
       element:<Assign/>
     },
     {
-      path : "/clientWorkdetails/:clientid/assignedPersons",
-      element : <Displayassignedper />
+      path:"/GuestHome",
+      element:<GuestHome/>
+    },
+    {
+      path:"/EmployeeHome",
+      element:<EmployeeHome/>
+    },
+    {
+      path:"/ClientHome",
+      element:<ClientHome/>
+    },
+    
+    
+    {
+      path:"/clientWorkdetails/:clientid/assignedPersons",
+      element:<Displayassignedper/>
     }
     
   ]);

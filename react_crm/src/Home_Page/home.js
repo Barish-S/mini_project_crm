@@ -12,9 +12,9 @@ import moment from 'moment'
 import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser,GetAllClients,GetAllEmployees } from "../reducer/userSlice";
 import Example from "./pieChart";
-import {EmpTable,ClientTable} from "./empTable";
-import Workdetails from "./workdetails";
-
+import Button from 'react-bootstrap/Button';
+import { EmpTable, ClientTable } from "./empTable";
+import { GetAllClients,GetAllEmployees } from "./ApiComponent";
 function Home() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -65,12 +65,16 @@ function Home() {
         navigate('/')
     }
 
-    function addWorkDetail(){
-        navigate("/Workdetails")
-    }
-    function Logout(){
+    function Logout() {
         dispatch(setLoggedUser(""))
-        navigate("/")
+        dispatch(setEmpData([]))
+        dispatch(setClientData([]))
+        dispatch(setLoggedStatus(""))
+        navigate('/')
+    }
+    
+    function addWorkDetail(){
+        navigate('/workdetails')
     }
 
     return (

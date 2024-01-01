@@ -21,6 +21,7 @@ function Userlogin(){
             let employeeData = response.data
             console.log(employeeData)
             if(employeeData.status=="success"){
+                // alert("success")
                 dispatch(setLoggedUser("Employee"))
                 dispatch(setEmpData(employeeData.data))
                 alert("success")
