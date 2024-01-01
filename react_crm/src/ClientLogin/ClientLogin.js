@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setClientLogin, setLoggedUser } from '../reducer/userSlice';
+import { setClientLogin, setLoggedUser,setClientData } from '../reducer/userSlice';
 import { useSelector, useDispatch } from "react-redux"
 import "../ClientLogin/clientLogin.css"
 import { useNavigate } from 'react-router';
@@ -21,9 +21,11 @@ function ClientLogin() {
             .then(response => {
                 console.log(response)
                 let status = response.data.status
+                let data = response.data.data
                 if (status == "success") {
                     dispatch(setLoggedUser("Client"))
-                    Navigate("/adminhome")
+                    dispatch(setClientData(data))
+                    Navigate("/ClientHome")
                 }
                 else {
                     alert("failed")

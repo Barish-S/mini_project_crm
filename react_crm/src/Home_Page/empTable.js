@@ -5,8 +5,11 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
+import { setEmpData, setLoggedStatus, setClientData } from "../reducer/userSlice";
+import { RemoveClient,RemoveEmployee } from './ApiComponent';
 import { useEffect } from 'react';
-import {  setEmpData,setAssignedperson } from "../reducer/userSlice";
+import {  setAssignedperson } from "../reducer/userSlice";
 import { useState } from 'react';
 
 
@@ -17,13 +20,15 @@ function removeClient(id) {
     console.log(id)
 }
 
-function removeEmployee(id) {
-    axios.post(`https://agaram.academy/api/crm/?request=remove_client&&${id}`).then(function (response) {
-
-    })
-}
+// function RemoveEmployee(id) {
+//     axios.post(`https://agaram.academy/api/crm/?request=delete_employee&employeeid=${id}`).then(function (response) {
+//         console.log(response)
+//     })
+// }
 
 function EmpTable() {
+
+
    
    
     let empsData = useSelector((state) => state.user.loggedStatus.empData)
@@ -108,10 +113,10 @@ function ClientTable(){
 }
 
 function WorkDetailsTable() {
-    let navigate=useNavigate();
+    let navigate = useNavigate();
     let dispatch = useDispatch();
 
-   
+
     let workDetailsData = useSelector((state) => state.user.WorkDetails)
     let AddEmployessToClient=(id)=>{
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
@@ -132,7 +137,7 @@ function WorkDetailsTable() {
       })
 // alert(id)
     }
-    return(
+    return (
         <Container>
             <Table striped bordered hover>
     <thead>
@@ -197,7 +202,7 @@ let assignemps=()=>{
 
 console.log(assignedEmployees) 
 
-    return(
+    return (
         <>
           
         <Container>
