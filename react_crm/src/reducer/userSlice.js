@@ -1,39 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
     superAdminLogin: {
-      email: "",
-      password: ""
+      email: "admin123@gmail.com",
+      password: "admin@123"
     },
     clientLogin: {
-      email: "",
-      password: ""
+      email: "bhuvana@gmail.com",
+      password: "12345"
     },
-
-    EmpRegDet:{
-      name : "",
-      email : "",
-      password : "",
-      gender : "",
-      dob : "",
-      aadhar : "",
-      phone : "",
-      address : "",
-      pincode : "",
-      district : "",
-      state : "",
-      education : "",
-      workbase : ""
-    },
-
-    userloginsuccess:{},
     
+
+    EmpRegDet: {
+      name: "divya",
+      email: "div@gmail.com",
+      password: "2345",
+      gender: "female",
+      dob: "",
+      aadhar: "23604116",
+      phone: "7993337687",
+      address: "kottar",
+      pincode: "629002",
+      district: "kanyakumari",
+      state: "tamil nadu",
+      education: "BA.english",
+      workbase: ""
+    },
+
+    userloginsuccess: {},
+
     ClientDetails: {},
 
     loggedStatus: {
-      user: "Admin",
+      user: "",
       data: [],
       empData: [],
       clientData: [],
@@ -44,9 +47,14 @@ export const userSlice = createSlice({
       
     ],
 
-    WorkDetails:[],
-  },
+    Assignedperson : [
+      
+    ],
 
+    WorkDetails: [],
+    AssigndedEmp:[],
+  },
+ 
 
 
   reducers: {
@@ -71,32 +79,36 @@ export const userSlice = createSlice({
     setClientData: (state, action) => {
       state.loggedStatus.clientData = action.payload
     },
-    setLoggedStatus:(state,action)=>{
-      state.loggedStatus.status=action.payload
-  },
-    
-    RegisterClient: (state,action) => {
+    setLoggedStatus: (state, action) => {
+      state.loggedStatus.status = action.payload
+    },
+
+    RegisterClient: (state, action) => {
       state.ClientDetails = action.payload
     },
-    setClientLogin: (state,action) => {
+    setClientLogin: (state, action) => {
       state.clientLogin = action.payload
     },
-    setSuperAdminLogin: (state,action) => {
+    setSuperAdminLogin: (state, action) => {
       state.superAdminLogin = action.payload
     },
-    updateUserLoginSuccess: (state,action) => {
+    updateUserLoginSuccess: (state, action) => {
       state.userloginsuccess = action.payload
     },
-    setWorkDetails:(state,action) => {
+    setWorkDetails: (state, action) => {
       state.WorkDetails = action.payload
     },
     setAssignedperson : (state,action) => {
       state.Assignedperson = action.payload
+    },
+    workAssignedEmployees:(state,action) => {
+      state. AssigndedEmp= action.payload
     }
   },
+
 })
 
-// Action creators are generated for each case reducer function
-export const { setSuperAdminLogin,setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData,setWorkDetails,setLoggedUser,setAssignedperson } = userSlice.actions
 
-export default userSlice.reducer ;
+// Action creators are generated for each case reducer function
+export default userSlice.reducer
+export const {workAssignedEmployees, setSuperAdminLogin,setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData,setWorkDetails,setLoggedUser,setAssignedperson } = userSlice.actions
