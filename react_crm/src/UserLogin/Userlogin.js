@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
-import { updateUserLoginSuccess,setLoggedUser,setEmpData } from '../reducer/userSlice';
+import { updateUserLoginSuccess,setLoggedUser,setEmpData ,EmployeeRegisterDetails} from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
 import NavBar from '../nav';
 import { Navigate, useNavigate } from 'react-router';
+
 
 function Userlogin(){
 
@@ -17,15 +18,24 @@ function Userlogin(){
 
         axios.post("https://agaram.academy/api/crm/?request=employee_login",formData)
         .then(response=>{
-            let employeeData = response.data
+            let logindata = response.data
+            let employeeData = response.data.data
             console.log(employeeData)
-            if(employeeData.status=="success"){
+            dispatch(updateUserLoginSuccess(employeeData))
+            if(logindata.status=="success"){
                 dispatch(setLoggedUser("Employee"))
+<<<<<<< HEAD
                 dispatch(setEmpData(employeeData.data))
                 // alert("success")
+=======
+                dispatch(setEmpData(employeeData))
+                // alert("success")
+                localStorage.setItem("loggedstate","Employee")
+>>>>>>> 1f281ede0fc9a83c2b19942d6c075f9094b11056
                 navigate('/EmployeeHome')
             }else{
-                alert("failed")
+                // alert("failed")
+                navigate("/Userlogin")
             }
         
     });
@@ -33,7 +43,7 @@ function Userlogin(){
     return(
         <>
         <NavBar/>
-        {JSON.stringify(userLoginData)}
+        {/* {JSON.stringify(userLoginData)} */}
         
         <form class="form">
             <p class="title">Login </p>

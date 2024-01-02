@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
-import { GetAllClients } from "./ApiComponent";
+import { Clients } from "./ApiComponent";
 function EmployeeHome() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -19,9 +19,12 @@ function EmployeeHome() {
 
 
     function GetWork() {
-        axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${EmpId}`).then(function (response) {
-            console.log(response)
-        })
+        navigate("/EmployeeWorkDetail")
+        
+    }
+
+    function Clients(){
+        navigate(`/assignedclientsforEmp/${EmpId}`)
     }
 
     function Logout() {
@@ -48,7 +51,7 @@ function EmployeeHome() {
                             <Nav className="me-auto">
                                 <NavDropdown title="Features" id="basic-nav-dropdown">
 
-                                    <NavDropdown.Item onClick={() => GetAllClients()}> <p>Clients</p></NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => Clients()}> <p>Clients</p></NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => GetWork()}><p>Works</p></NavDropdown.Item>
                                     <NavDropdown.Item><p>Contact With Admin</p></NavDropdown.Item>
                                 </NavDropdown>

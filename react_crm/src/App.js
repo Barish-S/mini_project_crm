@@ -22,6 +22,10 @@ import EmpTable from './Home_Page/Features/getAllEmployees';
 import WorkDetails from './Home_Page/Features/getWorkDetails';
 import GetAllEmployees from './Home_Page/GetAllEmp';
 import GetEmpsWorks from './Home_Page/GetEmpWork';
+import Displayassignedper from './Home_Page/Disasgd';
+import ClientsasgdforEmpID from './Home_Page/cliAssignforEmp';
+import EmployeeWorkDetail from './Home_Page/EmployeeWork';
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -100,7 +104,20 @@ function App() {
       path:"/getempswork",
       element:<GetEmpsWorks/>
     }
+    ,
     
+    {
+      path:"/clientWorkdetails/:clientid/assignedPersons",
+      element:<Displayassignedper/>
+    },
+    {
+      path:"/assignedclientsforEmp/:empid",
+      element:<ClientsasgdforEmpID/>
+    },
+    {
+      path:"/EmployeeWorkDetail",
+      element:<EmployeeWorkDetail/>
+    }
     
   ]);
 
