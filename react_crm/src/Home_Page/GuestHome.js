@@ -22,7 +22,6 @@ function GuestHome() {
         navigate('/')
     }
 
-    let empsData = useSelector((state) => state.user.loggedStatus.empData)
 
     return (
         <>
