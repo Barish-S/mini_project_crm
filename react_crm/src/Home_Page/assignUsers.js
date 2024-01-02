@@ -1,25 +1,24 @@
 import { useEffect } from "react";
 import { ToAssignEmployees } from "./empTable"
-import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 
 
-function Assign(){
-    let navigate=useNavigate()
-    let userStatus = useSelector((state) => state.user.loggedStatus.user)
-
-    useEffect(()=>{
-        if(localStorage.getItem("logStatus")=="Admin"){
+function Assign() {
+    let navigate = useNavigate()
+    useEffect(() => {
+        if (localStorage.getItem("logStatus") == "Admin") {
             navigate('/AssignEmployees')
-        }else{
+        } else {
             navigate("/")
         }
-    },[])
+    }, [])
+    let { workid } = useParams();
 
-    
-    return(
+    return (
         <>
-        <ToAssignEmployees/>
+
+            <ToAssignEmployees workids={workid} />
 
         </>
     )
