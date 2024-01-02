@@ -43,13 +43,13 @@ function GuestHome() {
                                 <Nav.Link onClick={() => Logout()} id="nav">Home</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
-                        
+
                     </Container>
                 </Navbar>
                 <div id="data">
                 </div>
             </div>
-            
+
 
         </>
     );

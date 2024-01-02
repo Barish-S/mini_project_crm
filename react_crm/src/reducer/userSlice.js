@@ -32,7 +32,18 @@ export const userSlice = createSlice({
 
     userloginsuccess: {},
 
-    ClientDetails: {},
+    ClientDetails: {
+      name:"chrish",
+      email:"chrish@gmail.com",
+      password:"12345",
+      phone:"9360588419",
+      gender:"male",
+      dob:"",
+      address:"thiruvalluvar street",
+      city:"kanyakumari",
+      state:"tamilnadu",
+      pincode:"629001"
+    },
 
     loggedStatus: {
       user: "",
