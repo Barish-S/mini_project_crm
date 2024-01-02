@@ -5,13 +5,22 @@ import { useDispatch,useSelector } from 'react-redux';
 import { setLoggedUser } from './reducer/userSlice';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useEffect } from 'react';
 
 
 function Sub() {
   let divBackgroundImage = require("../src/divback.jpg")
+  let userStatus = useSelector((state) => state.user.loggedStatus.user)
+  let globeStatus = useSelector((state) => state.user.loggedStatus.status)
+
   let navigate=useNavigate()
   let dispatch=useDispatch()
    
+  useEffect(()=>{
+    if(localStorage.getItem("logStatus")=="Admin"){
+      navigate('/adminhome')
+    }
+  },[])
   function GuestUser(){
     dispatch(setLoggedUser("Guest"))
     navigate("/GuestHome")

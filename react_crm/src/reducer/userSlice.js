@@ -88,6 +88,7 @@ export const userSlice = createSlice({
     setWorkDetails: (state, action) => {
       state.WorkDetails = action.payload
     },
+
   },
 
 })
