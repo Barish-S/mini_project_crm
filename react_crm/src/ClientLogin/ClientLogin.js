@@ -1,16 +1,15 @@
 import axios from 'axios';
-import { setClientLogin, setLoggedUser,setClientData } from '../reducer/userSlice';
+import { setClientLogin, setLoggedUser,setClientData,setLoggedClientData } from '../reducer/userSlice';
 import { useSelector, useDispatch } from "react-redux"
 import "../ClientLogin/clientLogin.css"
 import { useNavigate } from 'react-router';
 import NavBar from '../nav';
 
 function ClientLogin() {
-
+   
     const Navigate = useNavigate()
     const loginData = useSelector((state) => state.user.clientLogin)
     const dispatch = useDispatch()
-
     const checkclientlogin = () => {
 
         let formData = new FormData()
@@ -19,16 +18,17 @@ function ClientLogin() {
 
         axios.post('https://agaram.academy/api/crm/?request=client_login', formData)
             .then(response => {
-                console.log(response)
+                console.log(response.data.data.id)
                 let status = response.data.status
                 let data = response.data.data
                 if (status == "success") {
                     dispatch(setLoggedUser("Client"))
-                    dispatch(setClientData(data))
+                    localStorage.setItem("clientid",response.data.data.id)
+                    localStorage.setItem("loggedstate","client")
                     Navigate("/ClientHome")
                 }
                 else {
-                    alert("failed")
+                    alert("failed") 
                 }
             })
     }
