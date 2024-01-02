@@ -58,8 +58,8 @@ function WorkDetailsTable() {
                     <td>{workdetail.clientid}</td>
                     <td>{workdetail.work}</td>
                     <td>{workdetail.workplace}</td>
-                    <td><button type='button' onClick={()=>AddEmployessToClient(workdetail.id)}>Assign</button></td>
-                    <td><button type='button' onClick={()=>TestAssign(workdetail.clientid)}>Assigned persons</button></td>
+                    <td><Button type='button' variant="dark" onClick={()=>AddEmployessToClient(workdetail.id)}>Assign</Button></td>
+                    <td><Button type='button' variant="outline-dark" onClick={()=>TestAssign(workdetail.clientid)}>Assigned persons</Button></td>
                 </tr>)
         })}
     </tbody>
@@ -71,6 +71,7 @@ function WorkDetailsTable() {
 
 function ToAssignEmployees(props){
 
+    let navigate=useNavigate()
     let empssData = useSelector((state) => state.user.loggedStatus.empData)
     
     let [assignedEmployees,setAssignedEmployees]=useState([])
@@ -93,7 +94,11 @@ let assignemps=()=>{
         formData.append("ids",assignedEmployees)
         formData.append("workid",props.workids)
     axios.post(`https://agaram.academy/api/crm/?request=assign_employees`,formData).then(function (response) {
-        let datas = response
+        let datas = response.data
+        if(datas.status=="success"){
+            alert("Successfully Assigned")
+            navigate("/Client-List")
+        }
         console.log(datas)
     })}
 
@@ -139,7 +144,7 @@ console.log(assignedEmployees)
         })} 
     </tbody>
 </Table>
-<button type='button' onClick={()=>assignemps()}>AssignEmployees</button>
+<Button type='button' variant="dark" onClick={()=>assignemps()}>AssignEmployees</Button>
 </Container>
 </>
     )

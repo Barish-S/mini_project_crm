@@ -7,9 +7,7 @@ import { useNavigate } from "react-router";
 function Assign() {
     let navigate = useNavigate()
     useEffect(() => {
-        if (localStorage.getItem("logStatus") == "Admin") {
-            navigate('/AssignEmployees')
-        } else {
+        if (localStorage.getItem("logStatus") != "Admin") {
             navigate("/")
         }
     }, [])

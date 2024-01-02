@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import './CSS/home.css'
+import './CSS/menu.css'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
-import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 
 function Home() {
@@ -17,30 +17,30 @@ function Home() {
     let globeStatus = useSelector((state) => state.user.loggedStatus.status)
     let userStatus = useSelector((state) => state.user.loggedStatus.user)
     let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
-    let data=useSelector((state) => state.user.loggedStatus)
+    let data = useSelector((state) => state.user.loggedStatus)
 
     let time = moment().diff('2000-10-28', 'years')
 
 
-    function GetWork(){
+    function GetWork() {
         navigate('/Get-Work')
-        }
+    }
 
     function navMainHome() {
         navigate('/')
     }
 
-    function addWorkDetail(){
+    function addWorkDetail() {
         navigate('/workdetails')
     }
 
-    function navClientFeature(){
+    function navClientFeature() {
         navigate('/Client-List')
         // dispatch(setLoggedUser("Admin"))
 
     }
 
-    function navEmployeeFeature(){
+    function navEmployeeFeature() {
         // dispatch(setLoggedUser("Admin"))
         navigate('/Employee-List')
     }
@@ -55,10 +55,10 @@ function Home() {
         navigate('/')
     }
 
-    useEffect(()=>{
-        if(localStorage.getItem("logStatus")=="Admin"){
+    useEffect(() => {
+        if (localStorage.getItem("logStatus") == "Admin") {
             navigate('/adminhome')
-        }else{
+        } else {
             navigate("/SuperAdminLog")
         }
         // if(userStatus!="Admin"){
@@ -69,7 +69,7 @@ function Home() {
         //     navigate('/adminhome')
         // }
 
-    },[])
+    }, [])
 
     return (
         <>
@@ -103,10 +103,15 @@ function Home() {
                     </Container>
                 </Navbar>
                 <div id="data">
-                   
+                        <nav class="blend">
+                            <ul>
+                                <li><a href="">Clients</a></li>
+                                <li><a href="">Employees</a></li>
+                            </ul>
+                        </nav>
                 </div>
             </div>
-           
+
         </>
     );
 }
