@@ -43,7 +43,7 @@ function ClientLogin() {
                 let data = response.data.data
                 if (status == "success") {
                     dispatch(setLoggedUser("Client"))
-                    const list = collection(db, 'cities');
+                   
                     localStorage.setItem("clientid",response.data.data.id)
                     localStorage.setItem("loggedstate","client")
                     Navigate("/ClientHome")

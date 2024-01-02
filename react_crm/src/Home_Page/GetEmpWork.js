@@ -26,7 +26,8 @@ function GetEmpsWorks(){
     
     
     const Employeeworkdata=()=>{
-        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${5}`).then(function (response) {
+        let cliid=localStorage.getItem("clientid")
+        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${cliid}`).then(function (response) {
             let datas = response
             console.log(datas.data.data)
             let empdata=datas.data.data;
