@@ -3,6 +3,7 @@ import axios from 'axios'
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { RegisterClient } from '../reducer/userSlice';
 import '../ClientRegister/ClientRegister.css'
@@ -13,6 +14,8 @@ import '../ClientRegister/ClientRegister.css'
 export function ClientRegister() {
 
     let dispatch = useDispatch();
+
+    let navigate=useNavigate();
 
     let ClientDetail = useSelector((state) => state.user.ClientDetails)
     console.log(ClientDetail)
@@ -42,6 +45,7 @@ export function ClientRegister() {
         if (error==false){
         axios.post("https://agaram.academy/api/crm/index.php?request=client_register", formData).then(function (success) {
             console.log(success)
+            navigate('/ClientLogin')
 
             // let age=moment().diff(ClientDetail.dob,"years");
             // if(age>18 && age<50)
