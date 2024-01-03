@@ -6,12 +6,14 @@ import { useDispatch } from 'react-redux';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import { useEffect } from 'react';
-import { setClientData,setLoggedStatus } from '../../reducer/userSlice';
-
+import { setClientData, setLoggedStatus } from '../../reducer/userSlice';
+import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function ClientTable() {
     let navigate = useNavigate();
-    let dispatch=useDispatch()
+    let dispatch = useDispatch()
     let cliData = useSelector((state) => state.user.loggedStatus.clientData)
     let userStatus = useSelector((state) => state.user.loggedStatus.user)
 
@@ -20,15 +22,15 @@ function ClientTable() {
         navigate(`/clientWorkdetails/${clientid}`)
     }
 
-    useEffect(()=>{
-        if(localStorage.getItem("logStatus")=="Admin"){
+    useEffect(() => {
+        if (localStorage.getItem("Token")) {
             getAllClients()
-            
-        }else{
+
+        } else {
             navigate('/')
         }
-        
-    },[])
+
+    }, [])
 
 
     function getAllClients() {
@@ -36,7 +38,7 @@ function ClientTable() {
             let datas = response.data.data
             // dispatch(setLoggedStatus("Client"))
             dispatch(setClientData(datas))
-            
+
         })
     }
 
@@ -46,10 +48,26 @@ function ClientTable() {
         })
     }
 
+    // const [searchVal, setSearchVal] = useState("");
+    // function handleSearchClick() {
+    //     if (searchVal === "") { setProducts(productList); return; }
+    //     const filterBySearch = productList.filter((item) => {
+    //         if (item.toLowerCase()
+    //             .includes(searchVal.toLowerCase())) { return item; }
+    //     })
+    //     setProducts(filterBySearch);
+    // }
 
+    let [search,setSearch]=useState("")
     return (
         <Container>
             <h1>Clients Details</h1>
+            <InputGroup className="mb-3">
+        <Form.Control
+        onChange={(e)=>setSearch(e.target.value)}
+          placeholder="Search By Name"
+        />
+      </InputGroup>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -64,10 +82,9 @@ function ClientTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {JSON.stringify(globeData)} */}
-                    {cliData.map((detail) => {
-                        return (
-                            <tr>
+                    {cliData.filter((detail) => {
+                        return search.toLowerCase()===''?detail:detail.name.toLowerCase().includes(search);}).map((detail)=> (
+                            <tr key={detail.id}>
                                 <td>{detail.id}</td>
                                 <td>{detail.name}</td>
                                 <td>{detail.email}</td>
@@ -75,9 +92,9 @@ function ClientTable() {
                                 <td>{detail.address}</td>
                                 <td>{detail.gender}</td>
                                 <td><Button variant="outline-dark" onClick={() => workdetails(detail.id)}>WorkDetails</Button></td>
-                                <td><Button variant="outline-danger" onClick={()=>RemoveClient(detail.id)}>Remove Client</Button></td>
-                            </tr>)
-                    })}
+                                <td><Button variant="outline-danger" onClick={() => RemoveClient(detail.id)}>Remove Client</Button></td>
+                            </tr>
+                    ))}
                 </tbody>
             </Table>
         </Container>

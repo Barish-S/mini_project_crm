@@ -4,9 +4,11 @@ import { Table } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setLoggedStatus,setEmpData } from '../../reducer/userSlice';
 import { useNavigate } from 'react-router';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 
 function EmpTable() {
@@ -17,7 +19,7 @@ function EmpTable() {
     let dispatch=useDispatch()
 
     useEffect(()=>{
-        if(localStorage.getItem("logStatus")=="Admin"){
+        if(localStorage.getItem("Token")){
             getAllEmployees()
         }else{
             navigate('/')
@@ -38,9 +40,16 @@ function EmpTable() {
         })
     }
 
+    let [search,setSearch]=useState("")
     return (
         <Container>
             <h1>Employees Details</h1>
+            <InputGroup className="mb-3">
+        <Form.Control
+        onChange={(e)=>setSearch(e.target.value)}
+          placeholder="Search"
+        />
+      </InputGroup>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -56,9 +65,9 @@ function EmpTable() {
                 </thead>
                 <tbody>
                     {/* {JSON.stringify(empData)} */}
-                    {empsData.map((detail) => {
-                        return (
-                            <tr>
+                    {empsData.filter((detail) => {
+                        return search.toLowerCase()===""?detail:detail.name.toLowerCase().includes(search);}).map((detail)=> (
+                            <tr key={detail.id}>
                                 <td>{detail.name}</td>
                                 <td>{detail.email}</td>
                                 <td>{detail.phone}</td>
@@ -67,8 +76,8 @@ function EmpTable() {
                                 <td>{detail.workbase}</td>
                                 <td>{detail.gender}</td>
                                 <td><Button variant="outline-danger" onClick={()=>RemoveEmployee(detail.id)}>Remove Employee</Button></td>
-                            </tr>)
-                    })}
+                            </tr>
+                    ))}
                 </tbody>
             </Table>
         </Container>

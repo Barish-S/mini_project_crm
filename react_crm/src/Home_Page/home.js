@@ -86,13 +86,13 @@ function Home() {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <NavDropdown title="Features" id="basic-nav-dropdown">
+                                {/* <NavDropdown title="Features" id="basic-nav-dropdown">
                                     <NavDropdown.Item ><p >Dashboard</p></NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navClientFeature()}> <p>Clients</p></NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => navEmployeeFeature()}> <p>Employees</p> </NavDropdown.Item>
-                                    {/* <NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> */}
-                                    {/* <NavDropdown.Item><p>Notifications</p> </NavDropdown.Item> */}
-                                </NavDropdown>
+                                    <NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> 
+                                     <NavDropdown.Item><p>Notifications</p> </NavDropdown.Item>
+                                </NavDropdown> */}
                                 <Nav.Link onClick={() => navMainHome()} id="nav">Home</Nav.Link>
                                 <Nav.Link id="nav" href="mailto:barish28@gmail.com">Contact.Us</Nav.Link>
                                 <Nav.Link onClick={() => Logout()} id="nav">SignOut</Nav.Link>
@@ -104,9 +104,10 @@ function Home() {
                 </Navbar>
                 <div id="data">
                         <nav class="blend">
+                            <h1>DATAS</h1>
                             <ul>
-                                <li><a href="">Clients</a></li>
-                                <li><a href="">Employees</a></li>
+                                <li onClick={()=>navClientFeature()}><a href="">Clients</a></li>
+                                <li onClick={()=>navEmployeeFeature()}><a href="">Employees</a></li>
                             </ul>
                         </nav>
                 </div>

@@ -8,6 +8,7 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import { setEmpData, setLoggedStatus, setClientData,setAssignedperson } from "../reducer/userSlice";
 import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -104,13 +105,19 @@ let assignemps=()=>{
 
 
 
-console.log(assignedEmployees) 
+    let [search,setSearch]=useState("")
 
     return (
         <>
           
         <Container>
-     
+            <h1>List Of Employees</h1>
+        <InputGroup className="mb-3">
+        <Form.Control
+        onChange={(e)=>setSearch(e.target.value)}
+          placeholder="Search By Work"
+        />
+      </InputGroup>
             <Table striped bordered hover>
     <thead>
         <tr>
@@ -128,9 +135,9 @@ console.log(assignedEmployees)
     <tbody>
         {/* {JSON.stringify(empssData)} */}
      
-         {empssData.map((detail) => {
-            return (
-                <tr>
+         {empssData.filter((detail) => {
+            return search.toLowerCase()===''?detail:detail.workbase.toLowerCase().includes(search);}).map((detail)=>(
+                <tr key={detail.id}>
                     <td><InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={()=>assignemployees(detail.id)}/></td>
                     <td>{detail.id}</td>
                     <td>{detail.name}</td>
@@ -141,7 +148,7 @@ console.log(assignedEmployees)
                     <td>{detail.workbase}</td>
                     <td>{detail.gender}</td>
                 </tr>)
-        })} 
+        )} 
     </tbody>
 </Table>
 <Button type='button' variant="dark" onClick={()=>assignemps()}>AssignEmployees</Button>
