@@ -10,14 +10,11 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
-<<<<<<< HEAD
 
-=======
 import Example from "./pieChart";
 import Button from 'react-bootstrap/Button';
 import { EmpTable, ClientTable } from "./empTable";
 import { GetAllClients,GetAllEmployees } from "./ApiComponent";
->>>>>>> 1f281ede0fc9a83c2b19942d6c075f9094b11056
 function Home() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -37,7 +34,6 @@ function Home() {
         navigate('/')
     }
 
-<<<<<<< HEAD
     function addWorkDetail() {
         navigate('/workdetails')
     }
@@ -53,8 +49,6 @@ function Home() {
         navigate('/Employee-List')
     }
 
-=======
->>>>>>> 1f281ede0fc9a83c2b19942d6c075f9094b11056
     function Logout() {
         dispatch(setLoggedUser(""))
         dispatch(setEmpData([]))
@@ -64,7 +58,6 @@ function Home() {
         // dispatch(setLoggedStatus(true))
         navigate('/')
     }
-<<<<<<< HEAD
 
     useEffect(() => {
         if (localStorage.getItem("logStatus") == "Admin") {
@@ -81,12 +74,6 @@ function Home() {
         // }
 
     }, [])
-=======
-    
-    function addWorkDetail(){
-        navigate('/workdetails')
-    }
->>>>>>> 1f281ede0fc9a83c2b19942d6c075f9094b11056
 
     return (
         <>

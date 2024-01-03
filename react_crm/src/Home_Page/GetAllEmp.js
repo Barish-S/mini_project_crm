@@ -15,7 +15,7 @@ function GetAllEmployees(){
     let dispatch=useDispatch()
     let navigate=useNavigate()
     let assignedemp=useSelector((state)=>state.user.AssigndedEmp)
-    let statusi=useSelector((state)=>state.user.loggedStatus.user)
+    let clientdata= useSelector((state) => state.user.loggedStatus.clientData)
 
     useEffect(()=>{
 
@@ -32,7 +32,7 @@ function GetAllEmployees(){
 
 
 const Employeedata=()=>{
-    axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${5}`).then(function (response) {
+    axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${clientdata.id}`).then(function (response) {
         let datas = response
         console.log(datas.data.data)
         let empdata=datas.data.data;
@@ -44,7 +44,7 @@ const Employeedata=()=>{
   
     return(
         <>
-        {JSON.stringify(statusi)}
+        {/* {JSON.stringify(statusi)} */}
         {/* {datas} */}
         {/* {JSON.stringify(assignedemp)} */}
         {/* {JSON.stringify(data.id)} */}

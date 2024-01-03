@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 function ClientsasgdforEmpID() {
 
     let navigate=useNavigate()
-    let EmpId = useSelector((state) => state.user.userloginsuccess)
+    let EmpId = useSelector((state) =>state.user.loggedStatus.empData)
     let id = EmpId.id 
     let cliAssignforEmp = useSelector((state)=>state.user.CliAssignforEmp)
 

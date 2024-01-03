@@ -123,7 +123,7 @@ export const userSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const { setLoggedUser, setSuperAdminLogin, setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData, setWorkDetails, setAssignedperson, setCliAssignforEmp, setEmployeeWorkDetail } = userSlice.actions
+export const { setLoggedUser, setSuperAdminLogin, setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData, setWorkDetails, setAssignedperson, setCliAssignforEmp, setEmployeeWorkDetail,workAssignedEmployees } = userSlice.actions
 
 export default userSlice.reducer;
 

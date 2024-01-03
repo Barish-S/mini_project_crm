@@ -13,7 +13,6 @@ import SuperAdminLog from './SuperAdmin/Submit';
 import Workdetails from './Home_Page/workdetails';
 import ClientWorkDetails from './Home_Page/clientworkdetails';
 import Assign from './Home_Page/assignUsers';
-import { Displayassignedper } from './Home_Page/Disasgd'
 import GuestHome from './Home_Page/GuestHome';
 import EmployeeHome from './Home_Page/employeeHome';
 import ClientHome from './Home_Page/clientHome';
@@ -111,7 +110,7 @@ function App() {
       element:<Displayassignedper/>
     },
     {
-      path:"/assignedclientsforEmp/:empid",
+      path:"/assignedclientsforEmp",
       element:<ClientsasgdforEmpID/>
     },
     {

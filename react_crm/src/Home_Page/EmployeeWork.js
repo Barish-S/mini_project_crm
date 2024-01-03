@@ -42,12 +42,12 @@ function EmployeeWorkDetail() {
                         </tr>
                     </thead>
                     <tbody>
-                        {EmployeeWorkDetail.map((w)=>{
+                        {EmployeeWorkDetail.map((works)=>{
                             return(
                                 <tr>
-                                    <td>{w.clientid}</td>
-                                    <td>{w.work}</td>
-                                    <td>{w.workplace}</td>
+                                    <td>{works.clientid}</td>
+                                    <td>{works.work}</td>
+                                    <td>{works.workplace}</td>
                                 </tr>
                             )
                         })}

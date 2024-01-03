@@ -24,7 +24,7 @@ function EmployeeHome() {
     }
 
     function Clients(){
-        navigate(`/assignedclientsforEmp/${EmpId}`)
+        navigate("/assignedclientsforEmp")
     }
 
     function Logout() {
@@ -38,7 +38,7 @@ function EmployeeHome() {
     return (
         <>
             <Helmet>
-                {userStatus == "Employee" ? <title>Employee | Home</title> : null}
+            <title>Employee | Home</title>
 
                 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
             </Helmet>

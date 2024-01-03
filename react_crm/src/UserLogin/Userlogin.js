@@ -21,17 +21,12 @@ function Userlogin(){
             let logindata = response.data
             let employeeData = response.data.data
             console.log(employeeData)
-            dispatch(updateUserLoginSuccess(employeeData))
+          
             if(logindata.status=="success"){
                 dispatch(setLoggedUser("Employee"))
-<<<<<<< HEAD
-                dispatch(setEmpData(employeeData.data))
-                // alert("success")
-=======
                 dispatch(setEmpData(employeeData))
                 // alert("success")
                 localStorage.setItem("loggedstate","Employee")
->>>>>>> 1f281ede0fc9a83c2b19942d6c075f9094b11056
                 navigate('/EmployeeHome')
             }else{
                 // alert("failed")
