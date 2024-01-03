@@ -22,8 +22,7 @@ function ClientHome() {
             console.log(response)
         })
         }
-
-
+ 
     function navMainHome() {
         navigate('/')
     }

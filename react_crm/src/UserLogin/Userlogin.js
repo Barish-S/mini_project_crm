@@ -3,10 +3,10 @@ import { useDispatch,useSelector, } from 'react-redux'
 import { updateUserLoginSuccess,setLoggedUser, setEmpData, setLoggedStatus } from '../reducer/userSlice';
 import {useNavigate} from 'react-router'
 import "../UserLogin/Userlogin.css"
-import { useNavigate } from 'react-router';
+
 import NavBar from '../nav';
 
-function Userlogin(){
+function Userlogin(){  
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
@@ -36,6 +36,7 @@ function Userlogin(){
         <>
         <NavBar/>
         {JSON.stringify(userLoginData)}
+        <div id='body'>
         
         <form class="form">
             <p class="title">Login </p>
@@ -54,7 +55,7 @@ function Userlogin(){
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
             <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
-        
+        </div>
         </>
     )
 }

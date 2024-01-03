@@ -21,6 +21,9 @@ export function ClientRegister() {
         // let age=date-ClientDetail.dob
 
     const RegData = () => {
+
+
+
         let formData = new FormData()
         formData.append("name",ClientDetail.name)
         formData.append("email",ClientDetail.email)

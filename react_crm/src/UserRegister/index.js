@@ -21,6 +21,8 @@ function UserReg(){
 
     const Regdata = () => {
 
+        
+
         let formData = new FormData()
         formData.append("name",EmpRegDet.name)
         formData.append("email",EmpRegDet.email)
@@ -51,7 +53,7 @@ function UserReg(){
     
     return(
         <>
-        
+        {JSON.stringify(EmpRegDet)}
         <form class="form">
 
             <p class="title">Register here!</p>
