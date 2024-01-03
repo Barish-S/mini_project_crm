@@ -5,12 +5,14 @@ import { useSelector } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { setEmpData, setLoggedStatus, setClientData,setAssignedperson,workAssignedEmployees } from "../reducer/userSlice";
+import {workAssignedEmployees } from "../reducer/userSlice";
 
 function GetEmpsWorks(){
    let navigate=useNavigate();
    let dispatch=useDispatch();
    let assignedemp=useSelector((state)=>state.user.AssigndedEmp)
+   let empdata=useSelector((state)=>state.user.loggedStatus.clientData )
+   
     useEffect(()=>{
 
         if(localStorage.getItem("loggedstate")=="client"){
@@ -26,7 +28,8 @@ function GetEmpsWorks(){
     
     
     const Employeeworkdata=()=>{
-        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${5}`).then(function (response) {
+      
+        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${empdata.id}`).then(function (response) {
             let datas = response
             console.log(datas.data.data)
             let empdata=datas.data.data;
@@ -42,6 +45,7 @@ function GetEmpsWorks(){
     
     return(
         <>
+      
         <Container>
             <h1>Employees Details</h1>
             <Table striped bordered hover>
@@ -57,15 +61,15 @@ function GetEmpsWorks(){
                 </thead>
                 <tbody>
       
-                   {assignedemp.map((s)=>{
+                   {assignedemp.map((works)=>{
                    
                  return (
                         <tr>
                             {/* {console.log(s)} */}
                           
-                            <td>{s.clientid}</td>
-                            <td>{s.work}</td>
-                            <td>{s.workplace}</td>
+                            <td>{works.clientid}</td>
+                            <td>{works.work}</td>
+                            <td>{works.workplace}</td>
                            
                         </tr>)
                 })}

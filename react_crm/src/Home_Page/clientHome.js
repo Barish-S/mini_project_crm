@@ -23,9 +23,9 @@ function ClientHome() {
         }
     },[]
     )
-    let navigate = useNavigate();
+    let navigate = useNavigate()
     let dispatch = useDispatch();
-    let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
+    let clientId = useSelector((state) => state.user.loggedStatus.clientData.id)
     let data=useSelector((state) => state.user.loggedStatus)
 
     function GetWork(){

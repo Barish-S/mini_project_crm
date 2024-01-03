@@ -1,23 +1,28 @@
 import { useDispatch ,useSelector} from "react-redux";
 import axios from 'axios';
 import { setWorkDetails } from '../reducer/userSlice';
-
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 
 function Workdetails(){
+    let navigate=useNavigate()
+   useEffect(()=>{
+        if(localStorage.getItem("loggedstate")!="client"){
+            navigate("/ClientLogin")
+        }
+   },[])  
     const dispatch=useDispatch();
     const workdetailsData=useSelector((state)=>state.user.WorkDetails)
     // const clientloginid=useSelector((state)=>state.user.clientLogin)
     let clientloginid=localStorage.getItem("clientid")
     
     let workdetailsget=()=>{
-        let formData= new FormData()
-        formData.append("clientid",workdetailsData.clientid)
-        formData.append("work",workdetailsData.work)
-       
-        formData.append("workplace",workdetailsData.workplace)
-        axios.post('https://agaram.academy/api/crm/?request=create_work_details',formData)
+        let formData= new FormData() 
+        formData.append("clientid",workdetailsData.clientid) 
+        formData.append("work",workdetailsData.work) 
+        formData.append("workplace",workdetailsData.workplace) 
+        axios.post('https://agaram.academy/api/crm/?request=create_work_details',formData) 
         .then(response=>{
            console.log(response)})
         // localStorage.removeItem("clientid")})
@@ -31,7 +36,6 @@ function Workdetails(){
         <form class="form">
     <p class="title">Login </p>
     <p class="message">Signin now and get full access to our app. </p>
-      
     <label>
         <input class="input" defaultValue={clientloginid} onChange={(e)=>dispatch(setWorkDetails({...workdetailsData,clientid:e.target.value}))} type="text" placeholder="" required=""/>
         <span>clientId</span>

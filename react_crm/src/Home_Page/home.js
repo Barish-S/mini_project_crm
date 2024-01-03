@@ -11,6 +11,10 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 
+import Example from "./pieChart";
+import Button from 'react-bootstrap/Button';
+import { EmpTable, ClientTable } from "./empTable";
+import { GetAllClients,GetAllEmployees } from "./ApiComponent";
 function Home() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
