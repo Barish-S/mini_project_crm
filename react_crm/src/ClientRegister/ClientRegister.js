@@ -36,7 +36,7 @@ export function ClientRegister() {
 
         let error=false
        { Object.entries(ClientDetail).map(([key,value]) => {
-            if(value==""||value=="  "||value=="   "){
+            if(value==""||value=="  "||value=="   "||value=="     "){
                 console.log("enter value of: ",key)
                 error=true
             }
@@ -65,7 +65,7 @@ export function ClientRegister() {
     return (
         <>
 
-            <form class="form">
+            <form class="form" >
                 <p class="title" >Register here!</p>
                 <p class="message">Signup now and get full access to our app. </p>
 
