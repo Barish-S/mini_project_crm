@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { useDispatch,useSelector, } from 'react-redux'
-import { updateUserLoginSuccess,setLoggedUser, setEmpData, setLoggedStatus } from '../reducer/userSlice';
-import {useNavigate} from 'react-router'
+import { useDispatch,useSelector } from 'react-redux'
+import { updateUserLoginSuccess,setLoggedUser,setEmpData ,EmployeeRegisterDetails} from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
-
 import NavBar from '../nav';
+import { Navigate, useNavigate } from 'react-router';
+
 
 function Userlogin(){  
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    let navigate=useNavigate();
 
     const checkuserlogin = () =>{
         let formData = new FormData()
@@ -19,15 +19,19 @@ function Userlogin(){
 
         axios.post("https://agaram.academy/api/crm/?request=employee_login",formData)
         .then(response=>{
-            let employeeData = response.data
+            let logindata = response.data
+            let employeeData = response.data.data
             console.log(employeeData)
-            if(employeeData.status=="success"){
+          
+            if(logindata.status=="success"){
                 dispatch(setLoggedUser("Employee"))
-                dispatch(setEmpData(employeeData.data))
-                alert("success")
+                dispatch(setEmpData(employeeData))
+                // alert("success")
+                localStorage.setItem("loggedstate","Employee")
                 navigate('/EmployeeHome')
             }else{
-                alert("failed")
+                // alert("failed")
+                navigate("/Userlogin")
             }
         
     });
@@ -36,7 +40,6 @@ function Userlogin(){
         <>
         <NavBar/>
         {JSON.stringify(userLoginData)}
-        <div id='body'>
         
         <form class="form">
             <p class="title">Login </p>
@@ -55,7 +58,7 @@ function Userlogin(){
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
             <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
-        </div>
+     
         </>
     )
 }

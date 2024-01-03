@@ -6,13 +6,14 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: {
     superAdminLogin: {
-      email: "",
-      password: ""
+      email: "admin123@gmail.com",
+      password: "admin@123"
     },
     clientLogin: {
-      email: "",
-      password: ""
+      email: "bhuvana@gmail.com",
+      password: "12345"
     },
+    
 
     EmpRegDet: {
       name: "divya",
@@ -30,21 +31,38 @@ export const userSlice = createSlice({
       workbase: ""
     },
 
-    userloginsuccess: {},
+    userloginsuccess: {
+      // email: "aslin@gmail.com",
+      // password: "556"
+    },
 
     ClientDetails: {},
 
     loggedStatus: {
       user: "",
       data: [],
-      empData: [],
+      empData:[],
       clientData: [],
       status: ""
     },
 
+    Assignedperson : [
+      
+    ],
+
+    Assignedperson : [
+      
+    ],
+
     WorkDetails: [],
+    AssigndedEmp:[],
+    Assignedperson:[],
+    CliAssignforEmp:[],
+    EmployeeWorkDetail:[],
   },
-  
+ 
+
+
   reducers: {
     setSuperAdminLogin: (state, action) => {
       state.superAdminLogin = action.payload
@@ -86,13 +104,26 @@ export const userSlice = createSlice({
     setWorkDetails: (state, action) => {
       state.WorkDetails = action.payload
     },
+    setAssignedperson : (state,action) => {
+      state.Assignedperson = action.payload
+    },
+    workAssignedEmployees:(state,action) => {
+      state. AssigndedEmp= action.payload
+    },
+    
+    setCliAssignforEmp:(state,action) => {
+      state.CliAssignforEmp = action.payload
+    },
+    setEmployeeWorkDetail:(state,action) => {
+      state.EmployeeWorkDetail = action.payload
+    },
   },
 
 })
 
 
 // Action creators are generated for each case reducer function
-export const { setLoggedUser, setSuperAdminLogin, setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData, setWorkDetails } = userSlice.actions
+export const { setLoggedUser, setSuperAdminLogin, setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData, setWorkDetails, setAssignedperson, setCliAssignforEmp, setEmployeeWorkDetail,workAssignedEmployees } = userSlice.actions
 
 export default userSlice.reducer;
 
