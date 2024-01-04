@@ -34,7 +34,7 @@ function SuperLogin() {
           dispatch(setLoggedUser("Admin"))
           // dispatch(setLoggedStatus(true))
           localStorage.setItem("Token",response.data.token)
-          // localStorage.setItem("logStatus","Admin")
+          localStorage.setItem("logStatus","Admin")
 
           navigate("/adminhome")
         }
