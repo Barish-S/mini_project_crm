@@ -13,6 +13,7 @@ import { setLoggedStatus,setEmpData, setClientData, setLoggedUser ,workAssignedE
 // import { GetAllEmployees } from "./ApiComponent";
 import GetAllEmployees from "./GetAllEmp";
 import GetEmpsWorks from "./GetEmpWork";
+import Workdetails from "./workdetails";
 function ClientHome() {
 
 
@@ -88,7 +89,7 @@ function ClientHome() {
                 </div>
                 <Button variant="outline-light" onClick={()=>addWorkDetail()}>Request Work</Button>
             </div>
-           
+          <Workdetails/>
         </>
     );
 }

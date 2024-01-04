@@ -6,14 +6,18 @@ import { useNavigate } from "react-router";
 
 
 function Workdetails(){
+
     let navigate=useNavigate()
    useEffect(()=>{
         if(localStorage.getItem("loggedstate")!="client"){
+           
             navigate("/ClientLogin")
         }
    },[])  
     const dispatch=useDispatch();
     const workdetailsData=useSelector((state)=>state.user.WorkDetails)
+    let empdata=useSelector((state)=>state.user.loggedStatus.clientData )
+   
     // const clientloginid=useSelector((state)=>state.user.clientLogin)
     let clientloginid=localStorage.getItem("clientid")
     
@@ -31,7 +35,8 @@ function Workdetails(){
         <>
         {JSON.stringify(workdetailsData)}
         {/* {JSON.stringify(clientloginid)} */}
-{clientloginid}
+        { empdata.id}
+{/* {clientloginid} */}
         <h1>work</h1>
         <form class="form">
     <p class="title">Login </p>
