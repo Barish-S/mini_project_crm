@@ -19,7 +19,8 @@ function WorkDetailsTable() {
 
     let workDetailsData = useSelector((state) => state.user.WorkDetails)
     let AddEmployessToClient=(id)=>{
-        axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
+        let token=localStorage.getItem("Token")
+        axios.get(`https://agaram.academy/api/crm/?request=all_employees&token=${token}`).then(function (response) {
             let datas = response.data.data
         console.log(datas)
         dispatch(setEmpData(datas))})
@@ -27,8 +28,8 @@ function WorkDetailsTable() {
     }
 
     let TestAssign=(id)=>{
-        
-        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${id}`).then(function (response) {
+        let token=localStorage.getItem("Token")
+        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${id}&token=${token}`).then(function (response) {
             let datas = response
         console.log(datas.data.data)
         dispatch(setAssignedperson(datas.data.data))
@@ -51,7 +52,6 @@ function WorkDetailsTable() {
         </tr>
     </thead>
     <tbody>
-        {/* {JSON.stringify(workDetailsData)} */}
         {workDetailsData.map((workdetail) => {
             return (
                 <tr>
@@ -81,9 +81,7 @@ function ToAssignEmployees(props){
         setAssignedEmployees([...assignedEmployees,id])
         for (let a of assignedEmployees){
            if(a==id){
-        //   console.log(id)
       let  assigEmployees=assignedEmployees.filter(item=>item!==id)
-            // console.log(assigEmployees)
             setAssignedEmployees(assigEmployees)
            }
         }
@@ -132,9 +130,7 @@ let assignemps=()=>{
             <th>Gender</th>
         </tr>
     </thead>
-    <tbody>
-        {/* {JSON.stringify(empssData)} */}
-     
+    <tbody>     
          {empssData.filter((detail) => {
             return search.toLowerCase()===''?detail:detail.workbase.toLowerCase().includes(search);}).map((detail)=>(
                 <tr key={detail.id}>
@@ -160,9 +156,6 @@ let assignemps=()=>{
 function Assignedperdet(){
 
     let {Assignedperson} = useSelector((state) => state.user)
-
-    
-
     return(
         <>
            <Table striped bordered hover>

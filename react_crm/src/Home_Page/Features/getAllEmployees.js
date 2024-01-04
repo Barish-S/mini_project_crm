@@ -27,7 +27,8 @@ function EmpTable() {
     },[])
 
     function getAllEmployees() {
-        axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
+        let token=localStorage.getItem("Token")
+        axios.get(`https://agaram.academy/api/crm/?request=all_employees&token=${token}`).then(function (response) {
             let datas = response.data.data
             dispatch(setLoggedStatus("Employees"))
             dispatch(setEmpData(datas))
@@ -64,7 +65,6 @@ function EmpTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {JSON.stringify(empData)} */}
                     {empsData.filter((detail) => {
                         return search.toLowerCase()===""?detail:detail.name.toLowerCase().includes(search);}).map((detail)=> (
                             <tr key={detail.id}>

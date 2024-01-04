@@ -14,7 +14,7 @@ function SuperLogin() {
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    if(localStorage.getItem("Token")){
+    if(localStorage.getItem("logStatus")){
       navigate('/adminhome')
     }
   },[])

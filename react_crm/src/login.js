@@ -17,7 +17,7 @@ function Sub() {
   let dispatch=useDispatch()
    
   useEffect(()=>{
-    if(localStorage.getItem("Token")){
+    if(localStorage.getItem("logStatus")){
       navigate('/adminhome')
     }
   },[])

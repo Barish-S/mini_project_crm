@@ -34,7 +34,8 @@ function ClientTable() {
 
 
     function getAllClients() {
-        axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
+        let token=localStorage.getItem("Token")
+        axios.get(`https://agaram.academy/api/crm/?request=all_clients&token=${token}`).then(function (response) {
             let datas = response.data.data
             // dispatch(setLoggedStatus("Client"))
             dispatch(setClientData(datas))
@@ -48,15 +49,6 @@ function ClientTable() {
         })
     }
 
-    // const [searchVal, setSearchVal] = useState("");
-    // function handleSearchClick() {
-    //     if (searchVal === "") { setProducts(productList); return; }
-    //     const filterBySearch = productList.filter((item) => {
-    //         if (item.toLowerCase()
-    //             .includes(searchVal.toLowerCase())) { return item; }
-    //     })
-    //     setProducts(filterBySearch);
-    // }
 
     let [search,setSearch]=useState("")
     return (
