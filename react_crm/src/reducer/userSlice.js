@@ -45,7 +45,6 @@ export const userSlice = createSlice({
     ],
 
     Empclients : [],
-
     EmployeeWorkDetail : [],
 
     WorkDetails:[],

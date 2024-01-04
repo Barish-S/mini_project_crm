@@ -26,7 +26,7 @@ function Workdetails(){
         <>
         {JSON.stringify(workdetailsData)}
         {/* {JSON.stringify(clientloginid)} */}
-{clientloginid}
+        {clientloginid}
         <h1>work</h1>
         <form class="form">
     <p class="title">Login </p>

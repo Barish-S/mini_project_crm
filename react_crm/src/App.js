@@ -77,9 +77,7 @@ function App() {
     {
       path:"/ClientHome",
       element:<ClientHome/>
-    },
-    
-    
+    }, 
     {
       path:"/clientWorkdetails/:clientid/assignedPersons",
       element:<Displayassignedper/>

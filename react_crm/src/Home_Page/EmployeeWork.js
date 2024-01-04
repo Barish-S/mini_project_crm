@@ -9,6 +9,7 @@ function EmployeeWorkDetail(){
     let dispatch = useDispatch()
 
     useEffect(()=> {
+
         let token = localStorage.getItem("employeetoken")
         if(localStorage.getItem("employeetoken")){
             axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`).then(function(success){
@@ -24,11 +25,13 @@ function EmployeeWorkDetail(){
 
 
     let datas = (Id) => {
+
       let token = localStorage.getItem("employeetoken")
         axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${Id}&token=${token}`).then(function(success){
             console.log(success.data.data)
             dispatch(setEmployeeWorkDetail(success.data.data))
         })
+        
     }
 
     let {EmployeeWorkDetail} = useSelector((state) => state.user)

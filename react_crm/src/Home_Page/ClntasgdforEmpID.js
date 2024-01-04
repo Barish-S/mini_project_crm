@@ -11,6 +11,7 @@ function ClientsasgdforEmpID(){
     // let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
 
     useEffect (()=> {
+        
         let token = localStorage.getItem("employeetoken")
         if(localStorage.getItem("employeetoken")){
             axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`).then(function(success){
@@ -24,7 +25,7 @@ function ClientsasgdforEmpID(){
     },[])
 
     let dataa=(Id)=>{
-        
+
         let token = localStorage.getItem("employeetoken")
         axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${Id}&token=${token}`).then(function(response){
             let data = response.data.data
