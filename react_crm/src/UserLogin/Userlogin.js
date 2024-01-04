@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
-import { updateUserLoginSuccess,setLoggedUser,setEmpData ,EmployeeRegisterDetails} from '../reducer/userSlice';
+import { updateUserLoginSuccess,setLoggedUser,setEmpData} from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
 import NavBar from '../nav';
-import { Navigate, useNavigate } from 'react-router';
+import {useNavigate } from 'react-router';
 import { useEffect } from 'react';
 
 function Userlogin(){  

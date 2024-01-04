@@ -9,10 +9,7 @@ import { useEffect } from 'react';
 
 
 function Sub() {
-  let divBackgroundImage = require("../src/divback.jpg")
-  let userStatus = useSelector((state) => state.user.loggedStatus.user)
-  let globeStatus = useSelector((state) => state.user.loggedStatus.status)
-
+ 
   let navigate=useNavigate()
   let dispatch=useDispatch()
    

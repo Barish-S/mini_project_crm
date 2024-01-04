@@ -9,20 +9,10 @@ import Button from 'react-bootstrap/Button';
 import { setEmpData,setAssignedperson} from "../reducer/userSlice";
 import { RemoveClient,RemoveEmployee } from './ApiComponent';
 import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 
 
-// function RemoveClient(id) {
-//     axios.post(`https://agaram.academy/api/crm/?request=delete_client&clientid=${id}`).then(function (response) {
-//         console.log(response)
-//     })
-//     console.log(id)
-// }
 
-// function RemoveEmployee(id) {
-//     axios.post(`https://agaram.academy/api/crm/?request=delete_employee&employeeid=${id}`).then(function (response) {
-//         console.log(response)
-//     })
-// }
 
 function EmpTable() {
 
@@ -118,9 +108,9 @@ function WorkDetailsTable() {
     
 
     let workDetailsData = useSelector((state) => state.user.WorkDetails)
-  
-    let AddEmployessToClient = (id) => {
-        axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
+    let AddEmployessToClient=(id)=>{
+        let token=localStorage.getItem("Token")
+        axios.get(`https://agaram.academy/api/crm/?request=all_employees&token=${token}`).then(function (response) {
             let datas = response.data.data
             console.log(datas)
             dispatch(setEmpData(datas))
@@ -132,8 +122,8 @@ function WorkDetailsTable() {
     }
 
     let TestAssign=(id)=>{
-        
-        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${id}`).then(function (response) {
+        let token=localStorage.getItem("Token")
+        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${id}&token=${token}`).then(function (response) {
             let datas = response
         console.log(datas.data.data)
         dispatch(setAssignedperson(datas.data.data))
@@ -157,7 +147,6 @@ function WorkDetailsTable() {
         </tr>
     </thead>
     <tbody>
-        {/* {JSON.stringify(workDetailsData)} */}
         {workDetailsData.map((workdetail) => {
             return (
                 <tr>
@@ -191,9 +180,7 @@ function ToAssignEmployees(props){
         setAssignedEmployees([...assignedEmployees,id])
         for (let a of assignedEmployees){
            if(a==id){
-        //   console.log(id)
       let  assigEmployees=assignedEmployees.filter(item=>item!==id)
-            // console.log(assigEmployees)
             setAssignedEmployees(assigEmployees)
            }
         }
@@ -215,16 +202,19 @@ let assignemps=()=>{
 
 
 
-
-
-
-
+    let [search,setSearch]=useState("")
 
     return (
         <>
           
         <Container>
-     
+            <h1>List Of Employees</h1>
+        <InputGroup className="mb-3">
+        <Form.Control
+        onChange={(e)=>setSearch(e.target.value)}
+          placeholder="Search By Work"
+        />
+      </InputGroup>
             <Table striped bordered hover>
     <thead>
         <tr>
@@ -239,12 +229,10 @@ let assignemps=()=>{
             <th>Gender</th>
         </tr>
     </thead>
-    <tbody>
-        {/* {JSON.stringify(empssData)} */}
-     
-         {empssData.map((detail) => {
-            return (
-                <tr>
+    <tbody>     
+         {empssData.filter((detail) => {
+            return search.toLowerCase()===''?detail:detail.workbase.toLowerCase().includes(search);}).map((detail)=>(
+                <tr key={detail.id}>
                     <td><InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={()=>assignemployees(detail.id)}/></td>
                     <td>{detail.id}</td>
                     <td>{detail.name}</td>
@@ -255,7 +243,7 @@ let assignemps=()=>{
                     <td>{detail.workbase}</td>
                     <td>{detail.gender}</td>
                 </tr>)
-        })} 
+        )} 
     </tbody>
 </Table>
 <Button type='button' variant="dark" onClick={()=>assignemps()}>AssignEmployees</Button>
@@ -267,9 +255,6 @@ let assignemps=()=>{
 function Assignedperdet(){
 
     let {Assignedperson} = useSelector((state) => state.user)
-
-    
-
     return(
         <>
            <Table striped bordered hover>
