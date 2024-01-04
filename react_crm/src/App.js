@@ -21,6 +21,8 @@ import GuestHome from './Home_Page/GuestHome';
 import EmployeeHome from './Home_Page/employeeHome';
 import ClientHome from './Home_Page/clientHome';
 import Displayassignedper from './Home_Page/Disasgd';
+import ClientsasgdforEmpID from './Home_Page/ClntasgdforEmpID'
+import EmployeeWorkDetail from './Home_Page/EmployeeWork'
 
 function App() {
   const router = createBrowserRouter([
@@ -81,6 +83,14 @@ function App() {
     {
       path:"/clientWorkdetails/:clientid/assignedPersons",
       element:<Displayassignedper/>
+    },
+    {
+      path : "/assignedclientsforEMP/:empid",
+      element : <ClientsasgdforEmpID />
+    },
+    {
+      path : "/EmployeeWorkDetail",
+      element : <EmployeeWorkDetail />
     }
     
   ]);

@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button';
 import { setEmpData,setAssignedperson, setLoggedStatus, setClientData } from "../reducer/userSlice";
 import { RemoveClient,RemoveEmployee } from './ApiComponent';
 import { useEffect } from 'react';
-import {  setAssignedperson } from "../reducer/userSlice";
+
 import { useState } from 'react';
 
 
@@ -226,7 +226,6 @@ console.log(assignedEmployees)
     </thead>
     <tbody>
         {/* {JSON.stringify(empssData)} */}
-     
          {empssData.map((detail) => {
             return (
                 <tr>
@@ -244,7 +243,7 @@ console.log(assignedEmployees)
     </tbody>
 </Table>
 <button type='button' onClick={()=>assignemps()}>AssignEmployees</button>
-</Container>
+</Container>••••
 </>
     )
 }

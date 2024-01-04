@@ -21,8 +21,8 @@ function UserReg(){
     const {EmpRegDet} = useSelector((state) => state.user)
 
     const Regdata = () => {
-
-        let formData = new FormData()
+                let formData = new FormData()
+                
         formData.append("name",EmpRegDet.name)
         formData.append("email",EmpRegDet.email)
         formData.append("password",EmpRegDet.password)
@@ -39,19 +39,32 @@ function UserReg(){
 
         let age = moment().diff(EmpRegDet.dob,"years")
 
-        
-            if (age>18 && age<50){
-                alert("Eligible")
-                axios.post("https://agaram.academy/api/crm/?request=employee_register",formData).then(function(success){
-                console.log(success)
-                console.log(formData)
-                })
+
+            let error = false
+
+            {Object.entries(EmpRegDet).map(([key,value]) => {
+                // console.log(key)
+                if(value == ""){
+                    console.log("enter values of: ",key)
+                    error = true
+                }
             }
-            else{
-                alert("You are not eligible to register!")
-            }  
-    }
-    
+            )}
+
+            if(error == false){
+                if (age>18 && age<50){
+                    // alert("successfully registered")
+                    axios.post("https://agaram.academy/api/crm/?request=employee_register",formData).then(function(success){
+                    console.log(success)
+                    console.log(formData)
+                    })
+                }
+                else{
+                    alert("You are not eligible to register!")
+                } 
+            }
+
+        }
     return(
         <>
         

@@ -3,13 +3,13 @@ import { Helmet } from "react-helmet";
 import './CSS/home.css'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import Navbar from 'react-bootstrap/Navbar';  
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
-import { GetAllClients } from "./ApiComponent";
+
 function EmployeeHome() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -17,11 +17,29 @@ function EmployeeHome() {
     let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
     let data = useSelector((state) => state.user.loggedStatus)
 
+    useEffect(()=>{
+        if(localStorage.getItem("employeetoken")){
+            let token = localStorage.getItem("employeetoken")
+            // navigate('/EmployeeHome')
+            axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`).then(function(success){
+                console.log(success.data.data)
+                dispatch(setEmpData(success.data.data))
+            })
+        }
+        else{
+            navigate('/')
+        }
+    },[])
 
-    function GetWork() {
-        axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${EmpId}`).then(function (response) {
-            console.log(response)
-        })
+    let  GetWork = () => {
+        // axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${EmpId}`).then(function (response) {
+        //     console.log(response)
+        // })
+        navigate('/EmployeeWorkDetail')
+    }
+
+    let Clients = () => {
+        navigate(`/assignedclientsforEMP/${EmpId}`)
     }
 
     function Logout() {
@@ -29,6 +47,7 @@ function EmployeeHome() {
         dispatch(setEmpData([]))
         dispatch(setClientData([]))
         dispatch(setLoggedStatus(""))
+        localStorage.removeItem("employeetoken")
         navigate('/')
     }
 
@@ -48,7 +67,7 @@ function EmployeeHome() {
                             <Nav className="me-auto">
                                 <NavDropdown title="Features" id="basic-nav-dropdown">
 
-                                    <NavDropdown.Item onClick={() => GetAllClients()}> <p>Clients</p></NavDropdown.Item>
+                                    <NavDropdown.Item onClick={() => Clients()}> <p>Clients</p></NavDropdown.Item>
                                     <NavDropdown.Item onClick={() => GetWork()}><p>Works</p></NavDropdown.Item>
                                     <NavDropdown.Item><p>Contact With Admin</p></NavDropdown.Item>
                                 </NavDropdown>

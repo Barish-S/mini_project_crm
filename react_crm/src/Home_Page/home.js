@@ -3,16 +3,15 @@ import { Helmet } from "react-helmet";
 import './CSS/home.css'
 import Container from 'react-bootstrap/Container';
 import { Button } from "react-bootstrap";
-import Nav from 'react-bootstrap/Nav';
+import { Nav } from "react-bootstrap";
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
 import axios from "axios";
-import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser,GetAllClients,GetAllEmployees } from "../reducer/userSlice";
+import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 import Example from "./pieChart";
-import Button from 'react-bootstrap/Button';
 import { EmpTable, ClientTable } from "./empTable";
 import { GetAllClients,GetAllEmployees } from "./ApiComponent";
 function Home() {
