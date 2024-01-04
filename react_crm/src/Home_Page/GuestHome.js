@@ -5,7 +5,6 @@ import Container from 'react-bootstrap/Container';
 import { Table } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -39,6 +38,7 @@ function GuestHome() {
     // },[])
 
     useEffect(()=>{
+        
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
             let datas = response.data.data
             console.log(datas)

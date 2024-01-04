@@ -51,7 +51,7 @@ function ClientHome() {
         dispatch(setLoggedStatus(""))
         navigate('/')
         localStorage.removeItem("loggedstate")
-        localStorage.removeItem("loggedtoken")
+        localStorage.removeItem("clienttoken")
     }
     
     function addWorkDetail(){
@@ -88,7 +88,7 @@ function ClientHome() {
                 </div>
                 <Button variant="outline-dark" onClick={()=>addWorkDetail()}>Request Work</Button>
             </div>
-          <Workdetails/>
+       
         </>
     );
 }  

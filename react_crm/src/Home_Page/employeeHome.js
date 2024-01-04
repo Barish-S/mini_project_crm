@@ -29,7 +29,7 @@ function EmployeeHome() {
             })
         }
         else{
-            navigate("/")
+            navigate("/Userlogin")
         }
     },[])
 

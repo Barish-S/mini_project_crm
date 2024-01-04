@@ -7,7 +7,21 @@ import NavBar from '../nav';
 import { useEffect } from 'react';
 
 function ClientLogin() {
-  
+    let navigate=useNavigate();
+    useEffect(()=>{
+        if(localStorage.getItem("employeetoken")){
+          navigate('/EmployeeHome')
+        //   alert("emp")
+        }
+        else if(localStorage.getItem("clienttoken")){
+          navigate('/ClientHome')
+        //   alert("cli")
+        }
+        else if(localStorage.getItem("Token")){
+         navigate("/adminhome")
+        // alert("admin")
+        }
+      },[])
     const Navigate = useNavigate()
     const loginData = useSelector((state) => state.user.clientLogin)
     const dispatch = useDispatch()

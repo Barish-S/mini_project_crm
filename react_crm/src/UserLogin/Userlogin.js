@@ -4,14 +4,27 @@ import { updateUserLoginSuccess,setLoggedUser,setEmpData ,EmployeeRegisterDetail
 import "../UserLogin/Userlogin.css"
 import NavBar from '../nav';
 import { Navigate, useNavigate } from 'react-router';
-
+import { useEffect } from 'react';
 
 function Userlogin(){  
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
     let navigate=useNavigate();
-
+    useEffect(()=>{
+        if(localStorage.getItem("employeetoken")){
+          navigate('/EmployeeHome')
+        //   alert("emp")
+        }
+        else if(localStorage.getItem("clienttoken")){
+          navigate('/ClientHome')
+        //   alert("cli")
+        }
+        else if(localStorage.getItem("Token")){
+         navigate("/adminhome")
+        // alert("admin")
+        }
+      },[])
     const checkuserlogin = () =>{
         let formData = new FormData()
         formData.append("email",userLoginData.email)
