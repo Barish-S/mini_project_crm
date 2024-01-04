@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setSuperAdminLogin,setLoggedUser, setLoggedStatus } from "../reducer/userSlice";
+import { setSuperAdminLogin,setLoggedUser } from "../reducer/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import '../SuperAdmin/superLogin.css'
 import { useNavigate } from 'react-router';
@@ -10,11 +10,11 @@ function SuperLogin() {
 
   let navigate = useNavigate();
   const loginData = useSelector((state) => state.user.superAdminLogin)
-  let userStatus = useSelector((state) => state.user.loggedStatus.user)
+ 
   const dispatch = useDispatch();
 
   useEffect(()=>{
-    if(localStorage.getItem("logStatus")=="Admin"){
+    if(localStorage.getItem("logStatus")){
       navigate('/adminhome')
     }
   },[])
@@ -33,7 +33,9 @@ function SuperLogin() {
         if (status == "success") {
           dispatch(setLoggedUser("Admin"))
           // dispatch(setLoggedStatus(true))
-          localStorage.setItem("token",response.data.token)
+          localStorage.setItem("Token",response.data.token)
+          // localStorage.setItem("logStatus","Admin")
+
           navigate("/adminhome")
         }
         else {

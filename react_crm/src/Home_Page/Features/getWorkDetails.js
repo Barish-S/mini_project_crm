@@ -1,19 +1,22 @@
 import { useDispatch,useSelector } from 'react-redux'
-import { setWorkDetails } from '../../reducer/userSlice';
 import Container from 'react-bootstrap/Container';
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
 import { useEffect } from 'react';
-
 
 function WorkDetails(){
     let dispatch=useDispatch();
+    let navigate=useNavigate()
     let detail=useSelector((state)=>state.user.WorkDetails)
 
     useEffect(()=>{
-        GetWorkDetails()
+        if(!localStorage.getItem("Token")){
+            navigate("/")
+        }else{
+            GetWorkDetails()
+        }
+       
     },[])
 
     function GetWorkDetails(){

@@ -7,13 +7,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import axios from "axios";
 import Button from 'react-bootstrap/Button';
-import { setLoggedStatus,setEmpData, setClientData, setLoggedUser ,workAssignedEmployees} from "../reducer/userSlice";
+import { setLoggedStatus,setEmpData, setClientData, setLoggedUser} from "../reducer/userSlice";
 // import { GetAllEmployees } from "./ApiComponent";
-import GetAllEmployees from "./GetAllEmp";
-import GetEmpsWorks from "./GetEmpWork";
-import Workdetails from "./workdetails";
+
 function ClientHome() {
 
 
@@ -75,9 +72,9 @@ function ClientHome() {
                                     
                                     <NavDropdown.Item onClick={()=>getallemps()}> <p>Employees</p> </NavDropdown.Item>
                                     <NavDropdown.Item onClick={()=>GetWork()}><p>Works</p></NavDropdown.Item>
-                                    <NavDropdown.Item><p>Contact With Admin</p></NavDropdown.Item>
+                                    <NavDropdown.Item><p href="mailto:barish28@gmail.com">Contact With Admin</p></NavDropdown.Item>
                                 </NavDropdown>
-                                <Nav.Link onClick={() => navMainHome()} id="nav">Home</Nav.Link>
+                                
                                 <Nav.Link id="nav" href="mailto:barish28@gmail.com">Contact.Us</Nav.Link>
                                 <Nav.Link onClick={() => Logout()} id="nav">SignOut</Nav.Link>
                             </Nav>
