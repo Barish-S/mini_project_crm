@@ -2,16 +2,29 @@ import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
 import { updateUserLoginSuccess,setLoggedUser,setEmpData ,EmployeeRegisterDetails} from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
-import { useNavigate } from 'react-router';
 import NavBar from '../nav';
+import { Navigate, useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
-
-function Userlogin(){
+function Userlogin(){  
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
     let navigate=useNavigate();
-
+    useEffect(()=>{
+        if(localStorage.getItem("employeetoken")){
+          navigate('/EmployeeHome')
+        //   alert("emp")
+        }
+        else if(localStorage.getItem("clienttoken")){
+          navigate('/ClientHome')
+        //   alert("cli")
+        }
+        else if(localStorage.getItem("Token")){
+         navigate("/adminhome")
+        // alert("admin")
+        }
+      },[])
     const checkuserlogin = () =>{
         let formData = new FormData()
         formData.append("email",userLoginData.email)
@@ -42,7 +55,7 @@ function Userlogin(){
     return(
         <>
         <NavBar/>
-        {/* {JSON.stringify(userLoginData)} */}
+        {JSON.stringify(userLoginData)}
         
         <form class="form">
             <p class="title">Login </p>
@@ -61,8 +74,9 @@ function Userlogin(){
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
             <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
-        
+     
         </>
     )
 }
 export default Userlogin;
+

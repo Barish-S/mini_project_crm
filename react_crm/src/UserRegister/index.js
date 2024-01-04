@@ -21,6 +21,8 @@ function UserReg(){
 
     const Regdata = () => {
 
+        
+
         let formData = new FormData()
         formData.append("name",EmpRegDet.name)
         formData.append("email",EmpRegDet.email)
@@ -37,35 +39,37 @@ function UserReg(){
         formData.append("workbase",EmpRegDet.workbase)
 
         let age = moment().diff(EmpRegDet.dob,"years")
-        if (age>18 && age<50){
-            // alert("Eligible")
-            axios.post("https://agaram.academy/api/crm/?request=employee_register",formData).then(function(success){
-            console.log(success)
-            console.log(formData)
-            })
-        }
-        else{
-            alert("You are not eligible to register!")
-        }
+
+        
+            if (age>18 && age<50){
+                // alert("Eligible")
+                axios.post("https://agaram.academy/api/crm/?request=employee_register",formData).then(function(success){
+                console.log(success)
+                console.log(formData)
+                })
+            }
+            else{
+                alert("You are not eligible to register!")
+            }  
     }
     
     return(
         <>
-        
+        {JSON.stringify(EmpRegDet)}
         <form class="form">
 
             <p class="title">Register here!</p>
 
             <p class="message">Signup now and get full access to our app. </p>
 
-            <div class="flex">
+            {/* <div class="flex"> */}
 
                 <label>
                     <input class="input" type="text" placeholder=""  onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,name:e.target.value}))}/>
                     <span>Name</span>
                 </label>
 
-            </div>  
+            {/* </div>   */}
 
             <div class="flex">
 
@@ -129,15 +133,15 @@ function UserReg(){
             
             <option disabled={true} value ="" hidden> Workbase </option>
 
-            <option value="Webdevelopment ">Webdevelopment</option>
+            <option value="Webdevelopment "> Webdevelopment </option>
 
-            <option value="Driver">Driver</option>
+            <option value="Driver"> Driver </option>
 
-            <option value="Plumber">Plumber</option>
+            <option value="Plumber"> Plumber </option>
 
-            <option value="Electrical work">Electrical work</option>
+            <option value="Electrical work"> Electrical work </option>
 
-            <option value="Interiordesign">Interiordesign</option>
+            <option value="Interiordesign"> Interiordesign </option>
 
             </select>
 

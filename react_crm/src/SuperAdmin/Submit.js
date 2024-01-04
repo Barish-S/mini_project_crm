@@ -1,15 +1,23 @@
 import axios from 'axios';
-import { setSuperAdminLogin,setLoggedUser } from "../reducer/userSlice";
+import { setSuperAdminLogin,setLoggedUser, setLoggedStatus } from "../reducer/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import '../SuperAdmin/superLogin.css'
 import { useNavigate } from 'react-router';
 import NavBar from '../nav';
+import { useEffect } from 'react';
 
 function SuperLogin() {
 
   let navigate = useNavigate();
   const loginData = useSelector((state) => state.user.superAdminLogin)
+  let userStatus = useSelector((state) => state.user.loggedStatus.user)
   const dispatch = useDispatch();
+
+  useEffect(()=>{
+    if(localStorage.getItem("logStatus")=="Admin"){
+      navigate('/adminhome')
+    }
+  },[])
 
 
   const checkLogin = () => {
@@ -21,8 +29,11 @@ function SuperLogin() {
     axios.post('https://agaram.academy/api/crm/?request=admin_login', formData)
       .then(response => {
         let status = response.data.status
+        console.log(response.data.token)
         if (status == "success") {
           dispatch(setLoggedUser("Admin"))
+          // dispatch(setLoggedStatus(true))
+          localStorage.setItem("token",response.data.token)
           navigate("/adminhome")
         }
         else {

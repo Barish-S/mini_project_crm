@@ -29,7 +29,7 @@ function EmployeeHome() {
             })
         }
         else{
-            navigate("/")
+            navigate("/Userlogin")
         }
     },[])
 
@@ -39,7 +39,7 @@ function EmployeeHome() {
     }
 
     function Clients(){
-        navigate(`/assignedclientsforEmp`)
+        navigate("/assignedclientsforEmp")
     }
 
     function Logout() {
@@ -54,7 +54,7 @@ function EmployeeHome() {
     return (
         <>
             <Helmet>
-                <title>Employee | Home</title>
+            <title>Employee | Home</title>
 
                 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
             </Helmet>

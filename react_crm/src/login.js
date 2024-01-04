@@ -5,13 +5,31 @@ import { useDispatch,useSelector } from 'react-redux';
 import { setLoggedUser } from './reducer/userSlice';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { useEffect } from 'react';
 
 
 function Sub() {
   let divBackgroundImage = require("../src/divback.jpg")
+  let userStatus = useSelector((state) => state.user.loggedStatus.user)
+  let globeStatus = useSelector((state) => state.user.loggedStatus.status)
+
   let navigate=useNavigate()
   let dispatch=useDispatch()
    
+  useEffect(()=>{
+    if(localStorage.getItem("employeetoken")){
+      navigate('/EmployeeHome')
+      // alert("emp")
+    }
+    else if(localStorage.getItem("clienttoken")){
+      navigate('/ClientHome')
+      // alert("cli")
+    }
+    else if(localStorage.getItem("Token")){
+     navigate("/adminhome")
+    // alert("admin")
+    }
+  },[])
   function GuestUser(){
     dispatch(setLoggedUser("Guest"))
     navigate("/GuestHome")
@@ -63,11 +81,13 @@ function Sub() {
         <Nav.Item>
           <Nav.Link onClick={()=>GuestUser()}>GuestUser</Nav.Link>
         </Nav.Item>
+
+
         <Nav.Item>
           <Nav.Link href="#about">About</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1">contact Us</Nav.Link>
+          <Nav.Link href="#contact">contact Us</Nav.Link>
         </Nav.Item>
         <Nav.Item>
           {/* <Nav.Link eventKey="link-2">Enquery</Nav.Link> */}
@@ -126,18 +146,55 @@ function Sub() {
         </div>
       </div>
 
+   
+<div id="about"  class="seconddiv" style={{border:"0px solid black",height:"1000.5px"}}>
+ 
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ <h1 style={{color:"black"}}></h1>
+  </div>
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ 
+  </div>
+  
+  {/* <img src={require('../src/crmfeature.jpg')}/> */}
+</div>
+{/* {thirddiv} */}
+<div id="contact"  class="thirddiv" style={{border:"0px solid black",height:"1000.5px"}}>
+ 
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ <h1 style={{color:"black"}}></h1>
+ 
+ <div class="cards">
+    <div class="card red">
+        <p class="tip">E-mail</p>
+        <p class="second-text">customeresupport@gmil.com</p>
+    </div>
+    <div class="card blue">
+        <p class="tip">Phone</p>
+        <p class="second-text">+91 9360588419</p>
+    </div>
+    <div class="card green">
+        <p class="tip">Support</p>
+        <p class="second-text"></p>
+    </div>
+</div>
 
-      <div id="about" class="seconddiv" style={{ border: "0px solid black", height: "1000.5px" }}>
+  </div>
+  <div class="imgs" style={{border:"0px solid black", height:"50%",width:"50%"}}>
+ 
+  </div>
+  
+  {/* <img src={require('../src/crmfeature.jpg')}/> */}
+</div>
+<div class="fourthdiv">
+  <h1>CONTACT US</h1><br></br>
+  <span>CRM (Customer Relationship Management) Software helps improve customer satisfaction, develops loyalty, and increases sales.<br></br> By fostering better internal coordination and understanding of customer needs, CRM systems empower businesses to build and nurture lasting relationships that contribute to long-term success.<br></br>
 
-        <div class="imgs" style={{ border: "0px solid black", height: "50%", width: "50%" }}>
-          <h1 style={{ color: "black" }}></h1>
-        </div>
-        <div class="imgs" style={{ border: "0px solid black", height: "50%", width: "50%" }}>
+Zoho CRM has become an integral tool for businesses across all industry segments seeking to enhance their customer interactions and streamline operations.<br></br> Its centralized database consolidates customer information and conversations in a unified platform.....</span>
+</div>
 
-        </div>
-        {/* <img src={require('../src/crmfeature.jpg')}/> */}
 
-      </div>
+
 
 
 
