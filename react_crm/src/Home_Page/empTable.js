@@ -6,9 +6,6 @@ import { useDispatch } from 'react-redux';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-
-
-
 import { setEmpData,setAssignedperson} from "../reducer/userSlice";
 import { RemoveClient,RemoveEmployee } from './ApiComponent';
 import { useState } from 'react';
