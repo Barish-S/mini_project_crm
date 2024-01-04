@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux"
 import "../ClientLogin/clientLogin.css"
 import { useNavigate } from 'react-router';
 import NavBar from '../nav';
+import { useEffect } from 'react';
 
 function ClientLogin() {
-   
+  
     const Navigate = useNavigate()
     const loginData = useSelector((state) => state.user.clientLogin)
     const dispatch = useDispatch()
@@ -21,13 +22,17 @@ function ClientLogin() {
                 console.log(response.data.data.id)
                 let status = response.data.status
                 let data = response.data.data
-                console.log(data.id)
+                // console.log(response.data)
+                let token=response.data.token
+                
+                // console.log(data.id)
               
                 if (status == "success") {
                     dispatch(setLoggedUser("Client"))
                    dispatch(setClientData(data))
                     localStorage.setItem("clientid",response.data.data.id)
                     localStorage.setItem("loggedstate","client")
+                    localStorage.setItem("clienttoken",token)
                     Navigate("/ClientHome")
                 }
                 else {

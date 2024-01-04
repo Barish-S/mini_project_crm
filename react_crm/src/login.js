@@ -16,11 +16,16 @@ function Sub() {
   let navigate=useNavigate()
   let dispatch=useDispatch()
    
-  useEffect(()=>{
-    if(localStorage.getItem("logStatus")=="Admin"){
-      navigate('/adminhome')
-    }
-  },[])
+  // useEffect(()=>{
+  //   if(localStorage.getItem("employeetoken")){
+  //     navigate('/EmployeeHome')
+  //   }
+  //   else if((localStorage.getItem("clienttoken"))){
+  //     navigate('/ClientHome')
+  //   }else{
+  //    navigate("/adminhome")
+  //   }
+  // },[])
   function GuestUser(){
     dispatch(setLoggedUser("Guest"))
     navigate("/GuestHome")
@@ -72,6 +77,8 @@ function Sub() {
         <Nav.Item>
           <Nav.Link onClick={()=>GuestUser()}>GuestUser</Nav.Link>
         </Nav.Item>
+
+
         <Nav.Item>
           <Nav.Link href="#about">About</Nav.Link>
         </Nav.Item>

@@ -6,11 +6,12 @@ import NavBar from '../nav';
 import { Navigate, useNavigate } from 'react-router';
 
 
-function Userlogin(){
+function Userlogin(){  
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
-    const navigate=useNavigate()
+    let navigate=useNavigate();
+
     const checkuserlogin = () =>{
         let formData = new FormData()
         formData.append("email",userLoginData.email)
@@ -41,7 +42,7 @@ function Userlogin(){
     return(
         <>
         <NavBar/>
-        {/* {JSON.stringify(userLoginData)} */}
+        {JSON.stringify(userLoginData)}
         
         <form class="form">
             <p class="title">Login </p>
@@ -60,7 +61,7 @@ function Userlogin(){
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
             <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
-        
+     
         </>
     )
 }
