@@ -22,6 +22,8 @@ export function ClientRegister() {
 
     const RegData = () => {
 
+
+
         let formData = new FormData()
         formData.append("name", ClientDetail.name)
         formData.append("email", ClientDetail.email)

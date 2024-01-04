@@ -5,19 +5,26 @@ import { useSelector } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import {workAssignedEmployees } from "../reducer/userSlice";
+import {workAssignedEmployees,setClientData } from "../reducer/userSlice";
 
 function GetEmpsWorks(){
    let navigate=useNavigate();
    let dispatch=useDispatch();
    let assignedemp=useSelector((state)=>state.user.AssigndedEmp)
    let empdata=useSelector((state)=>state.user.loggedStatus.clientData )
+
+   
    
     useEffect(()=>{
 
-        if(localStorage.getItem("loggedstate")=="client"){
-
-            Employeeworkdata()
+        if(localStorage.getItem("clienttoken")){
+            axios.post(`https://agaram.academy/api/crm/?request=getClientDetailsByToken&token=${localStorage.getItem("clienttoken")}`)
+            .then(response => {
+                console.log(response.data.data.id)
+                dispatch(setClientData(response.data.data))
+               let ids=response.data.data.id
+            Employeeworkdata(ids)
+            })
 
         }else{
             
@@ -27,9 +34,10 @@ function GetEmpsWorks(){
 },[])
     
     
-    const Employeeworkdata=()=>{
+    const Employeeworkdata=(id)=>{
+        let token=localStorage.getItem("clienttoken")
       
-        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${empdata.id}`).then(function (response) {
+        axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${id}&token=${token}`).then(function (response) {
             let datas = response
             console.log(datas.data.data)
             let empdata=datas.data.data;
@@ -45,7 +53,7 @@ function GetEmpsWorks(){
     
     return(
         <>
-      
+      {/* {JSON.stringify(assignedemp)} */}
         <Container>
             <h1>Employees Details</h1>
             <Table striped bordered hover>

@@ -29,10 +29,11 @@ function SuperLogin() {
     axios.post('https://agaram.academy/api/crm/?request=admin_login', formData)
       .then(response => {
         let status = response.data.status
+        console.log(response.data.token)
         if (status == "success") {
           dispatch(setLoggedUser("Admin"))
           // dispatch(setLoggedStatus(true))
-          localStorage.setItem("logStatus","Admin")
+          localStorage.setItem("token",response.data.token)
           navigate("/adminhome")
         }
         else {

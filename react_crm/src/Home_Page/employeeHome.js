@@ -10,6 +10,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 import { Clients } from "./ApiComponent";
+
 function EmployeeHome() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -17,6 +18,20 @@ function EmployeeHome() {
     let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
     let data = useSelector((state) => state.user.loggedStatus)
 
+    useEffect(()=>{
+        let token = localStorage.getItem("employeetoken")
+
+        if(localStorage.getItem("employeetoken")){
+            axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`)
+            .then(response=>{
+                console.log(response.data.data.id)
+                dispatch(setEmpData(response.data.data))
+            })
+        }
+        else{
+            navigate("/Userlogin")
+        }
+    },[])
 
     function GetWork() {
         navigate("/EmployeeWorkDetail")
@@ -32,6 +47,7 @@ function EmployeeHome() {
         dispatch(setEmpData([]))
         dispatch(setClientData([]))
         dispatch(setLoggedStatus(""))
+        localStorage.removeItem("employeetoken")
         navigate('/')
     }
 

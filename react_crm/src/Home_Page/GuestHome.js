@@ -9,10 +9,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setLoggedStatus, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
+import { GetAllEmployees } from "./ApiComponent";
+import { EmpTable } from "./empTable";
 
 function GuestHome() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
+
+
+    let empsData = useSelector((state) => state.user.loggedStatus.empData)
+    console.log("global",empsData)
 
     function Logout() {
         dispatch(setLoggedUser(""))
@@ -21,6 +27,30 @@ function GuestHome() {
         dispatch(setLoggedStatus(""))
         navigate('/')
     }
+
+    // const GuestShow =()=>{
+    // let empsData = useSelector((state) => state.user.loggedStatus.empData)
+    // console.log(empsData)}
+
+
+    // useEffect(()=>{
+    //     GetAllEmployees()
+    // },[])
+
+    useEffect(()=>{
+        
+        axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
+            let datas = response.data.data
+            console.log(datas)
+            dispatch(setEmpData(datas))
+    })
+    },[])
+
+
+   
+    
+    
+
 
 
     return (
@@ -40,6 +70,7 @@ function GuestHome() {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
                                 <Nav.Link id="nav" href="mailto:barish28@gmail.com">Contact.Us</Nav.Link>
+                                <Nav.Link id="nav" href="#table">Employees</Nav.Link>
                                 <Nav.Link onClick={() => Logout()} id="nav">Home</Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
@@ -47,12 +78,38 @@ function GuestHome() {
                     </Container>
                 </Navbar>
                 <div id="data">
+                
                 </div>
             </div>
-
-
+            
+        <div id="table">
+        <Container>
+            <h1>Employees Details</h1>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Work Base</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* {JSON.stringify(empData)} */}
+                    {empsData.map((detail) => {
+                        return (
+                            <tr>
+                                <td>{detail.name}</td> 
+                                <td>{detail.workbase}</td>
+                                 
+                            </tr>)
+                    })}
+                </tbody>
+            </Table>
+        </Container>
+        </div>
         </>
     );
 }
+
 
 export default GuestHome

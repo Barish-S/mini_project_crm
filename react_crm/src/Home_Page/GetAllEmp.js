@@ -19,9 +19,15 @@ function GetAllEmployees(){
 
     useEffect(()=>{
 
-        if(localStorage.getItem("loggedstate")=="client"){
-
-            Employeedata()
+        if(localStorage.getItem("clienttoken")){
+            axios.post(`https://agaram.academy/api/crm/?request=getClientDetailsByToken&token=${localStorage.getItem("clienttoken")}`)
+            .then(response => {
+                console.log(response.data.data.id)
+                dispatch(setClientData(response.data.data))
+               let ids=response.data.data.id
+                Employeedata(ids) 
+            })
+           
 
         }else{
             
@@ -31,8 +37,9 @@ function GetAllEmployees(){
 },[])
 
 
-const Employeedata=()=>{
-    axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${clientdata.id}`).then(function (response) {
+const Employeedata=(idss)=>{
+    let token=localStorage.getItem("clienttoken")
+    axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${idss}&token=${localStorage.getItem("clienttoken")}`).then( (response)=> {
         let datas = response
         console.log(datas.data.data)
         let empdata=datas.data.data;
@@ -44,6 +51,7 @@ const Employeedata=()=>{
   
     return(
         <>
+        {clientdata.id}
         {/* {JSON.stringify(statusi)} */}
         {/* {datas} */}
         {/* {JSON.stringify(assignedemp)} */}
@@ -59,7 +67,7 @@ const Employeedata=()=>{
                         <th>Address</th>
                         <th>Education</th>
                         <th>Work Base</th>
-                        <th>Gender</th>
+                        <th>Gender</th>  
                        
                     </tr>
                 </thead>

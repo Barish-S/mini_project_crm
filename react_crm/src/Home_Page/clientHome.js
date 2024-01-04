@@ -13,20 +13,20 @@ import { setLoggedStatus,setEmpData, setClientData, setLoggedUser ,workAssignedE
 // import { GetAllEmployees } from "./ApiComponent";
 import GetAllEmployees from "./GetAllEmp";
 import GetEmpsWorks from "./GetEmpWork";
+import Workdetails from "./workdetails";
 function ClientHome() {
 
 
     useEffect(()=>{
-        if(localStorage.getItem("loggedstate")!="client"){
-
+        if(!localStorage.getItem("clienttoken")){
             navigate("/ClientLogin")
         }
-    },[]
-    )
+   },[])  
     let navigate = useNavigate()
     let dispatch = useDispatch();
     let clientId = useSelector((state) => state.user.loggedStatus.clientData.id)
     let data=useSelector((state) => state.user.loggedStatus)
+    console.log("name",data)
 
     function GetWork(){
         
@@ -34,8 +34,7 @@ function ClientHome() {
 
         
         }
-
-
+ 
     function navMainHome() {
         navigate('/')
     }   
@@ -52,10 +51,11 @@ function ClientHome() {
         dispatch(setLoggedStatus(""))
         navigate('/')
         localStorage.removeItem("loggedstate")
+        localStorage.removeItem("clienttoken")
     }
     
     function addWorkDetail(){
-        navigate('/workdetails')
+        navigate(`/${clientId}/Workdetails`)
     }
 
     return (
@@ -86,11 +86,11 @@ function ClientHome() {
                 </Navbar>
                 <div id="data">
                 </div>
-                <Button variant="outline-light" onClick={()=>addWorkDetail()}>Request Work</Button>
+                <Button variant="outline-dark" onClick={()=>addWorkDetail()}>Request Work</Button>
             </div>
-           
+       
         </>
     );
-}
+}  
 
 export default ClientHome
