@@ -3,27 +3,36 @@ import axios from 'axios'
 import Container from 'react-bootstrap/Container';
 import { Table } from 'react-bootstrap';
 import { useEffect } from "react";
-import { setEmployeeWorkDetail } from "../reducer/userSlice";
+import { setEmployeeWorkDetail,setEmpData } from "../reducer/userSlice";
 import { useNavigate } from "react-router";
 
 function EmployeeWorkDetail() {
     let dispatch = useDispatch()
     let navigate = useNavigate()
 
-    let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
+    // let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
     let { EmployeeWorkDetail } = useSelector((state) => state.user)
 
     useEffect(() => {
-        if(localStorage.getItem("loggedstate")=="Employee"){
-            EmployeeWork()
-        }else{
+        let token = localStorage.getItem("employeetoken")
+        if(localStorage.getItem("employeetoken")){
+                axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`)
+                .then(response=>{
+                    console.log(response.data.data.id)
+                    dispatch(setEmpData(response.data.data))
+                    let empid = response.data.data.id
+                    EmployeeWork(empid)
+                })
+            }
+        else{
             navigate("/Userlogin")
         }
         
     }, [])
 
-    let EmployeeWork = () => {
-        axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${EmpId}`).then(function (response) {
+    let EmployeeWork = (id) => {
+        let token = localStorage.getItem("employeetoken")
+        axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${id}&token=${token}`).then(function (response) {
             let datas = response.data.data
             console.log(datas)
             dispatch(setEmployeeWorkDetail(datas))

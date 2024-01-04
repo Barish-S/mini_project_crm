@@ -18,16 +18,19 @@ function Userlogin(){
 
         axios.post("https://agaram.academy/api/crm/?request=employee_login",formData)
         .then(response=>{
-            let logindata = response.data
+            let status = response.data
+            let logindata = response.data.token
             let employeeData = response.data.data
-            console.log(employeeData)
-          
-            if(logindata.status=="success"){
+            console.log(status)
+            console.log(logindata)
+            if(status.status=="success"){
                 dispatch(setLoggedUser("Employee"))
                 dispatch(setEmpData(employeeData))
                 // alert("success")
-                localStorage.setItem("loggedstate","Employee")
+                
+                localStorage.setItem("employeetoken",logindata)
                 navigate('/EmployeeHome')
+
             }else{
                 // alert("failed")
                 navigate("/Userlogin")

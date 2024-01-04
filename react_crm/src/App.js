@@ -105,10 +105,7 @@ function App() {
     }
     ,
     
-    {
-      path:"/clientWorkdetails/:clientid/assignedPersons",
-      element:<Displayassignedper/>
-    },
+  
     {
       path:"/assignedclientsforEmp",
       element:<ClientsasgdforEmpID/>
