@@ -105,7 +105,6 @@ function App() {
       element:<GetEmpsWorks/>
     }
     ,
-    
     {
       path:"/clientWorkdetails/:clientid/assignedPersons",
       element:<Displayassignedper/>

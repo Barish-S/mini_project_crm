@@ -8,8 +8,6 @@ import { RegisterClient } from '../reducer/userSlice';
 import '../ClientRegister/ClientRegister.css'
 
 
-
-
 export function ClientRegister() {
 
     let dispatch = useDispatch();
@@ -21,8 +19,6 @@ export function ClientRegister() {
         // let age=date-ClientDetail.dob
 
     const RegData = () => {
-
-
 
         let formData = new FormData()
         formData.append("name",ClientDetail.name)
