@@ -12,6 +12,7 @@ function EmployeeWorkDetail() {
 
     // let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
     let { EmployeeWorkDetail } = useSelector((state) => state.user)
+    
 
     useEffect(() => {
         let token = localStorage.getItem("employeetoken")
