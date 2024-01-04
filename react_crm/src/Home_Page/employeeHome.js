@@ -9,8 +9,10 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
+import { Clients } from "./ApiComponent";
 
 function EmployeeHome() {
+
     let navigate = useNavigate();
     let dispatch = useDispatch();
     let userStatus = useSelector((state) => state.user.loggedStatus.user)
@@ -18,28 +20,28 @@ function EmployeeHome() {
     let data = useSelector((state) => state.user.loggedStatus)
 
     useEffect(()=>{
+
+        let token = localStorage.getItem("employeetoken")
+
         if(localStorage.getItem("employeetoken")){
-            let token = localStorage.getItem("employeetoken")
-            // navigate('/EmployeeHome')
-            axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`).then(function(success){
-                console.log(success.data.data)
-                dispatch(setEmpData(success.data.data))
+            axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`)
+            .then(response=>{
+                console.log(response.data.data.id)
+                dispatch(setEmpData(response.data.data))
             })
         }
         else{
-            navigate('/')
+            navigate("/Userlogin")
         }
+
     },[])
 
-    let  GetWork = () => {
-        // axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${EmpId}`).then(function (response) {
-        //     console.log(response)
-        // })
-        navigate('/EmployeeWorkDetail')
+    function GetWork() {
+        navigate("/EmployeeWorkDetail")   
     }
 
-    let Clients = () => {
-        navigate(`/assignedclientsforEMP/${EmpId}`)
+    function Clients(){
+        navigate("/assignedclientsforEmp")
     }
 
     function Logout() {
@@ -54,7 +56,7 @@ function EmployeeHome() {
     return (
         <>
             <Helmet>
-                {userStatus == "Employee" ? <title>Employee | Home</title> : null}
+            <title>Employee | Home</title>
 
                 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
             </Helmet>

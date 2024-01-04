@@ -44,7 +44,7 @@ function UserReg(){
 
             {Object.entries(EmpRegDet).map(([key,value]) => {
                 // console.log(key)
-                if(value == ""){
+                if(value == ""||value=="  "||value=="   "||value=="     "){
                     console.log("enter values of: ",key)
                     error = true
                 }
@@ -57,6 +57,7 @@ function UserReg(){
                     axios.post("https://agaram.academy/api/crm/?request=employee_register",formData).then(function(success){
                     console.log(success)
                     console.log(formData)
+                    navigate('/Userlogin')
                     })
                 }
                 else{
@@ -67,7 +68,7 @@ function UserReg(){
         }
     return(
         <>
-        
+        {JSON.stringify(EmpRegDet)}
         <form class="form">
 
             <p class="title">Register here!</p>

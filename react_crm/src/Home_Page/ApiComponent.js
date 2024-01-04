@@ -2,7 +2,7 @@ import './CSS/home.css'
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router';
 
 
 function GetAllEmployees() {
@@ -14,14 +14,14 @@ function GetAllEmployees() {
     })
 }
 function GetAllClients() {
-    // let dispatch=useDispatch()
-    // let navigate = useNavigate()
-    // axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
-        // let datas = response.data.data
-        // dispatch(setLoggedStatus("Client"))
-        // dispatch(setClientData(datas))
-       
-    // })
+    let navigate=useNavigate()
+    let dispatch=useDispatch()
+    axios.get("https://agaram.academy/api/crm/?request=all_clients").then(function (response) {
+        let datas = response.data.data
+        dispatch(setLoggedStatus("Client"))
+        dispatch(setClientData(datas))
+        
+    })
 }
 
 function ApiReturn() {

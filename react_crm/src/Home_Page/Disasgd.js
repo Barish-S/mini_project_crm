@@ -1,11 +1,10 @@
-import { Assignedperdet } from "./empTable";
+import { Assignedperdet } from "./empTable"
 
 function Displayassignedper(){
     return(
         <>
-            <Assignedperdet />
+        <Assignedperdet/>
         </>
     )
 }
-
 export default Displayassignedper

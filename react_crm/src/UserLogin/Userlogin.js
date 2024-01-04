@@ -1,35 +1,57 @@
 import axios from 'axios';
 import { useDispatch,useSelector } from 'react-redux'
-import { updateUserLoginSuccess,setLoggedUser,setEmpData } from '../reducer/userSlice';
+import { updateUserLoginSuccess,setLoggedUser,setEmpData ,EmployeeRegisterDetails} from '../reducer/userSlice';
 import "../UserLogin/Userlogin.css"
-import { useNavigate } from 'react-router';
 import NavBar from '../nav';
+import { Navigate, useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
-function Userlogin(){
+function Userlogin(){  
 
     const userLoginData = useSelector((state)=>state.user.userloginsuccess)
     const dispatch = useDispatch()
     let navigate=useNavigate();
 
+    useEffect(()=>{
+
+        if(localStorage.getItem("employeetoken")){
+          navigate('/EmployeeHome')
+        //   alert("emp")
+        }
+        else if(localStorage.getItem("clienttoken")){
+          navigate('/ClientHome')
+        //   alert("cli")
+        }
+        else if(localStorage.getItem("Token")){
+         navigate("/adminhome")
+        // alert("admin")
+        }
+
+      },[])
     const checkuserlogin = () =>{
+        
         let formData = new FormData()
         formData.append("email",userLoginData.email)
         formData.append("password",userLoginData.password)
 
         axios.post("https://agaram.academy/api/crm/?request=employee_login",formData)
         .then(response=>{
-            let employeeData = response.data
-            let token = response.data.token
-            console.log(employeeData)
-            if(employeeData.status=="success"){
-                // alert("success")
+            let status = response.data
+            let logindata = response.data.token
+            let employeeData = response.data.data
+            console.log(status)
+            console.log(logindata)
+            if(status.status=="success"){
                 dispatch(setLoggedUser("Employee"))
-                dispatch(setEmpData(employeeData.data))
-                localStorage.setItem("employeetoken",token)
-                alert("success")
+                dispatch(setEmpData(employeeData))
+                // alert("success")
+                
+                localStorage.setItem("employeetoken",logindata)
                 navigate('/EmployeeHome')
+
             }else{
-                alert("failed")
+                // alert("failed")
+                navigate("/Userlogin")
             }
         
     });
@@ -56,8 +78,9 @@ function Userlogin(){
             <button class="submit" type="button" onClick={()=>checkuserlogin()}>Submit</button>
             <p class="signin">Don't have an acount ? <a href="/UserReg">Signup</a> </p>
         </form>
-        
+     
         </>
     )
 }
 export default Userlogin;
+

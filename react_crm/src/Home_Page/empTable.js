@@ -6,10 +6,8 @@ import { useDispatch } from 'react-redux';
 import InputGroup from 'react-bootstrap/InputGroup';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
-import { setEmpData,setAssignedperson, setLoggedStatus, setClientData } from "../reducer/userSlice";
+import { setEmpData,setAssignedperson} from "../reducer/userSlice";
 import { RemoveClient,RemoveEmployee } from './ApiComponent';
-import { useEffect } from 'react';
-
 import { useState } from 'react';
 
 
@@ -69,13 +67,15 @@ function EmpTable() {
 }
 
 function ClientTable() {
+
     let navigate = useNavigate();
+
     let cliData = useSelector((state) => state.user.loggedStatus.clientData)
 
     let workdetails = (clientid) => {
 
-
         navigate(`/clientWorkdetails/${clientid}`)
+
     }
     return (
         <Container>
@@ -95,7 +95,9 @@ function ClientTable() {
                 </thead>
                 <tbody>
                     {/* {JSON.stringify(globeData)} */}
+
                     {cliData.map((detail) => {
+
                         return (
                             <tr>
                                 <td>{detail.id}</td>
@@ -107,6 +109,7 @@ function ClientTable() {
                                 <td><Button variant="outline-dark" onClick={() => workdetails(detail.id)}>WorkDetails</Button></td>
                                 <td><Button variant="outline-danger" onClick={()=>RemoveClient(detail.id)}>Remove Client</Button></td>
                             </tr>)
+
                     })}
                 </tbody>
             </Table>
@@ -115,12 +118,14 @@ function ClientTable() {
 }
 
 function WorkDetailsTable() {
+
     let navigate = useNavigate();
     let dispatch = useDispatch();
-
-
+    
     let workDetailsData = useSelector((state) => state.user.WorkDetails)
+  
     let AddEmployessToClient = (id) => {
+
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
             let datas = response.data.data
             console.log(datas)
@@ -130,6 +135,7 @@ function WorkDetailsTable() {
         // console.log(datas)
         // dispatch(setEmpData(datas))}
         navigate(`/${id}/AssignEmployees`)
+
     }
 
     let TestAssign=(id)=>{
@@ -139,6 +145,7 @@ function WorkDetailsTable() {
         console.log(datas.data.data)
         dispatch(setAssignedperson(datas.data.data))
         navigate(`/clientWorkdetails/${id}/assignedPersons`)
+
       })
 // alert(id)
     }
@@ -146,70 +153,77 @@ function WorkDetailsTable() {
         
         <Container>
             <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>clientId</th>
-                        <th>work</th>
-                        <th>workplace</th>
-                        <th>AssignEmployees</th>
-                        <th>Assigned persons</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* {JSON.stringify(workDetailsData)} */}
-                    {workDetailsData.map((workdetail) => {
-                        return (
-                            <tr>
-                                <td>{workdetail.id}</td>
-                                <td>{workdetail.clientid}</td>
-                                <td>{workdetail.work}</td>
-                                <td>{workdetail.workplace}</td>
-                                <td><button type='button' onClick={()=>AddEmployessToClient(workdetail.id)}>Assign</button></td>
-                                <td><button type='button' onClick={()=>TestAssign(workdetail.clientid)}>Assigned persons</button></td>
-                            </tr>)
-                    })}
-                </tbody>
-            </Table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>clientId</th>
+            <th>work</th>
+            <th>workplace</th>
+            <th>AssignEmployees</th>
+            <th>Assigned persons</th>
+        </tr>
+    </thead>
+    <tbody>
+        {/* {JSON.stringify(workDetailsData)} */}
+
+        {workDetailsData.map((workdetail) => {
+
+            return (
+                <tr>
+                    <td>{workdetail.id}</td>
+                    <td>{workdetail.clientid}</td>
+                    <td>{workdetail.work}</td>
+                    <td>{workdetail.workplace}</td>
+                    <td><Button type='button' variant="dark" onClick={()=>AddEmployessToClient(workdetail.id)}>Assign</Button></td>
+                    <td><Button type='button' variant="outline-dark" onClick={()=>TestAssign(workdetail.clientid)}>Assigned persons</Button></td>
+                </tr>)
+
+        })}
+    </tbody>
+</Table>
+
         </Container>
     )}
+    
 
+function ToAssignEmployees(props){
 
-function ToAssignEmployees(props) {
-
+    let navigate=useNavigate()
     let empssData = useSelector((state) => state.user.loggedStatus.empData)
-
-    let [assignedEmployees, setAssignedEmployees] = useState([])
-    let assignemployees = (id) => {
-
-        setAssignedEmployees([...assignedEmployees, id])
+    
+    let [assignedEmployees,setAssignedEmployees]=useState([])
+    let assignemployees=(id)=>{
+      
+        setAssignedEmployees([...assignedEmployees,id])
         for (let a of assignedEmployees){
-            if(a==id){
-         //   console.log(id)
-       let  assigEmployees=assignedEmployees.filter(item=>item!==id)
-             // console.log(assigEmployees)
-             setAssignedEmployees(assigEmployees)
-            }
-         }
-        
-     }
- let assignemps=()=>{
-     let formData = new FormData()
-         formData.append("ids",assignedEmployees)
-         formData.append("workid",props.workids)
-     axios.post(`https://agaram.academy/api/crm/?request=assign_employees`,formData).then(function (response) {
-         let datas = response
-         console.log(datas)
-     })}
-    // }
+           if(a==id){
+        //   console.log(id)
+      let  assigEmployees=assignedEmployees.filter(item=>item!==id)
+            // console.log(assigEmployees)
+            setAssignedEmployees(assigEmployees)
+           }
+        }
+       
+    }
 
-console.log(assignedEmployees) 
+let assignemps=()=>{
 
+    let formData = new FormData()
+        formData.append("ids",assignedEmployees)
+        formData.append("workid",props.workids)
+    axios.post(`https://agaram.academy/api/crm/?request=assign_employees`,formData).then(function (response) {
+        let datas = response.data
+        if(datas.status=="success"){
+            alert("Successfully Assigned")
+            navigate("/Client-List")
+        }
+        console.log(datas)
+
+    })}
     return (
         <>
           
         <Container>
-     
             <Table striped bordered hover>
     <thead>
         <tr>
@@ -226,7 +240,9 @@ console.log(assignedEmployees)
     </thead>
     <tbody>
         {/* {JSON.stringify(empssData)} */}
+     
          {empssData.map((detail) => {
+
             return (
                 <tr>
                     <td><InputGroup.Checkbox aria-label="Checkbox for following text input" onClick={()=>assignemployees(detail.id)}/></td>
@@ -239,20 +255,19 @@ console.log(assignedEmployees)
                     <td>{detail.workbase}</td>
                     <td>{detail.gender}</td>
                 </tr>)
+
         })} 
     </tbody>
-</Table>
-<button type='button' onClick={()=>assignemps()}>AssignEmployees</button>
-</Container>••••
-</>
+            </Table>
+            <Button type='button' variant="dark" onClick={()=>assignemps()}>AssignEmployees</Button>
+        </Container>
+        </>
     )
 }
 
 function Assignedperdet(){
 
-    let {Assignedperson} = useSelector((state) => state.user)
-
-    
+    let {Assignedperson} = useSelector((state) => state.user) 
 
     return(
         <>
@@ -280,19 +295,18 @@ function Assignedperdet(){
                             </tr>
                     )
                         })}
-                    </tbody>
-                </Table>
-                {/* <button type='button' onClick={()=>assignemps()}>AssignEmployees</button> */}
-            {/* </Container> */}
-                {/* </tbody> */}
-           {/* </Table>  */}
+                </tbody>
+           </Table> 
+            
         </>
     )
 }
 
-
-
 export {EmpTable,ClientTable,WorkDetailsTable,ToAssignEmployees,Assignedperdet}
+
+
+
+
 
 
 

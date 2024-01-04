@@ -1,69 +1,71 @@
-import { useEffect } from "react"
-import axios from "axios"
-import { useSelector,useDispatch } from "react-redux"
-import { setEmpData, setEmployeeWorkDetail } from "../reducer/userSlice"
-import { Table } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import axios from 'axios'
+import Container from 'react-bootstrap/Container';
+import { Table } from 'react-bootstrap';
+import { useEffect } from "react";
+import { setEmployeeWorkDetail,setEmpData } from "../reducer/userSlice";
+import { useNavigate } from "react-router";
 
-function EmployeeWorkDetail(){
-
+function EmployeeWorkDetail() {
+    
     let dispatch = useDispatch()
+    let navigate = useNavigate()
 
-    useEffect(()=> {
+    // let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
+    let { EmployeeWorkDetail } = useSelector((state) => state.user)
+
+    useEffect(() => {
 
         let token = localStorage.getItem("employeetoken")
         if(localStorage.getItem("employeetoken")){
-            axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`).then(function(success){
-                console.log(success.data.data)
-                dispatch(setEmpData(success.data.data))
-                let Id = success.data.data.id
-                console.log(Id)
-                datas(Id)
-            })
+                axios.post(`https://agaram.academy/api/crm/?request=getEmployeeByToken&token=${token}`)
+                .then(response=>{
+                    console.log(response.data.data.id)
+                    dispatch(setEmpData(response.data.data))
+                    let empid = response.data.data.id
+                    EmployeeWork(empid)
+                })
+            }
+        else{
+            navigate("/Userlogin")
         }
         
-    },[])
+    }, [])
 
-
-    let datas = (Id) => {
-
-      let token = localStorage.getItem("employeetoken")
-        axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${Id}&token=${token}`).then(function(success){
-            console.log(success.data.data)
-            dispatch(setEmployeeWorkDetail(success.data.data))
+    let EmployeeWork = (id) => {
+        let token = localStorage.getItem("employeetoken")
+        axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${id}&token=${token}`).then(function (response) {
+            let datas = response.data.data
+            console.log(datas)
+            dispatch(setEmployeeWorkDetail(datas))
         })
-        
     }
 
-    let {EmployeeWorkDetail} = useSelector((state) => state.user)
- 
-    return(
+    return (
         <>
-            <Table>
-                <thead>
-                    <tr>
-                        <th>ClientId</th>
-                        <th>Assigned work</th>
-                        <th>Workplace</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* {JSON.stringify(EmployeeWorkDetail)} */}
-                        {
-                            EmployeeWorkDetail.map((e)=>{
-                               return(
+            <Container>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Client Id</th>
+                            <th>Work</th>
+                            <th>Work Place</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {EmployeeWorkDetail.map((works)=>{
+                            return(
                                 <tr>
-                                    <td>{e.id}</td>
-                                    <td>{e.work}</td>
-                                    <td>{e.workplace}</td>
+                                    <td>{works.clientid}</td>
+                                    <td>{works.work}</td>
+                                    <td>{works.workplace}</td>
                                 </tr>
-                               )
-                            })
-                        }
-                   
-                </tbody>
-            </Table>
+                            )
+                        })}
+                    </tbody>
+                </Table>
+            </Container>
         </>
     )
 }
-
 export default EmployeeWorkDetail

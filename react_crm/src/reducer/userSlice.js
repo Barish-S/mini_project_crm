@@ -3,55 +3,71 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
+
     superAdminLogin: {
-      email: "",
-      password: ""
+      email: "admin123@gmail.com",
+      password: "admin@123"
     },
+
     clientLogin: {
-      email: "",
-      password: ""
+      email: "bhuvana@gmail.com",
+      password: "12345"
     },
-
-    EmpRegDet:{
-      name : "",
-      email : "",
-      password : "",
-      gender : "",
-      dob : "",
-      aadhar : "",
-      phone : "",
-      address : "",
-      pincode : "",
-      district : "",
-      state : "",
-      education : "",
-      workbase : ""
-    },
-
-    userloginsuccess:{},
     
-    ClientDetails: {},
+    EmpRegDet: {
+      name: "divya",
+      email: "div@gmail.com",
+      password: "2345",
+      gender: "female",
+      dob: "",
+      aadhar: "23604116",
+      phone: "7993337687",
+      address: "kottar",
+      pincode: "629002",
+      district: "kanyakumari",
+      state: "tamil nadu",
+      education: "BA.english",
+      workbase: ""
+    },
+
+    userloginsuccess: {
+      email: "bhuvana@gmail.com",
+      password: "123"
+    },
+
+    ClientDetails: {
+      name:"chrish",
+      email:"chrish@gmail.com",
+      password:"12345",
+      phone:"9360588419",
+      gender:"male",
+      dob:"",
+      address:"thiruvalluvar street",
+      city:"kanyakumari",
+      state:"tamilnadu",
+      pincode:"629001"
+    },
 
     loggedStatus: {
       user: "Admin",
       data: [],
-      empData: [],
+      empData:[],
       clientData: [],
       status: ""
     },
 
-    Assignedperson : [
-      
-    ],
+    Assignedperson : [],
 
     Empclients : [],
     EmployeeWorkDetail : [],
 
-    WorkDetails:[],
+    WorkDetails: [],
+    AssigndedEmp:[],
+    
+    CliAssignforEmp:[],
+    EmployeeWorkDetail:[],
   },
 
-
- 
   reducers: {
     setSuperAdminLogin: (state, action) => {
       state.superAdminLogin = action.payload
@@ -76,7 +92,7 @@ export const userSlice = createSlice({
     },
     setLoggedStatus:(state,action)=>{
       state.loggedStatus.status=action.payload
-  },
+    },
     
     RegisterClient: (state,action) => {
       state.ClientDetails = action.payload
@@ -96,8 +112,18 @@ export const userSlice = createSlice({
     setAssignedperson : (state,action) => {
       state.Assignedperson = action.payload
     },
+    workAssignedEmployees:(state,action) => {
+      state. AssigndedEmp= action.payload
+    },
+    
+    setCliAssignforEmp:(state,action) => {
+      state.CliAssignforEmp = action.payload
+    },
     setEmpclients : (state,action) => {
       state.Empclients = action.payload
+    },
+    setEmployeeWorkDetail:(state,action) => {
+      state.EmployeeWorkDetail = action.payload
     },
     setEmployeeWorkDetail : (state,action) => {
       state.EmployeeWorkDetail = action.payload
@@ -106,6 +132,7 @@ export const userSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setSuperAdminLogin,setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData,setWorkDetails,setLoggedUser,setAssignedperson, setEmpclients, setEmployeeWorkDetail } = userSlice.actions
+export const { setLoggedUser, setSuperAdminLogin, setClientData, EmployeeRegisterDetails, setLoggedStatus, RegisterClient, setClientLogin, updateUserLoginSuccess, setLoggedData, setEmpData, setWorkDetails, setAssignedperson, setCliAssignforEmp, setEmployeeWorkDetail,workAssignedEmployees } = userSlice.actions
 
-export default userSlice.reducer ;
+export default userSlice.reducer;
+
