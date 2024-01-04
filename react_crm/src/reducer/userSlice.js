@@ -31,8 +31,8 @@ export const userSlice = createSlice({
     },
 
     userloginsuccess: {
-      // email: "aslin@gmail.com",
-      // password: "556"
+      email: "bhuvana@gmail.com",
+      password: "123"
     },
 
     ClientDetails: {},
