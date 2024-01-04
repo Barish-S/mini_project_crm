@@ -16,11 +16,16 @@ function Sub() {
   let navigate=useNavigate()
   let dispatch=useDispatch()
    
-  useEffect(()=>{
-    if(localStorage.getItem("logStatus")=="Admin"){
-      navigate('/adminhome')
-    }
-  },[])
+  // useEffect(()=>{
+  //   if(localStorage.getItem("employeetoken")){
+  //     navigate('/EmployeeHome')
+  //   }
+  //   else if((localStorage.getItem("clienttoken"))){
+  //     navigate('/ClientHome')
+  //   }else{
+  //    navigate("/adminhome")
+  //   }
+  // },[])
   function GuestUser(){
     dispatch(setLoggedUser("Guest"))
     navigate("/GuestHome")

@@ -19,8 +19,8 @@ function GetAllEmployees(){
 
     useEffect(()=>{
 
-        if(localStorage.getItem("loggedtoken")){
-            axios.post(`https://agaram.academy/api/crm/?request=getClientDetailsByToken&token=${localStorage.getItem("loggedtoken")}`)
+        if(localStorage.getItem("clienttoken")){
+            axios.post(`https://agaram.academy/api/crm/?request=getClientDetailsByToken&token=${localStorage.getItem("clienttoken")}`)
             .then(response => {
                 console.log(response.data.data.id)
                 dispatch(setClientData(response.data.data))
@@ -38,8 +38,8 @@ function GetAllEmployees(){
 
 
 const Employeedata=(idss)=>{
-    let token=localStorage.getItem("loggedtoken")
-    axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${idss}&token=${localStorage.getItem("loggedtoken")}`).then( (response)=> {
+    let token=localStorage.getItem("clienttoken")
+    axios.get(`https://agaram.academy/api/crm/?request=get_employees_with_work&clientid=${idss}&token=${localStorage.getItem("clienttoken")}`).then( (response)=> {
         let datas = response
         console.log(datas.data.data)
         let empdata=datas.data.data;

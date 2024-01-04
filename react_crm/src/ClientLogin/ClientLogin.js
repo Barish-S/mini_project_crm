@@ -32,7 +32,7 @@ function ClientLogin() {
                    dispatch(setClientData(data))
                     localStorage.setItem("clientid",response.data.data.id)
                     localStorage.setItem("loggedstate","client")
-                    localStorage.setItem("loggedtoken",token)
+                    localStorage.setItem("clienttoken",token)
                     Navigate("/ClientHome")
                 }
                 else {

@@ -1,21 +1,39 @@
 import { useDispatch ,useSelector} from "react-redux";
 import axios from 'axios';
-import { setWorkDetails } from '../reducer/userSlice';
+import { setWorkDetails,setClientData } from '../reducer/userSlice';
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-
+import { useParams } from "react-router";
 
 function Workdetails(){
     let navigate=useNavigate()
    useEffect(()=>{
-        if(localStorage.getItem("loggedstate")!="client"){
+        if(!localStorage.getItem("clienttoken")){
             navigate("/ClientLogin")
+        }else{
+           
+
+             
+                    axios.post(`https://agaram.academy/api/crm/?request=getClientDetailsByToken&token=${localStorage.getItem("clienttoken")}`)
+                    .then(response => {
+                        console.log(response.data.data.id)
+                        dispatch(setClientData(response.data.data))
+                     
+        
+              
+                    
+                   
+                })
+               
+      
         }
    },[])  
     const dispatch=useDispatch();
+    let clientid=useParams()
+    let loggedclientid=clientid.clientid
     const workdetailsData=useSelector((state)=>state.user.WorkDetails)
     // const clientloginid=useSelector((state)=>state.user.clientLogin)
-    let clientloginid=localStorage.getItem("clientid")
+    // let clientloginid=localStorage.getItem("clientid")
     
     let workdetailsget=()=>{
         let formData= new FormData() 
@@ -31,13 +49,14 @@ function Workdetails(){
         <>
         {JSON.stringify(workdetailsData)}
         {/* {JSON.stringify(clientloginid)} */}
-{clientloginid}
+        {JSON.stringify(loggedclientid)}
+{/* {clientloginid} */}
         <h1>work</h1>
         <form class="form">
     <p class="title">Login </p>
     <p class="message">Signin now and get full access to our app. </p>
     <label>
-        <input class="input" defaultValue={clientloginid} onChange={(e)=>dispatch(setWorkDetails({...workdetailsData,clientid:e.target.value}))} type="text" placeholder="" required=""/>
+        <input class="input" defaultValue={loggedclientid} onChange={(e)=>dispatch(setWorkDetails({...workdetailsData,clientid:e.target.value}))} type="text" placeholder="" required=""/>
         <span>clientId</span>
     </label>
     <label>
