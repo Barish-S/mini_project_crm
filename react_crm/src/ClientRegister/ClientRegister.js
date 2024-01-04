@@ -1,8 +1,5 @@
-import { useState } from 'react'
 import axios from 'axios'
-import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { RegisterClient } from '../reducer/userSlice';
@@ -47,17 +44,8 @@ export function ClientRegister() {
             console.log(success)
             navigate('/ClientLogin')
 
-            // let age=moment().diff(ClientDetail.dob,"years");
-            // if(age>18 && age<50)
-            // {
-            //     alert("eligible")
-            // }
-            //        else{
-            //         alert("not eligible")
-            //        } 
         
         })
-
     }
     }
     return (

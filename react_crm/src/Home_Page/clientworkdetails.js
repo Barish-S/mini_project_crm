@@ -16,7 +16,7 @@ function ClientWorkDetails() {
 
     useEffect(() => {
 
-        if (localStorage.getItem("logStatus") == "Admin") {
+        if (localStorage.getItem("Token")) {
             axios.post(`http://agaram.academy/api/crm/?request=client_work_list&clientid=${clientid}`).then(function (response) {
                 console.log(response.data.data)
                 dispatch(setWorkDetails(response.data.data))

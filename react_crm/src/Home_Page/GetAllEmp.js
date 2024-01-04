@@ -4,11 +4,8 @@ import { Table } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-import InputGroup from 'react-bootstrap/InputGroup';
 import axios from "axios";
-import Button from 'react-bootstrap/Button';
-import { setEmpData, setLoggedStatus, setClientData,setAssignedperson,workAssignedEmployees } from "../reducer/userSlice";
-import { useState } from 'react';
+import {setClientData,workAssignedEmployees } from "../reducer/userSlice";
 
 function GetAllEmployees(){
 

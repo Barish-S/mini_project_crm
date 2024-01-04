@@ -3,13 +3,13 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import { EmployeeRegisterDetails } from "../reducer/userSlice"
 
-import { Button,Form,Col,Row } from 'react-bootstrap';
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import "./index.css"
 
 import moment from "moment"
-import { Navigate, useNavigate } from "react-router";
+import {useNavigate } from "react-router";
 
 
 

@@ -7,16 +7,14 @@ import { useNavigate } from "react-router";
 function Assign() {
     let navigate = useNavigate()
     useEffect(() => {
-        if (localStorage.getItem("logStatus") != "Admin") {
+        if (!localStorage.getItem("Token")) {
             navigate("/")
         }
     }, [])
     let { workid } = useParams();
     return (
         <>
-
             <ToAssignEmployees workids={workid} />
-
         </>
     )
 }

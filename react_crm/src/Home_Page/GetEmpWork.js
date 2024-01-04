@@ -12,7 +12,6 @@ function GetEmpsWorks(){
    let navigate=useNavigate();
    let dispatch=useDispatch();
    let assignedemp=useSelector((state)=>state.user.AssigndedEmp)
-   let empdata=useSelector((state)=>state.user.loggedStatus.clientData )
 
     useEffect(()=>{
 
