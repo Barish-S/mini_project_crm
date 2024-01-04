@@ -24,7 +24,6 @@ import GetEmpsWorks from './Home_Page/GetEmpWork';
 import Displayassignedper from './Home_Page/Disasgd';
 import ClientsasgdforEmpID from './Home_Page/cliAssignforEmp';
 import EmployeeWorkDetail from './Home_Page/EmployeeWork';
-import { createImmutableStateInvariantMiddleware } from '@reduxjs/toolkit';
 
 function App() {
   const router = createBrowserRouter([
@@ -105,8 +104,6 @@ function App() {
       element:<GetEmpsWorks/>
     }
     ,
-    
-  
     {
       path:"/assignedclientsforEmp",
       element:<ClientsasgdforEmpID/>
@@ -124,11 +121,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       <RouterProvider router={router} />
-       
-     
-     
-
-      </header>
+       </header>
     </div>
 
 

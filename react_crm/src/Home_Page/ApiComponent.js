@@ -1,7 +1,7 @@
 import './CSS/home.css'
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
+import { setLoggedStatus, setLoggedData, setEmpData, setClientData} from "../reducer/userSlice";
 import { useNavigate } from 'react-router';
 
 

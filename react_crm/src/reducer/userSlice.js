@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import axios from 'axios'
-import { useDispatch } from 'react-redux'
+
 
 export const userSlice = createSlice({
   name: 'user',

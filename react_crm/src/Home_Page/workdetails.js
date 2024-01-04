@@ -33,10 +33,8 @@ function Workdetails(){
     let clientid=useParams()
     let loggedclientid=clientid.clientid
     const workdetailsData=useSelector((state)=>state.user.WorkDetails)
-    let empdata=useSelector((state)=>state.user.loggedStatus.clientData )
    
-    // const clientloginid=useSelector((state)=>state.user.clientLogin)
-    // let clientloginid=localStorage.getItem("clientid")
+   
     
     let workdetailsget=()=>{
         let formData= new FormData() 

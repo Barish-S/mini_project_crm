@@ -7,37 +7,20 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import moment from 'moment'
-import { setLoggedStatus, setLoggedData, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
+import { setLoggedStatus,setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 
-import Example from "./pieChart";
-import Button from 'react-bootstrap/Button';
-import { EmpTable, ClientTable } from "./empTable";
-import { GetAllClients,GetAllEmployees } from "./ApiComponent";
+
 function Home() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
-    let globeStatus = useSelector((state) => state.user.loggedStatus.status)
-    let userStatus = useSelector((state) => state.user.loggedStatus.user)
-    let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
-    let data = useSelector((state) => state.user.loggedStatus)
-
-    let time = moment().diff('2000-10-28', 'years')
-
-
-    function GetWork() {
-        navigate('/Get-Work')
-    }
+   
 
     function navMainHome() {
         navigate('/')
     }
 
-    function addWorkDetail() {
-        navigate('/workdetails')
-    }
-
+   
     function navClientFeature() {
         navigate('/Client-List')
         // dispatch(setLoggedUser("Admin"))
@@ -55,6 +38,7 @@ function Home() {
         dispatch(setClientData([]))
         dispatch(setLoggedStatus(""))
         localStorage.removeItem("logStatus")
+        localStorage.removeItem("Token")
         // dispatch(setLoggedStatus(true))
         navigate('/')
     }
@@ -65,13 +49,7 @@ function Home() {
         } else {
             navigate("/SuperAdminLog")
         }
-        // if(userStatus!="Admin"){
-        //     navigate('/')
-        // }
-        // if(globeStatus==false){
-        //     dispatch(setLoggedUser("Admin"))
-        //     navigate('/adminhome')
-        // }
+      
 
     }, [])
 
@@ -90,13 +68,7 @@ function Home() {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="me-auto">
-                                <NavDropdown title="Features" id="basic-nav-dropdown">
-                                    <NavDropdown.Item ><p >Dashboard</p></NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navClientFeature()}> <p>Clients</p></NavDropdown.Item>
-                                    <NavDropdown.Item onClick={() => navEmployeeFeature()}> <p>Employees</p> </NavDropdown.Item>
-                                    {/* <NavDropdown.Item> <p>Assign Users</p></NavDropdown.Item> */}
-                                    {/* <NavDropdown.Item><p>Notifications</p> </NavDropdown.Item> */}
-                                </NavDropdown>
+                             
                                 <Nav.Link onClick={() => navMainHome()} id="nav">Home</Nav.Link>
                                 <Nav.Link id="nav" href="mailto:barish28@gmail.com">Contact.Us</Nav.Link>
                                 <Nav.Link onClick={() => Logout()} id="nav">SignOut</Nav.Link>
@@ -108,9 +80,10 @@ function Home() {
                 </Navbar>
                 <div id="data">
                         <nav class="blend">
+                            <h1>DATAS</h1>
                             <ul>
-                                <li><a href="">Clients</a></li>
-                                <li><a href="">Employees</a></li>
+                                <li onClick={()=>navClientFeature()}><a href="">Clients</a></li>
+                                <li onClick={()=>navEmployeeFeature()}><a href="">Employees</a></li>
                             </ul>
                         </nav>
                 </div>
