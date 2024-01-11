@@ -1,6 +1,8 @@
 import { Assignedperdet } from "./empTable"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
+
+
 function Displayassignedper(){
    let navigate=useNavigate()
    useEffect(()=>{

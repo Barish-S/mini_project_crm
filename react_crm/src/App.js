@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './Home_Page/home';
 import Submit from './login';
+import Chart from './Home_Page/piechart'
 import Userlogin from './UserLogin/Userlogin';
 import ClientLogin from './ClientLogin/ClientLogin';
 import UserReg from './UserRegister';
@@ -111,6 +112,10 @@ function App() {
     {
       path:"/EmployeeWorkDetail",
       element:<EmployeeWorkDetail/>
+    },
+    {
+      path:"/Chart",
+      element:<Chart />
     }
     
   ]);

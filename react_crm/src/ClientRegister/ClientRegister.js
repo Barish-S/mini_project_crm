@@ -56,7 +56,7 @@ export function ClientRegister() {
         <>
 
             <form class="form" >
-                <p class="title" >Register here!</p>
+                <p class="title" >Register here.....!</p>
                 <p class="message">Signup now and get full access to our app. </p>
 
                 <label>

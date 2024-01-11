@@ -8,6 +8,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from 'moment'
+import Chart from './piechart'
 import { setLoggedStatus,setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
 
 
@@ -25,6 +26,10 @@ function Home() {
         navigate('/Client-List')
         // dispatch(setLoggedUser("Admin"))
 
+    }
+
+    function Piechart(){
+        navigate('/Chart')
     }
 
     function navEmployeeFeature() {
@@ -70,6 +75,7 @@ function Home() {
                             <Nav className="me-auto">
                              
                                 <Nav.Link onClick={() => navMainHome()} id="nav">Home</Nav.Link>
+                                <Nav.Link onClick={() => Piechart()}  id="nav">Dashboard</Nav.Link>
                                 <Nav.Link id="nav" href="mailto:barish28@gmail.com">Contact.Us</Nav.Link>
                                 <Nav.Link onClick={() => Logout()} id="nav">SignOut</Nav.Link>
 
