@@ -79,15 +79,17 @@ function ToAssignEmployees(props){
     let assignemployees=(id)=>{
       
         setAssignedEmployees([...assignedEmployees,id])
+        
         for (let a of assignedEmployees){
            if(a==id){
       let  assigEmployees=assignedEmployees.filter(item=>item!==id)
             setAssignedEmployees(assigEmployees)
+            console.log(assigEmployees)
            }
         }
        
     }
-
+    console.log(assignedEmployees)
 let assignemps=()=>{
     let formData = new FormData()
         formData.append("ids",assignedEmployees)
