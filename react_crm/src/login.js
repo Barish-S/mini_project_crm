@@ -50,6 +50,12 @@ let logincheck=()=>{
       console.log(response);
       })};
 
+      function flaskData(){
+        axios.get("http://127.0.0.1:5000/welcome").then(function(response){
+          console.log(response)
+        })
+      }
+
 return(
     <>
 
@@ -76,6 +82,7 @@ return(
         <NavDropdown.Item onClick={Userreg}>Employees Register</NavDropdown.Item>
         </NavDropdown>
 </Nav>
+<button onClick={()=>flaskData()}>Submit</button>
 <div class="firstdiv" style={{border:"0px solid black",height:"590px",backgroundImage:"../src/divback.jpg",}}>
     <div class="firstdivHalf" style={{border:"0px 0px 0px 0px solid black",width:"40%"}}>
         <h1 class="text" style={{marginRight:"10%",marginTop:"5%",padding:"10%",color:"black"}}>GROW YOUR<br></br>
