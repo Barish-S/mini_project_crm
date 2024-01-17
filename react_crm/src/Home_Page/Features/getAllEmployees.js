@@ -5,29 +5,30 @@ import { useDispatch } from 'react-redux';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import { useEffect, useState } from 'react';
-import { setLoggedStatus,setEmpData } from '../../reducer/userSlice';
+import { setLoggedStatus, setEmpData } from '../../reducer/userSlice';
 import { useNavigate } from 'react-router';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 function EmpTable() {
 
     let empsData = useSelector((state) => state.user.loggedStatus.empData)
-    let userStatus = useSelector((state) => state.user.loggedStatus.user)
-    let navigate=useNavigate()
-    let dispatch=useDispatch()
+    let userStatus = useSelector((state) => state.user.loggedStatus.status)
+    let navigate = useNavigate()
+    let dispatch = useDispatch()
 
-    useEffect(()=>{
-        if(localStorage.getItem("Token")){
+    useEffect(() => {
+        if (localStorage.getItem("Token")) {
             getAllEmployees()
-        }else{
+        } else {
             navigate('/')
         }
-    },[])
+    }, [])
 
     function getAllEmployees() {
-        let token=localStorage.getItem("Token")
+        let token = localStorage.getItem("Token")
         axios.get(`https://agaram.academy/api/crm/?request=all_employees&token=${token}`).then(function (response) {
             let datas = response.data.data
             dispatch(setLoggedStatus("Employees"))
@@ -41,16 +42,43 @@ function EmpTable() {
         })
     }
 
-    let [search,setSearch]=useState("")
+    let [search, setSearch] = useState("")
+
+    function exportPDF() {
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+
+        doc.setFontSize(12);
+
+        const title = userStatus;
+        const headers = [["ID","NAME", "EMAIL", "PHONE", "ADDRESS", "EDUCATION", "WORKBASE", "GENDER"]];
+
+        const data = empsData.map(elt => [elt.id,elt.name, elt.email, elt.phone, elt.address, elt.education, elt.workbase, elt.gender]);
+
+        let content = {
+            startY: 20,
+            head: headers,
+            body: data
+        };
+
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save(`${userStatus} report.pdf`)
+    }
+
     return (
         <Container>
             <h1>Employees Details</h1>
             <InputGroup className="mb-3">
-        <Form.Control
-        onChange={(e)=>setSearch(e.target.value)}
-          placeholder="Search"
-        />
-      </InputGroup>
+                <Form.Control
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search"
+                />
+            </InputGroup>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -66,20 +94,24 @@ function EmpTable() {
                 </thead>
                 <tbody>
                     {empsData.filter((detail) => {
-                        return search.toLowerCase()===""?detail:detail.name.toLowerCase().includes(search);}).map((detail)=> (
-                            <tr key={detail.id}>
-                                <td>{detail.name}</td>
-                                <td>{detail.email}</td>
-                                <td>{detail.phone}</td>
-                                <td>{detail.address}</td>
-                                <td>{detail.education}</td>
-                                <td>{detail.workbase}</td>
-                                <td>{detail.gender}</td>
-                                <td><Button variant="outline-danger" onClick={()=>RemoveEmployee(detail.id)}>Remove Employee</Button></td>
-                            </tr>
+                        return search.toLowerCase() === " "||"  " ? detail : detail.name.toLowerCase()||detail.name.toUpperCase().includes(search);
+                    }).map((detail) => (
+                        <tr key={detail.id}>
+                            <td>{detail.name}</td>
+                            <td>{detail.email}</td>
+                            <td>{detail.phone}</td>
+                            <td>{detail.address}</td>
+                            <td>{detail.education}</td>
+                            <td>{detail.workbase}</td>
+                            <td>{detail.gender}</td>
+                            <td><Button variant="outline-danger" onClick={() => RemoveEmployee(detail.id)}>Remove Employee</Button></td>
+                        </tr>
                     ))}
                 </tbody>
             </Table>
+            <div>
+                <Button variant="dark" onClick={() =>exportPDF()}>Download Report As PDF</Button>
+            </div>
         </Container>
     )
 }
