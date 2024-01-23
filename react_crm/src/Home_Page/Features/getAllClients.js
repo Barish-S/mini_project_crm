@@ -10,12 +10,14 @@ import { setClientData, setLoggedStatus } from '../../reducer/userSlice';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 function ClientTable() {
     let navigate = useNavigate();
     let dispatch = useDispatch()
     let cliData = useSelector((state) => state.user.loggedStatus.clientData)
-    let userStatus = useSelector((state) => state.user.loggedStatus.user)
+    let userStatus = useSelector((state) => state.user.loggedStatus.status)
 
 
     let workdetails = (clientid) => {
@@ -32,12 +34,37 @@ function ClientTable() {
 
     }, [])
 
+    function exportPDF() {
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "portrait"; // portrait or landscape
+
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+
+        doc.setFontSize(12);
+
+        const title = userStatus;
+        const headers = [["ID","NAME", "EMAIL", "PHONE", "ADDRESS", "GENDER"]];
+
+        const data = cliData.map(elt => [elt.id,elt.name, elt.email, elt.phone, elt.address, elt.gender]);
+
+        let content = {
+            startY: 50,
+            head: headers,
+            body: data
+        };
+
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(content);
+        doc.save(`${userStatus} report.pdf`)
+    }
 
     function getAllClients() {
         let token=localStorage.getItem("Token")
         axios.get(`https://agaram.academy/api/crm/?request=all_clients&token=${token}`).then(function (response) {
             let datas = response.data.data
-            // dispatch(setLoggedStatus("Client"))
+            dispatch(setLoggedStatus("Clients"))
             dispatch(setClientData(datas))
 
         })
@@ -89,6 +116,7 @@ function ClientTable() {
                     ))}
                 </tbody>
             </Table>
+            <Button variant="dark" onClick={() =>exportPDF()}>Download Report As PDF</Button>
         </Container>
     )
 }

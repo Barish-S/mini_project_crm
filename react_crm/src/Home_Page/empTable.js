@@ -12,6 +12,7 @@ import Form from 'react-bootstrap/Form';
 
 
 
+
 function WorkDetailsTable() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -189,6 +190,9 @@ function Assignedperdet(){
         </>
     )
 }
+
+
+
 
 export {WorkDetailsTable,ToAssignEmployees,Assignedperdet}
 
