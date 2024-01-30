@@ -45,18 +45,18 @@ function NavBar(){
           <Nav.Link href="#about">About</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1">contact Us</Nav.Link>
+          <Nav.Link eventKey="link-1">Contact Us</Nav.Link>
         </Nav.Item>
         <Nav.Item>
         </Nav.Item>
         <NavDropdown title="SignIn" id="nav-dropdown">
           <NavDropdown.Item onClick={Adminlog}>Admin</NavDropdown.Item>
-          <NavDropdown.Item onClick={Clientlog}>clientlogin</NavDropdown.Item>
-          <NavDropdown.Item onClick={Employeelog}>Employees</NavDropdown.Item>
+          <NavDropdown.Item onClick={Clientlog}>Client Login</NavDropdown.Item>
+          <NavDropdown.Item onClick={Employeelog}>Employee Login</NavDropdown.Item>
         </NavDropdown>
         <NavDropdown title="SignUp" id="nav-dropdown">
-          <NavDropdown.Item onClick={Clientreg}>client Register</NavDropdown.Item>
-          <NavDropdown.Item onClick={Userreg}>Employees Register</NavDropdown.Item>
+          <NavDropdown.Item onClick={Clientreg}>Client Register</NavDropdown.Item>
+          <NavDropdown.Item onClick={Userreg}>Employee Register</NavDropdown.Item>
         </NavDropdown>
       </Nav>
         </>

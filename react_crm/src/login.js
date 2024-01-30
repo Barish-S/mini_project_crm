@@ -6,6 +6,7 @@ import { setLoggedUser } from './reducer/userSlice';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useEffect } from 'react';
+import NavBar from './nav';
 
 
 function Sub() {
@@ -68,29 +69,7 @@ function Sub() {
   return (
     <>
 
-      <Nav className="justify-content-end" activeKey="/home" style={{ border: "0px solid black", backgroundColor: "rgba(4, 193, 250, 0.732)" }}>
-        <Nav.Item>
-          <Nav.Link onClick={()=>GuestUser()}>GuestUser</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="#about">About</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-1">contact Us</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          {/* <Nav.Link eventKey="link-2">Enquery</Nav.Link> */}
-        </Nav.Item>
-        <NavDropdown title="SignIn" id="nav-dropdown">
-          <NavDropdown.Item onClick={Adminlog}>Admin</NavDropdown.Item>
-          <NavDropdown.Item onClick={Clientlog}>clientlogin</NavDropdown.Item>
-          <NavDropdown.Item onClick={Employeelog}>Employees</NavDropdown.Item>
-        </NavDropdown>
-        <NavDropdown title="SignUp" id="nav-dropdown">
-          <NavDropdown.Item onClick={Clientreg}>client Register</NavDropdown.Item>
-          <NavDropdown.Item onClick={Userreg}>Employees Register</NavDropdown.Item>
-        </NavDropdown>
-      </Nav>
+      <NavBar/>
       <div class="firstdiv" style={{ border: "0px solid black", height: "590px", backgroundImage: "../src/divback.jpg", }}>
         <div class="firstdivHalf" style={{ border: "0px 0px 0px 0px solid black", width: "40%" }}>
           <h1 class="text" style={{ marginRight: "10%", marginTop: "5%", padding: "10%", color: "black" }}>GROW YOUR<br></br>

@@ -1,3 +1,10 @@
+#regbody{
+  display: grid;
+  place-content: center;
+  margin-top:5%;
+
+}
+
 .form {
     display: flex;
     flex-direction: column;

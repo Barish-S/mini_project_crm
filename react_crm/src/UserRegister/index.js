@@ -1,15 +1,12 @@
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
-
 import { EmployeeRegisterDetails } from "../reducer/userSlice"
-
 import { Button,Form,Col,Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import "./index.css"
-
 import moment from "moment"
 import { Navigate, useNavigate } from "react-router";
+import NavBar from "../nav";
 
 
 function UserReg(){
@@ -28,20 +25,22 @@ function UserReg(){
         formData.append("gender",EmpRegDet.gender)
         formData.append("dob",EmpRegDet.dob)
         formData.append("aadhar",EmpRegDet.aadhar)
-        formData.append("address",EmpRegDet.address)
+        formData.append("place",EmpRegDet.place)
         formData.append("pincode",EmpRegDet.pincode)
         formData.append("district",EmpRegDet.district)
         formData.append("state",EmpRegDet.state)
         formData.append("phone",EmpRegDet.phone)
         formData.append("education",EmpRegDet.education)
         formData.append("workbase",EmpRegDet.workbase)
+        formData.append("request","register_user")
+
 
         let age = moment().diff(EmpRegDet.dob,"years")
 
         
             if (age>18 && age<50){
                 // alert("Eligible")
-                axios.post("https://agaram.academy/api/crm/?request=employee_register",formData).then(function(success){
+                axios.post("https://barish.pythonanywhere.com/employee_register",formData).then(function(success){
                 console.log(success)
                 console.log(formData)
                 })
@@ -53,7 +52,8 @@ function UserReg(){
     
     return(
         <>
-        
+        <NavBar/>
+        <div id="regbody">
         <form class="form">
 
             <p class="title">Register here!</p>
@@ -89,8 +89,8 @@ function UserReg(){
             </label>
 
             <label>
-                <input class="input" type="text" placeholder=""  onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,address:e.target.value}))}/>
-                <span>Address</span>
+                <input class="input" type="text" placeholder=""  onKeyUp={(e) => dispatch(EmployeeRegisterDetails({...EmpRegDet,place:e.target.value}))}/>
+                <span>Place</span>
             </label>
 
             <label>
@@ -150,10 +150,10 @@ function UserReg(){
             
             <button class="submit" type="button" onClick={()=>Regdata()}>Submit</button>
 
-            <p class="signin">Already have an acount ? <a href="#">Signin</a> </p>
+            <p class="signin">Already have an acount ? <a href="/Userlogin">Signin</a> </p>
 
         </form>
-
+        </div>
         </ >
     )
 }

@@ -17,6 +17,13 @@ function EmployeeHome() {
     let EmpId = useSelector((state) => state.user.loggedStatus.empData.id)
     let data = useSelector((state) => state.user.loggedStatus)
 
+    useEffect(()=>{
+        const headers={'Authorization': `Bearer ${localStorage.getItem('token')}`}
+        axios.get("https://barish.pythonanywhere.com/allusers",{headers}).then(function(response){
+            console.log(response)
+        })
+    },[])
+
 
     function GetWork() {
         axios.get(`https://agaram.academy/api/crm/?request=fetch_employee_work&emp_id=${EmpId}`).then(function (response) {

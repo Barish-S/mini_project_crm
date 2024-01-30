@@ -15,10 +15,12 @@ function ClientLogin() {
         let formData = new FormData()
         formData.append("email", loginData.email)
         formData.append("password", loginData.password)
+        formData.append("request", "client_login")
 
-        axios.post('https://agaram.academy/api/crm/?request=client_login', formData)
+
+        axios.post('https://barish.pythonanywhere.com/Client_Login', formData)
             .then(response => {
-                console.log(response.data.data.id)
+                console.log(response)
                 let status = response.data.status
                 let data = response.data.data
                 if (status == "success") {
@@ -37,7 +39,6 @@ function ClientLogin() {
     return (
         <>
             <NavBar/>
-            {/* {JSON.stringify(loginData)} */}
             <div id='body'>
 
                 <form class="form">

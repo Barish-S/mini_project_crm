@@ -2,10 +2,11 @@ import { useState } from 'react'
 import axios from 'axios'
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { RegisterClient } from '../reducer/userSlice';
 import '../ClientRegister/ClientRegister.css'
+import NavBar from '../nav';
 
 
 
@@ -13,6 +14,7 @@ import '../ClientRegister/ClientRegister.css'
 export function ClientRegister() {
 
     let dispatch = useDispatch();
+    let navigate = useNavigate()
 
     let ClientDetail = useSelector((state) => state.user.ClientDetails)
     console.log(ClientDetail
@@ -32,9 +34,11 @@ export function ClientRegister() {
         formData.append("district",ClientDetail.district)
         formData.append("state",ClientDetail.state)
         formData.append("pincode",ClientDetail.pincode)
-        axios.post("https://agaram.academy/api/crm/index.php?request=client_register",formData).then(function(success){
+        formData.append("request","client_register")
+        axios.post("https://barish.pythonanywhere.com/clientReg",formData).then(function(success){
             console.log(success)
-
+            alert("Successfully Registered")
+            navigate('/ClientLogin')
             // let age=moment().diff(ClientDetail.dob,"years");
             // if(age>18 && age<50)
             // {
@@ -52,7 +56,8 @@ export function ClientRegister() {
 
     return (
         <>
-                 
+            <NavBar/>
+            <div id='regbody'>
             <form class="form">
                 <p class="title" >Register here!</p>
                 <p class="message">Signup now and get full access to our app. </p>
@@ -106,7 +111,7 @@ export function ClientRegister() {
                 <button class="submit" type='button' onClick={() => RegData()}>Submit</button>
                 <p class="signin">Already have an acount ? <a href="ClientLogin">Signin</a> </p>
             </form>
-
+            </div>
         </>
 
     )

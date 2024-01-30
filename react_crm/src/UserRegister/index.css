@@ -1,3 +1,9 @@
+#regbody{
+  display: grid;
+  place-content: center;
+  margin-top: 2%;
+}
+
 .form {
     display: flex;
     flex-direction: column;

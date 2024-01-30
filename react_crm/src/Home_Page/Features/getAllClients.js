@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import { useEffect } from 'react';
-import { setClientData, setLoggedStatus } from '../../reducer/userSlice';
+import { setClientData, setLoggedData, setLoggedStatus,setLoggedUser } from '../../reducer/userSlice';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -18,6 +18,7 @@ function ClientTable() {
     let dispatch = useDispatch()
     let cliData = useSelector((state) => state.user.loggedStatus.clientData)
     let userStatus = useSelector((state) => state.user.loggedStatus.status)
+    let loggedUser = useSelector((state) => state.user.loggedStatus)
 
 
     let workdetails = (clientid) => {
@@ -25,14 +26,29 @@ function ClientTable() {
     }
 
     useEffect(() => {
-        if (localStorage.getItem("Token")) {
-            getAllClients()
-
+        let token=localStorage.getItem("Token")
+        if (loggedUser?.data?.id && token) {
+            axios.get(`https://agaram.academy/api/crm/?request=all_clients&token=${token}`).then(function (response) {
+                let datas = response.data.data
+                dispatch(setLoggedStatus("Clients"))
+                dispatch(setClientData(datas))
+            })
+        }
+        else if(token){
+             axios.post(`https://agaram.academy/api/crm/?request=admin_login&token=${token}`).then(function(response){
+                let status=response.data.status
+                if(status=="success"){
+                    dispatch(setLoggedUser("Admin"))
+                    // localStorage.setItem("Token",response.data.token)
+                    dispatch(setLoggedData(response.data.dta))
+                }
+             })
+            
         } else {
             navigate('/')
         }
 
-    }, [])
+    }, [loggedUser.data])
 
     function exportPDF() {
         const unit = "pt";

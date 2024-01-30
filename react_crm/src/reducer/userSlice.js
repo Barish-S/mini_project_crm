@@ -16,19 +16,20 @@ export const userSlice = createSlice({
     
 
     EmpRegDet: {
-      name: "divya",
-      email: "div@gmail.com",
-      password: "2345",
-      gender: "female",
-      dob: "",
-      aadhar: "23604116",
-      phone: "7993337687",
-      address: "kottar",
-      pincode: "629002",
-      district: "kanyakumari",
-      state: "tamil nadu",
-      education: "BA.english",
+      name: "barish",
+      email: "barish@gmail.com",
+      password: "123456",
+      gender: "male",
+      dob: "2000-10-28",
+      aadhar: "391913191857",
+      phone: "6383456559",
+      place: "Layam",
+      pincode: "629302",
+      district: "Kanyakumari",
+      state: "Tamilnadu ",
+      education: "M.Sc Comuputer Sciece",
       workbase: ""
+
     },
 
     userloginsuccess: {},
