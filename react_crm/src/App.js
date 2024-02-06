@@ -24,7 +24,7 @@ import GetEmpsWorks from './Home_Page/GetEmpWork';
 import Displayassignedper from './Home_Page/Disasgd';
 import ClientsasgdforEmpID from './Home_Page/cliAssignforEmp';
 import EmployeeWorkDetail from './Home_Page/EmployeeWork';
-
+import DisplayChatBox from './Chatbot/chatboxdisplay';
 function App() {
   const router = createBrowserRouter([
     {
@@ -111,6 +111,10 @@ function App() {
     {
       path:"/EmployeeWorkDetail",
       element:<EmployeeWorkDetail/>
+    },
+    {
+      path:"/chatboxdisplay",
+      element:<DisplayChatBox/>
     }
     
   ]);
@@ -121,6 +125,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       <RouterProvider router={router} />
+
        </header>
     </div>
 

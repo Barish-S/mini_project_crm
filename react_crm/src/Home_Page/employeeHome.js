@@ -9,7 +9,11 @@ import { useNavigate } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from "axios";
 import { setLoggedStatus,setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
-
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css';
+import config from "../Chatbot/config";
+import MessageParser from "../Chatbot/MessageParser";
+import ActionProvider from "../Chatbot/ActionProvider";
 function EmployeeHome() {
     let navigate = useNavigate();
     let dispatch = useDispatch();
@@ -79,7 +83,12 @@ function EmployeeHome() {
                     </Container>
                 </Navbar>
                 <div id="data">
-
+                <Chatbot
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+     
+      />
                 </div>
             </div>
 

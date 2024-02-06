@@ -10,7 +10,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import { setLoggedStatus,setEmpData, setClientData, setLoggedUser} from "../reducer/userSlice";
 // import { GetAllEmployees } from "./ApiComponent";
-
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css';
+import config from "../Chatbot/config";
+import MessageParser from "../Chatbot/MessageParser";
+import ActionProvider from "../Chatbot/ActionProvider";
 function ClientHome() {
 
 
@@ -60,6 +64,9 @@ function ClientHome() {
             <Helmet>
                 <title>Client | Home</title>
                 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet' />
+               
+
+
             </Helmet>
             <div class="header">
                 <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary" style={{ height: "60px", width: "100%" }}>
@@ -82,6 +89,12 @@ function ClientHome() {
                     </Container>
                 </Navbar>
                 <div id="data">
+                <Chatbot
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+       
+      />
                 </div>
                 <Button variant="outline-dark" onClick={()=>addWorkDetail()}>Request Work</Button>
             </div>
@@ -90,4 +103,5 @@ function ClientHome() {
     );
 }  
 
-export default ClientHome
+export default ClientHome;
+

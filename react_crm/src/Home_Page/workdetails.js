@@ -1,12 +1,12 @@
 import { useDispatch ,useSelector} from "react-redux";
 import axios from 'axios';
 import { setWorkDetails,setClientData } from '../reducer/userSlice';
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useNavigate } from "react-router";
 import { useParams } from "react-router";
 
 function Workdetails(){
-
+    let[urlClientId,setUrlClientId]=useState("")
     let navigate=useNavigate()
    useEffect(()=>{
         if(!localStorage.getItem("clienttoken")){
@@ -18,6 +18,7 @@ function Workdetails(){
                     axios.post(`https://agaram.academy/api/crm/?request=getClientDetailsByToken&token=${localStorage.getItem("clienttoken")}`)
                     .then(response => {
                         console.log(response.data.data.id)
+                         setUrlClientId(loggedclientid)
                         dispatch(setClientData(response.data.data))
                      
         
@@ -31,7 +32,9 @@ function Workdetails(){
    },[])  
     const dispatch=useDispatch();
     let clientid=useParams()
+    
     let loggedclientid=clientid.clientid
+   
     const workdetailsData=useSelector((state)=>state.user.WorkDetails)
    
    
@@ -48,16 +51,14 @@ function Workdetails(){
     }
     return(
         <>
-        {JSON.stringify(workdetailsData)}
-        {/* {JSON.stringify(clientloginid)} */}
-        {JSON.stringify(loggedclientid)}
-{/* {clientloginid} */}
+       {JSON.stringify(workdetailsData)}
+{/* {urlClientId} */}
         <h1>work</h1>
-        <form class="form">
+        <form class="form"> 
     <p class="title">Login </p>
     <p class="message">Signin now and get full access to our app. </p>
     <label>
-        <input class="input" defaultValue={loggedclientid} onChange={(e)=>dispatch(setWorkDetails({...workdetailsData,clientid:e.target.value}))} type="text" placeholder="" required=""/>
+        <input class="input" defaultValue={urlClientId}  onChange={(e)=>dispatch(setWorkDetails({...workdetailsData,clientid:e.target.value}))} type="number" placeholder="" required=""/>
         <span>clientId</span>
     </label>
     <label>

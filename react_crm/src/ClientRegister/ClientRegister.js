@@ -32,7 +32,7 @@ export function ClientRegister() {
         formData.append("district", ClientDetail.district)
         formData.append("state", ClientDetail.state)
         formData.append("pincode", ClientDetail.pincode)
-
+        formData.append("request","client_register")
         let error=false
        { Object.entries(ClientDetail).map(([key,value]) => {
             if(value==""||value=="  "||value=="   "||value=="     "){
@@ -42,9 +42,9 @@ export function ClientRegister() {
         }  
         )}
         if (error==false){
-        axios.post("https://agaram.academy/api/crm/index.php?request=client_register", formData).then(function (success) {
+        axios.post("http://bhuvana.pythonanywhere.com/register",formData).then(function (success) {
             console.log(success)
-            navigate('/ClientLogin')
+            // navigate('/ClientLogin')
 
         
         })

@@ -30,18 +30,18 @@ function SuperLogin() {
       .then(response => {
         let status = response.data.status
         console.log(response.data.token)
-        if (status == "success") {
+        if (status == "success"){
           dispatch(setLoggedUser("Admin"))
           // dispatch(setLoggedStatus(true))
           localStorage.setItem("Token",response.data.token)
-          // localStorage.setItem("logStatus","Admin")
-
-          navigate("/adminhome")
+          localStorage.setItem("logStatus","Admin")
+  navigate("/adminhome")
         }
-        else {
+        else 
+        {
           alert("Wrong Details")
         }
-      })
+    })
   };
 
   return (

@@ -64,7 +64,7 @@ export const userSlice = createSlice({
       
     ],
 
-    WorkDetails: [],
+    WorkDetails:[],
     AssigndedEmp:[],
     Assignedperson:[],
     CliAssignforEmp:[],

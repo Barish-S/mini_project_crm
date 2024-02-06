@@ -54,12 +54,12 @@ function GetEmpsWorks(){
         <>
       {/* {JSON.stringify(assignedemp)} */}
         <Container>
-            <h1>Employees Details</h1>
+            <h1>Work Details</h1>
             <Table striped bordered hover>
                 <thead>
                     <tr>
                        
-                        <th>EmployeeID</th>
+                        <th>WorkID</th>
                         <th>work</th>
                         <th>workplace</th>
                         
@@ -74,7 +74,7 @@ function GetEmpsWorks(){
                         <tr>
                             {/* {console.log(s)} */}
                           
-                            <td>{works.clientid}</td>
+                            <td>{works.id}</td>
                             <td>{works.work}</td>
                             <td>{works.workplace}</td>
                            

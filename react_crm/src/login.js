@@ -71,6 +71,17 @@ function Sub() {
     })
   };
 
+  let AddEmployessToClient=()=>{
+   
+    axios.get(`http://bhuvana.pythonanywhere.com/home`).then(function (response) {
+      console.log(response);
+    })
+       
+    }
+   
+   
+
+
   return (
     <>
 
@@ -190,14 +201,14 @@ function Sub() {
 Zoho CRM has become an integral tool for businesses across all industry segments seeking to enhance their customer interactions and streamline operations.<br></br> Its centralized database consolidates customer information and conversations in a unified platform.....</span>
 </div>
 
-
+<button type="button" onClick={()=>AddEmployessToClient()}>click</button>
 
 
 
 
 
     </>
-  )
-}
+  )}
+
 
 export default Sub;

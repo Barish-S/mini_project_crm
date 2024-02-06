@@ -30,20 +30,22 @@ function ClientLogin() {
         let formData = new FormData()
         formData.append("email", loginData.email)
         formData.append("password", loginData.password)
-
-        axios.post('https://agaram.academy/api/crm/?request=client_login', formData)
+        formData.append("request", "client_login")
+        axios.post('http://bhuvana.pythonanywhere.com/login',formData)
             .then(response => {
+               console.log(response.data.data.token)
+                localStorage.setItem("token",response.data.data.token)
                 console.log(response.data.data.id)
                 let status = response.data.status
                 let data = response.data.data
-                // console.log(response.data)
+               
                 let token=response.data.token
                 
-                // console.log(data.id)
+                console.log(data.id)
               
                 if (status == "success") {
                     dispatch(setLoggedUser("Client"))
-                   dispatch(setClientData(data))
+                    dispatch(setClientData(data))
                     localStorage.setItem("clientid",response.data.data.id)
                     localStorage.setItem("loggedstate","client")
                     localStorage.setItem("clienttoken",token)

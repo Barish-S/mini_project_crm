@@ -34,9 +34,11 @@ function ClientTable() {
 
 
     function getAllClients() {
-        let token=localStorage.getItem("Token")
-        axios.get(`https://agaram.academy/api/crm/?request=all_clients&token=${token}`).then(function (response) {
-            let datas = response.data.data
+        // let token=localStorage.getItem("Token")
+        let headers={"Authorization":`Bearer ${localStorage.getItem("token")}`}
+        axios.get(`http://bhuvana.pythonanywhere.com/getallUsers`,{headers}).then(function (response) {
+            console.log(response)
+        let datas = response.data.data
             // dispatch(setLoggedStatus("Client"))
             dispatch(setClientData(datas))
 
@@ -45,7 +47,8 @@ function ClientTable() {
 
     function RemoveClient(id) {
         axios.post(`https://agaram.academy/api/crm/?request=delete_client&clientid=${id}`).then(function (response) {
-            getAllClients()
+           
+        getAllClients()
         })
     }
 

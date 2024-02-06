@@ -9,7 +9,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { setLoggedStatus, setEmpData, setClientData, setLoggedUser } from "../reducer/userSlice";
-
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css';
+import config from "../Chatbot/config";
+import MessageParser from "../Chatbot/MessageParser";
+import ActionProvider from "../Chatbot/ActionProvider";
 
 function GuestHome() {
     let navigate = useNavigate();
@@ -38,11 +42,14 @@ function GuestHome() {
     })
     },[])
 
-
-   
+    const chatDisplay=()=>{
+        
+      navigate("/chatboxdisplay")
+      
+    }
     
     
-
+    
 
 
     return (
@@ -70,7 +77,16 @@ function GuestHome() {
                     </Container>
                 </Navbar>
                 <div id="data">
-                
+                <div>
+      {/* <Chatbot
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+       
+      /> */}
+        <img src={require("../Chatbot/Chatbot.gif") } alt="chat with admin"  type="button" onClick={chatDisplay} style={{width:"80px"}} />
+      {/* <button type="button" onClick={()=>{chatDisplay()}}>chat with admin</button> */}
+    </div>
                 </div>
             </div>
             

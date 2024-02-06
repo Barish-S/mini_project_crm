@@ -47,6 +47,7 @@ function UserReg(){
                 console.log(success)
                 console.log(formData)
                 })
+                navigate("/Userlogin")
             }
             else{
                 alert("You are not eligible to register!")
