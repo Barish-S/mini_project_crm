@@ -34,7 +34,7 @@ function GuestHome() {
    
 
     useEffect(()=>{
-
+      
         axios.get("https://agaram.academy/api/crm/?request=all_employees").then(function (response) {
             let datas = response.data.data
             console.log(datas)
